@@ -1,5 +1,5 @@
 <template>
-  <v-app id="inspire" dark @click.native="detectActive">
+  <v-app id="inspire" dark>
     <v-navigation-drawer fixed app v-model="drawer" clipped>
       <v-list>
         <v-list v-if="userInfo.role==0">
@@ -80,7 +80,7 @@
 <script>
 import getFirstLetter from "../utils/FirstLetter";
 import { mapGetters } from "vuex";
-
+import companyService from "../service/CompanyService";
 export default {
   data() {
     return {
@@ -167,7 +167,10 @@ export default {
       userInfo: "user/userInfo"
     })
   },
-  mounted() {}
+  async mounted() {
+    var data = await companyService.getCompanyList();
+    console.log(data);
+  }
 };
 </script>
 
