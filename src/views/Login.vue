@@ -32,13 +32,14 @@
               <v-container style="padding-right:100px !important">
                 <v-card-text>
                   <p class="text-md-left headline font-weight-bold mb-4 pt-3">登录 SkyHawk</p>
-                  <v-form>
+                  <v-form ref="loginForm">
                     <v-text-field
                       v-model="username"
                       prepend-icon="person"
                       name="login"
                       label="用户名"
                       type="text"
+                      :rules="[v => !!v || '请填写用户名']"
                     ></v-text-field>
                     <v-text-field
                       v-model="password"
@@ -47,6 +48,7 @@
                       name="password"
                       label="密码"
                       type="password"
+                      :rules="[v => !!v || '请填写密码']"
                       @keyup.enter="login"
                     ></v-text-field>
                   </v-form>
@@ -64,6 +66,7 @@
 </template>
 
 <script>
+import authService from "../service/AuthService";
 export default {
   data() {
     return {
@@ -72,7 +75,11 @@ export default {
     };
   },
   methods: {
-    login() {}
+    async login() {
+      if (this.$refs.loginForm.validate()) {
+        const rsp = await authService.login(this.username, this.password);
+      }
+    }
   },
   mounted() {}
 };
