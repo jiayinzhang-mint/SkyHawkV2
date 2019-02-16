@@ -20,34 +20,36 @@
                   <v-btn flat round>反馈问题</v-btn>
                 </div>
               </v-layout>
-              <v-footer class="pa-4 trans">
+              <!-- <v-footer class="pa-4 trans">
                 <div @click="jump" class="jump">
                   <img width="20px" style="margin-left:-5px" src="/static/assets/INSDIM.svg">
                 </div>
                 <v-spacer></v-spacer>
                 <div>Copyright &copy; {{ new Date().getFullYear() }} INSDIM Inc. 保留所有权利</div>
-              </v-footer>
+              </v-footer>-->
             </v-flex>
             <v-flex xs12 md4 d-flex>
               <v-container style="padding-right:100px !important">
                 <v-card-text>
                   <p class="text-md-left headline font-weight-bold mb-4 pt-3">登录 SkyHawk</p>
-                  <v-text-field
-                    v-model="username"
-                    prepend-icon="person"
-                    name="login"
-                    label="用户名"
-                    type="text"
-                  ></v-text-field>
-                  <v-text-field
-                    v-model="password"
-                    id="password"
-                    prepend-icon="lock"
-                    name="password"
-                    label="密码"
-                    type="password"
-                    @keyup.enter="login"
-                  ></v-text-field>
+                  <v-form>
+                    <v-text-field
+                      v-model="username"
+                      prepend-icon="person"
+                      name="login"
+                      label="用户名"
+                      type="text"
+                    ></v-text-field>
+                    <v-text-field
+                      v-model="password"
+                      id="password"
+                      prepend-icon="lock"
+                      name="password"
+                      label="密码"
+                      type="password"
+                      @keyup.enter="login"
+                    ></v-text-field>
+                  </v-form>
                 </v-card-text>
                 <v-card-actions class="pb-5">
                   <v-btn outline light color="primary" depressed @click="login" round>登录</v-btn>
@@ -61,11 +63,25 @@
   </v-app>
 </template>
 
+<script>
+export default {
+  data() {
+    return {
+      username: "",
+      password: ""
+    };
+  },
+  methods: {
+    login() {}
+  },
+  mounted() {}
+};
+</script>
 
 
 <style>
 .background {
-  background-image: url("/static/assets/Back.jpg") !important;
+  background-image: url("/img/Back.jpg") !important;
   background-size: auto 100% !important;
 }
 .trans {
