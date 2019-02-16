@@ -7,8 +7,21 @@ export default new Router({
   routes: [
     {
       path: "/",
-      name: "login",
       component: () => import("./views/Login")
+    },
+    {
+      path: "/index",
+      component: () => import("./views/Index"),
+      children: [
+        {
+          path: "/today",
+          component: () => import("./components/today/Today")
+        }
+      ]
+    },
+    {
+      path: "/mobile",
+      component: () => import("./views/IndexMobile")
     }
   ]
 });

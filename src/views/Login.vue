@@ -20,13 +20,6 @@
                   <v-btn flat round>反馈问题</v-btn>
                 </div>
               </v-layout>
-              <!-- <v-footer class="pa-4 trans">
-                <div @click="jump" class="jump">
-                  <img width="20px" style="margin-left:-5px" src="/static/assets/INSDIM.svg">
-                </div>
-                <v-spacer></v-spacer>
-                <div>Copyright &copy; {{ new Date().getFullYear() }} INSDIM Inc. 保留所有权利</div>
-              </v-footer>-->
             </v-flex>
             <v-flex xs12 md4 d-flex>
               <v-container style="padding-right:100px !important">
@@ -76,8 +69,13 @@ export default {
   },
   methods: {
     async login() {
+      this.$loading.show(true);
       if (this.$refs.loginForm.validate()) {
         const rsp = await authService.login(this.username, this.password);
+        if (rsp.msg == "success") {
+          this.$router.push({ path: "/today" });
+        }
+        this.$loading.show(false);
       }
     }
   },
@@ -86,16 +84,9 @@ export default {
 </script>
 
 
-<style>
+<style scopped>
 .background {
   background-image: url("/img/Back.jpg") !important;
   background-size: auto 100% !important;
-}
-.trans {
-  background-color: transparent !important;
-  color: white !important;
-}
-.jump :hover {
-  cursor: pointer;
 }
 </style>

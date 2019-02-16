@@ -1,13 +1,5 @@
 <template>
-  <v-layout row justify-center id="app" app-data="true">
-    <v-dialog dark v-model="x" hide-overlay persistent width="300">
-      <v-card color="primary">
-        <v-card-text>请稍后
-          <v-progress-linear indeterminate color="white" class="mb-0"></v-progress-linear>
-        </v-card-text>
-      </v-card>
-    </v-dialog>
-  </v-layout>
+  <v-progress-linear :indeterminate="true" v-if="x"></v-progress-linear>
 </template>
 
 <script>
@@ -28,5 +20,10 @@ export default {
 };
 </script>
 
-<style>
+<style scoped>
+.v-progress-linear {
+  position: absolute;
+  height: 5px !important;
+  margin: 0;
+}
 </style>

@@ -1,5 +1,6 @@
 import basicService from "./BasicService";
-import message from "../utils/message";
+import message from "../utils/Message";
+import detectDevice from "../utils/DetectDevice";
 import store from "../store/store";
 
 class authService {
@@ -9,6 +10,12 @@ class authService {
       password: password
     });
     message.snackbar(rsp.msg);
+    if (rsp.msg == "success") {
+      var userInfo = {};
+      userInfo = rsp;
+      userInfo.device = detectDevice();
+      store.dispatch("user/login", userInfo);
+    }
     return rsp;
   }
 }
