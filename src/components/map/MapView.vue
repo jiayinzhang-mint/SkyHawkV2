@@ -71,9 +71,6 @@
                 ripple
                 @click="glanceCompany(item.id);selectCompany = item.brand"
               >
-                <v-list-tile-avatar size="32px">
-                  <vue-initials-img :name="item.brand"/>
-                </v-list-tile-avatar>
                 <v-list-tile-content>
                   <v-list-tile-title v-html="item.brand"></v-list-tile-title>
                 </v-list-tile-content>
@@ -88,8 +85,6 @@
           width="300px"
           style="z-index:1"
           v-if="selectCompany"
-          v-loading="loadingInfo"
-          element-loading-background="rgba(0, 0, 0, 0.3)"
         >
           <v-toolbar class="aero" flat>
             <v-toolbar-title style="margin-left:-8px" class="subheading" v-html="selectCompany"></v-toolbar-title>
@@ -104,7 +99,7 @@
                 <v-icon color="primary">assignment_ind</v-icon>
               </v-list-tile-action>
               <v-list-tile-content>
-                <v-list-tile-title>{{companyInfo.name}}</v-list-tile-title>
+                <v-list-tile-title>{{companyInfo.brand}}</v-list-tile-title>
               </v-list-tile-content>
             </v-list-tile>
             <v-list-tile>
@@ -133,6 +128,8 @@
 
 <script>
 import { mapGetters, mapMutations, mapActions } from "vuex";
+import organizationService from "../../service/OrganizationService";
+import companyService from "../../service/CompanyService";
 
 export default {
   data: () => ({
@@ -150,159 +147,134 @@ export default {
     highlightCompany: "请选择企业",
     selectCompany: "",
     companyListShow: [],
-    loadingInfo: false,
-    loadingMap: false,
     companyInfo: [],
     station: []
   }),
   methods: {
     ...mapActions(["getCompanyList", "getOrganizeList"]),
-    getBound() {
+    async getBound() {
       this.companyListShow = [];
-      this.$ajax
-        .get("/organize/bound", {
-          params: {
-            token: this.userInfo.token,
-            id: this.userInfo.station
-          }
-        })
-        .then(data => {
-          // console.log(data.data.bound.bound);
 
-          this.map = new AMap.Map("markermap", {
-            resizeEnable: true,
-            zoom: 40,
-            center: [121.476657, 31.252857],
-            mapStyle: "amap://styles/393a749e1b6c87ab7352ecede1ba25a7"
-          });
-          this.polygon = new AMap.Polygon({
+      const rsp = await organizationService.getOrganizationBound(
+        this.userInfo.station,
+        false
+      );
+      this.map = new AMap.Map("markermap", {
+        resizeEnable: true,
+        zoom: 40,
+        center: [121.476657, 31.252857],
+        mapStyle: "amap://styles/393a749e1b6c87ab7352ecede1ba25a7"
+      });
+      this.polygon = new AMap.Polygon({
+        map: this.map,
+        path: rsp[0].bound,
+        strokeColor: "#000000",
+        strokeOpacity: 0.3,
+        strokeWeight: 3,
+        fillColor: "#fff",
+        fillOpacity: 0.2,
+        bubble: true
+      });
+      this.polygon.setMap(this.map);
+      this.map.setFitView();
+
+      this.companyList.forEach(element => {
+        if (
+          element.station == this.userInfo.station ||
+          this.userInfo.role == 1
+        ) {
+          var marker = new AMap.CircleMarker({
             map: this.map,
-            path: data.data[0].bound,
-            strokeColor: "#000000",
-            strokeOpacity: 0.3,
-            strokeWeight: 3,
-            fillColor: "#fff",
-            fillOpacity: 0.2,
-            bubble: true
+            center: element.location.split(","),
+            radius: 8,
+            strokeColor: "white",
+            strokeWeight: 2,
+            strokeOpacity: 0.5,
+            fillColor: "#1E88E5",
+            fillOpacity: 0.5,
+            zIndex: 10,
+            cursor: "pointer",
+            clickable: true
           });
-          this.polygon.setMap(this.map);
-          this.map.setFitView();
-        })
-        .then(data => {
-          // console.log(this.companyList);
-          this.companyList.forEach(element => {
-            if (
-              element.station == this.userInfo.station ||
-              this.userInfo.role == 1
-            ) {
-              var marker = new AMap.CircleMarker({
-                map: this.map,
-                center: element.location.split(","),
-                radius: 8,
-                strokeColor: "white",
-                strokeWeight: 2,
-                strokeOpacity: 0.5,
-                fillColor: "#1E88E5",
-                fillOpacity: 0.5,
-                zIndex: 10,
-                cursor: "pointer",
-                clickable: true
-              });
-              const that = this;
-              marker.on("mouseover", function() {
-                marker.setOptions({ fillColor: "white" });
-              });
-              marker.on("mouseout", function() {
-                marker.setOptions({ fillColor: "#1E88E5" });
-              });
-              marker.on("click", function() {
-                that.selectCompany = element.brand;
-                marker.setOptions({ fillColor: "white" });
-                // that.selectCompany = element.brand;
-                that.map.setCenter(element.location.split(","));
-                that.glanceCompany(element.id);
-                // console.log(element.id);
-              });
-            }
+          marker.on("mouseover", () => {
+            marker.setOptions({ fillColor: "white" });
           });
-        });
+          marker.on("mouseout", () => {
+            marker.setOptions({ fillColor: "#1E88E5" });
+          });
+          marker.on("click", () => {
+            this.selectCompany = element.brand;
+            marker.setOptions({ fillColor: "white" });
+            this.map.setCenter(element.location.split(","));
+            this.glanceCompany(element.id);
+          });
+        }
+      });
     },
-    getBoundDis() {
-      this.loadingMap = true;
-      this.$ajax
-        .get("/organize/bound", {
-          params: {
-            token: this.userInfo.token,
-            all: true
-          }
-        })
-        .then(data => {
-          this.loadingMap = false;
-          this.map = new AMap.Map("markermap", {
-            resizeEnable: true,
-            zoom: 40,
-            center: [121.476657, 31.252857],
-            mapStyle: "amap://styles/393a749e1b6c87ab7352ecede1ba25a7"
-          });
-          const that = this;
-          // console.log(data.data);
-          data = data.data;
-          this.boundaryList = data;
-          data.forEach(element => {
-            that.polygon[element.id] = new AMap.Polygon({
-              map: that.map,
-              path: element.bound,
-              strokeColor: "#000000",
-              strokeOpacity: 0.2,
-              strokeWeight: 3,
-              fillColor: "#fff",
-              fillOpacity: 0.2,
-              bubble: true
-            });
-            that.polygon[element.id].on("click", function() {
-              that.selectStation(element.id);
-              that.polygon[element.id].setOptions({
-                fillOpacity: 0.5
-              });
-            });
-            that.polygon[element.id].on("mouseover", function() {
-              that.polygon[element.id].setOptions({
-                fillOpacity: 0.5
-              });
-              if (that.select == "") {
-                that.highlight = element.name;
-              }
-            });
-            that.polygon[element.id].on("mouseout", function() {
-              that.polygon[element.id].setOptions({
-                fillColor: "#fff",
-                fillOpacity: 0.2
-              });
-              if (that.select == "") {
-                that.highlight = "请选择辖区";
-              }
-            });
-            that.polygon[element.id].setMap(that.map);
-            var text = new AMap.Text({
-              map: that.map,
-              text: element.name,
-              textAlign: "center", // 'left' 'right', 'center',
-              verticalAlign: "middle", //middle 、bottom
-              position: element.center,
-              clickable: false,
-              style: {
-                color: "white",
-                "background-color": "transparent",
-                border: "0px",
-                "font-size": "11px"
-              },
-              bubble: true
-            });
-            this.map.setFitView();
-            this.center = this.map.getCenter();
-            this.zoom = this.map.getZoom();
+    async getBoundDis() {
+      const rsp = await organizationService.getOrganizationBound(null, true);
+
+      this.map = new AMap.Map("markermap", {
+        resizeEnable: true,
+        zoom: 40,
+        center: [121.476657, 31.252857],
+        mapStyle: "amap://styles/393a749e1b6c87ab7352ecede1ba25a7"
+      });
+      this.boundaryList = rsp;
+      rsp.forEach(element => {
+        this.polygon[element.id] = new AMap.Polygon({
+          map: this.map,
+          path: element.bound,
+          strokeColor: "#000000",
+          strokeOpacity: 0.2,
+          strokeWeight: 3,
+          fillColor: "#fff",
+          fillOpacity: 0.2,
+          bubble: true
+        });
+        this.polygon[element.id].on("click", () => {
+          this.selectStation(element.id);
+          this.polygon[element.id].setOptions({
+            fillOpacity: 0.5
           });
         });
+        this.polygon[element.id].on("mouseover", () => {
+          this.polygon[element.id].setOptions({
+            fillOpacity: 0.5
+          });
+          if (this.select == "") {
+            this.highlight = element.name;
+          }
+        });
+        this.polygon[element.id].on("mouseout", () => {
+          this.polygon[element.id].setOptions({
+            fillColor: "#fff",
+            fillOpacity: 0.2
+          });
+          if (this.select == "") {
+            this.highlight = "请选择辖区";
+          }
+        });
+        this.polygon[element.id].setMap(this.map);
+        var text = new AMap.Text({
+          map: this.map,
+          text: element.name,
+          textAlign: "center", // 'left' 'right', 'center',
+          verticalAlign: "middle", //middle 、bottom
+          position: element.center,
+          clickable: false,
+          style: {
+            color: "white",
+            "background-color": "transparent",
+            border: "0px",
+            "font-size": "11px"
+          },
+          bubble: true
+        });
+        this.map.setFitView();
+        this.center = this.map.getCenter();
+        this.zoom = this.map.getZoom();
+      });
     },
     clearMarkers() {
       this.markers.forEach(element => {
@@ -325,7 +297,6 @@ export default {
     },
     selectStation(id) {
       this.clearMarkers();
-      // console.log(id);
       const station = this.boundaryList.find(element => {
         return element.id === id;
       });
@@ -350,50 +321,41 @@ export default {
             clickable: true
           });
           this.markers.push(marker);
-          const that = this;
-          marker.on("mouseover", function() {
-            if (that.selectCompany == "") {
-              that.highlightCompany = element.brand;
+          marker.on("mouseover", () => {
+            if (this.selectCompany == "") {
+              this.highlightCompany = element.brand;
             }
             marker.setOptions({ fillColor: "white" });
           });
-          marker.on("mouseout", function() {
-            if (that.selectCompany == "") {
-              that.highlightCompany = "请选择企业";
+          marker.on("mouseout", () => {
+            if (this.selectCompany == "") {
+              this.highlightCompany = "请选择企业";
             }
             marker.setOptions({ fillColor: "#1E88E5" });
           });
-          marker.on("click", function() {
-            that.selectCompany = element.brand;
+          marker.on("click", () => {
+            this.selectCompany = element.brand;
             marker.setOptions({ fillColor: "white" });
-            // that.selectCompany = element.brand;
-            that.map.setCenter(element.location.split(","));
-            that.glanceCompany(element.id);
-            // console.log(element.id);
+            this.map.setCenter(element.location.split(","));
+            this.glanceCompany(element.id);
           });
         }
       });
     },
-    glanceCompany(id) {
-      this.loadingInfo = true;
-      this.$ajax
-        .get("/company/detail", {
-          params: {
-            token: this.userInfo.token,
-            id: id
-          }
-        })
-        .then(data => {
-          this.companyInfo = data.data.companyDetail;
-          this.loadingInfo = false;
-        });
+    async glanceCompany(id) {
+      const rsp = await companyService.getCompanyDetail(id);
+      this.companyInfo = rsp.companyDetail;
     },
     redirect(id) {
       this.$router.push({ path: "/company/" + id });
     }
   },
   computed: {
-    ...mapGetters({ userInfo: "user/userInfo" })
+    ...mapGetters({
+      userInfo: "user/userInfo",
+      companyList: "company/companyList",
+      stationList: "organization/stationList"
+    })
   },
   mounted() {
     if (this.userInfo.role > 1) {
