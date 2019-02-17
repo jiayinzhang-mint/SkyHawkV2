@@ -16,6 +16,10 @@ export default new Router({
         {
           path: "/today",
           component: () => import("./components/today/Today")
+        },
+        {
+          path: "/map",
+          component: () => import("./components/map/MapView")
         }
       ]
     },

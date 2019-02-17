@@ -61,6 +61,7 @@
 <script>
 import authService from "../service/AuthService";
 import companyService from "../service/CompanyService";
+import organizationService from "../service/OrganizationService";
 export default {
   data() {
     return {
@@ -75,6 +76,7 @@ export default {
         const rsp = await authService.login(this.username, this.password);
         if (rsp.msg == "success") {
           companyService.getCompanyList();
+          organizationService.getOrganizationList({ all: true });
           this.$router.push({ path: "/today" });
         }
         this.$loading.show(false);

@@ -7,6 +7,7 @@ class companyService {
 
   static async getCompanyList() {
     const rsp = await basicService.getRequest("/company/list");
+    store.dispatch("company/getCompanyList", rsp.companyList);
     return rsp;
   }
 

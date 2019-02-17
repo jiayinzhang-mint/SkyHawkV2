@@ -1,10 +1,13 @@
 import basicService from "./BasicService";
+import message from "../utils/Message";
+import store from "../store/store";
 
 class organizationService {
   static async createOrganization() {}
 
-  static async getOrganizationList() {
-    const rsp = await basicService.getRequest("/organize/list");
+  static async getOrganizationList(params) {
+    const rsp = await basicService.getRequest("/organize/list", params);
+    store.dispatch("organization/getOrganizationList", rsp.organizeTree);
     return rsp;
   }
 

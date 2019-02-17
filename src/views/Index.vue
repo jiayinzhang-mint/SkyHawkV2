@@ -135,7 +135,13 @@ export default {
         }
       ],
       menuData: [
-        { heading: "数据可视化" },
+        { heading: "数据监测" },
+        {
+          icon: "build",
+          text: "设备状态",
+          role: 2,
+          route: "/dashboard/analysis"
+        },
         {
           icon: "data_usage",
           text: "告警统计",

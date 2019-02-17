@@ -1,12 +1,6 @@
 <template>
   <div class="row">
-    <div
-      class="mapview"
-      id="markermap"
-      style="height:calc(100vh - 64px);overflow :auto"
-      v-loading="loadingMap"
-      element-loading-background="rgba(0, 0, 0, 0)"
-    >
+    <div class="mapview" id="markermap" style="height:calc(100vh - 64px);overflow :auto">
       <v-card
         v-if="userInfo.role==1"
         class="d-inline-block elevation-12 ml-5 mt-5 aero"
@@ -399,7 +393,7 @@ export default {
     }
   },
   computed: {
-    ...mapGetters(["userInfo", "companyList", "stationList"])
+    ...mapGetters({ userInfo: "user/userInfo" })
   },
   mounted() {
     if (this.userInfo.role > 1) {
