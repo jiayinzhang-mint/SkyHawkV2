@@ -20,6 +20,10 @@ export default new Router({
         {
           path: "/map",
           component: () => import("./components/map/MapView")
+        },
+        {
+          path: "/alert",
+          component: () => import("./components/alert/AlertList")
         }
       ]
     },

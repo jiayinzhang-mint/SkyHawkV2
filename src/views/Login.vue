@@ -62,6 +62,8 @@
 import authService from "../service/AuthService";
 import companyService from "../service/CompanyService";
 import organizationService from "../service/OrganizationService";
+import alertService from "../service/AlertService";
+import { mapGetters } from "vuex";
 export default {
   data() {
     return {
@@ -75,13 +77,20 @@ export default {
       if (this.$refs.loginForm.validate()) {
         const rsp = await authService.login(this.username, this.password);
         if (rsp.msg == "success") {
-          companyService.getCompanyList();
           organizationService.getOrganizationList({ all: true });
+          await companyService.getCompanyList();
+          alertService.getALertList();
+
           this.$router.push({ path: "/today" });
         }
         this.$loading.show(false);
       }
     }
+  },
+  computed: {
+    ...mapGetters({
+      userInfo: "user/userInfo"
+    })
   },
   mounted() {}
 };

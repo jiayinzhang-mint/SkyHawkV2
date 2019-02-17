@@ -1,5 +1,5 @@
 <template>
-  <v-progress-linear :indeterminate="true" v-if="x"></v-progress-linear>
+  <v-progress-linear :indeterminate="true" v-show="x"></v-progress-linear>
 </template>
 
 <script>
@@ -10,7 +10,7 @@ export default {
   }),
   methods: {
     show(toggle) {
-      if (toggle) {
+      if (toggle == true) {
         this.x = true;
       } else {
         this.x = false;
@@ -23,7 +23,8 @@ export default {
 <style scoped>
 .v-progress-linear {
   position: absolute;
-  height: 5px !important;
+  height: 4px !important;
   margin: 0;
+  z-index: 9999;
 }
 </style>

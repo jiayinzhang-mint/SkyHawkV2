@@ -16,6 +16,8 @@ axios.interceptors.request.use(config => {
   return config;
 });
 
+Vue.use(require("vue-moment"));
+
 new Vue({
   router,
   store,

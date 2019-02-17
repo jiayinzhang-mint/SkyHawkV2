@@ -5,7 +5,28 @@ import store from "../store/store";
 class alertService {
   static async createALert() {}
 
-  static async getALertList() {}
+  static async getALertList() {
+    var params = {};
+    params.stationAlt = store.getters["user/userInfo"].station;
+    params.page = 1;
+    const rsp = await basicService.getRequest("/alert/list", params);
+    store.dispatch("alert/getAlertList", rsp.alertList);
+    return rsp;
+  }
+
+  static async updateAlertList() {
+    var params = {};
+    params.stationAlt = store.getters["user/userInfo"].station;
+    params.page = store.getters["alert/alertPage"];
+    const rsp = await basicService.getRequest("/alert/list", params);
+    store.dispatch("alert/updateAlertList", rsp.alertList);
+    return rsp;
+  }
+
+  static async restoreAlertList() {
+    await store.dispatch("alert/restoreAlertList");
+    this.getALertList();
+  }
 
   static async getALertDetail() {}
 

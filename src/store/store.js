@@ -6,6 +6,7 @@ import Cookies from "js-cookie";
 import user from "./modules/user";
 import organization from "./modules/organization";
 import company from "./modules/company";
+import alert from "./modules/alert";
 
 Vue.use(Vuex);
 
@@ -24,19 +25,24 @@ const vuexSession = new VuexPersistence({
   reducer: state => ({
     user: state.user,
     company: state.company,
-    organization: state.organization
+    organization: state.organization,
+    alert: state.alert
   }),
   filter: mutation =>
     mutation.type == "user/updateUserInfo" ||
     "company/getCompanyList" ||
-    "organization/getOrganizationList"
+    "organization/getOrganizationList" ||
+    "alert/getAlertList" ||
+    "alert/updateAlertList" ||
+    "alert/restoreAlertList"
 });
 
 export default new Vuex.Store({
   modules: {
     user,
     company,
-    organization
+    organization,
+    alert
   },
   plugins: [vuexCookie.plugin, vuexSession.plugin]
 });
