@@ -124,7 +124,7 @@ export default {
         {
           icon: "people",
           text: "组织信息",
-          route: "/organize",
+          route: "/organization",
           role: 2
         },
         {

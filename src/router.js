@@ -30,6 +30,17 @@ export default new Router({
               component: () => import("./components/alert/AlertDetail")
             }
           ]
+        },
+        {
+          path: "/organization",
+          component: () => import("./components/organization/OrganizationList"),
+          children: [
+            {
+              path: "/organization/:id",
+              component: () =>
+                import("./components/organization/OrganizationDetail")
+            }
+          ]
         }
       ]
     },
