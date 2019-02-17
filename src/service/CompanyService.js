@@ -10,11 +10,21 @@ class companyService {
     return rsp;
   }
 
-  static async getCompanyDetail() {}
+  static async getCompanyDetail(companyId) {
+    const rsp = await basicService.getRequest("/company/detail", {
+      id: companyId
+    });
+    return rsp;
+  }
 
   static async updateCompany() {}
 
-  static async deleteComapny() {}
+  static async deleteComapny(companyId) {
+    const rsp = await basicService.deleteRequest("/company/list", {
+      id: companyId
+    });
+    return rsp;
+  }
 }
 
 export default companyService;

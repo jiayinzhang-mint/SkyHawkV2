@@ -60,6 +60,7 @@
 
 <script>
 import authService from "../service/AuthService";
+import companyService from "../service/CompanyService";
 export default {
   data() {
     return {
@@ -73,6 +74,7 @@ export default {
       if (this.$refs.loginForm.validate()) {
         const rsp = await authService.login(this.username, this.password);
         if (rsp.msg == "success") {
+          companyService.getCompanyList();
           this.$router.push({ path: "/today" });
         }
         this.$loading.show(false);
