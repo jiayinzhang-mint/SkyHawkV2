@@ -28,7 +28,11 @@ class alertService {
     this.getALertList();
   }
 
-  static async getALertDetail() {}
+  static async getAlertDetail(alertId) {
+    const rsp = await basicService.getRequest("alert/detail", { id: alertId });
+    store.dispatch("alert/getAlertDetail", rsp.alertInfo);
+    return rsp;
+  }
 
   static async updateALert() {}
 

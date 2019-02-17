@@ -4,6 +4,17 @@ import App from "./App.vue";
 import router from "./router";
 import store from "./store/store";
 import axios from "axios";
+import "viewerjs/dist/viewer.css";
+import Viewer from "v-viewer";
+
+Vue.use(Viewer, {
+  defaultOptions: {
+    title: false,
+    toolbar: 0,
+    tooltip: false,
+    navbar: 0
+  }
+});
 
 //axios.defaults.baseURL = 'http://skyhawkapi.huilab.cn/api';
 //axios.defaults.baseURL = "http://monitor2.huilab.cn/api";

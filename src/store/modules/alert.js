@@ -1,7 +1,8 @@
 import store from "../store";
 const state = {
   alertList: [],
-  alertPage: 1
+  alertPage: 1,
+  alertDetail: {}
 };
 
 const getters = {
@@ -10,6 +11,9 @@ const getters = {
   },
   alertPage: state => {
     return state.alertPage;
+  },
+  alertDetail: state => {
+    return state.alertDetail;
   }
 };
 
@@ -21,6 +25,7 @@ const mutations = {
       });
     });
     state.alertList = alertList;
+    state.alertPage = 2;
   },
   updateAlertList: (state, alertList) => {
     state.alertPage = state.alertPage + 1;
@@ -34,6 +39,9 @@ const mutations = {
   restoreAlertList: state => {
     state.alertList = [];
     state.alertPage = 1;
+  },
+  getAlertDetail: (state, alertDetail) => {
+    state.alertDetail = alertDetail;
   }
 };
 const actions = {
@@ -45,6 +53,9 @@ const actions = {
   },
   async restoreAlertList(context) {
     context.commit("restoreAlertList");
+  },
+  async getAlertDetail(context, alertDetail) {
+    context.commit("getAlertDetail", alertDetail);
   }
 };
 

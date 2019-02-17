@@ -23,7 +23,13 @@ export default new Router({
         },
         {
           path: "/alert",
-          component: () => import("./components/alert/AlertList")
+          component: () => import("./components/alert/AlertList"),
+          children: [
+            {
+              path: "/alert/:id",
+              component: () => import("./components/alert/AlertDetail")
+            }
+          ]
         }
       ]
     },

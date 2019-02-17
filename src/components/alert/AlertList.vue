@@ -42,7 +42,7 @@
                       class="mr-1"
                       v-if="item.state==1 && item.uncertain!=1"
                     >lens</v-icon>
-                    <span class="font-weight-bold">{{item.brand.brand}}</span>
+                    <span class="font-weight-bold text-uppercase">{{item.brand.brand}}</span>
                   </v-list-tile-title>
                   <v-list-tile-sub-title class="font-weight-medium body-2">{{item.title}}</v-list-tile-sub-title>
                   <v-list-tile-sub-title>{{item.create_time | moment("YYYY-MM-DD HH:mm")}}</v-list-tile-sub-title>
