@@ -34,22 +34,6 @@
             </v-list-tile>
           </template>
         </v-list>
-        <v-list>
-          <template v-for="(item, i) in menuData">
-            <v-layout v-if="item.heading" :key="i" row align-center>
-              <v-subheader v-if="item.heading">{{ item.heading }}</v-subheader>
-            </v-layout>
-            <v-divider v-else-if="item.divider" :key="i" dark class="my-3"></v-divider>
-            <v-list-tile v-else-if="userInfo.role<=item.role" :key="i" :to="item.route" ripple>
-              <v-list-tile-action>
-                <v-icon>{{ item.icon }}</v-icon>
-              </v-list-tile-action>
-              <v-list-tile-content>
-                <v-list-tile-title>{{ item.text }}</v-list-tile-title>
-              </v-list-tile-content>
-            </v-list-tile>
-          </template>
-        </v-list>
       </v-list>
     </v-navigation-drawer>
 
@@ -132,9 +116,7 @@ export default {
           text: "企业信息",
           route: "/company",
           role: 3
-        }
-      ],
-      menuData: [
+        },
         { heading: "数据监测" },
         {
           icon: "build",
@@ -153,13 +135,19 @@ export default {
           text: "告警预测",
           role: 2,
           route: "/dashboard/perdict"
+        },
+        { heading: "其他" },
+        {
+          icon: "help_outline",
+          text: "用户手册",
+          role: 4
+        },
+        {
+          icon: "language",
+          text: "关于 SkyHawk",
+          role: 4
         }
-      ],
-      feedBack: "",
-      notificationCenter: false,
-      settingCenter: false,
-      alertListShow: [],
-      userCenter: false
+      ]
     };
   },
   methods: {

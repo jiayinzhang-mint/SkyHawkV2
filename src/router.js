@@ -41,6 +41,35 @@ export default new Router({
                 import("./components/organization/OrganizationDetail")
             }
           ]
+        },
+        {
+          path: "/company",
+          component: () => import("./components/company/CompanyList"),
+          children: [
+            {
+              path: "/company/:id",
+              component: () => import("./components/company/CompanyDetail"),
+              children: [
+                {
+                  path: "/company/:id/info",
+                  component: () => import("./components/company/CompanyInfo")
+                },
+                {
+                  path: "/company/:id/supervisor",
+                  component: () =>
+                    import("./components/company/CompanySupervisor")
+                },
+                {
+                  path: "/company/:id/device",
+                  component: () => import("./components/company/CompanyDevice")
+                },
+                {
+                  path: "/company/:id/gallery",
+                  component: () => import("./components/company/CompanyGallery")
+                }
+              ]
+            }
+          ]
         }
       ]
     },

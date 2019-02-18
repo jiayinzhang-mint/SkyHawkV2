@@ -18,6 +18,28 @@ class companyService {
     return rsp;
   }
 
+  static async getCompanyDevice(companyId) {
+    const rsp = await basicService.getRequest("/monitor/nvr", {
+      company: companyId
+    });
+    return rsp;
+  }
+
+  static async getCompanyGallery(companyId) {
+    const rsp = await basicService.getRequest("/gallery/list", {
+      company: companyId,
+      page: 1
+    });
+    return rsp;
+  }
+
+  static async getCompanySupervisor(companyId) {
+    const rsp = await basicService.getRequest("/company/supervise", {
+      id: companyId
+    });
+    return rsp;
+  }
+
   static async updateCompany() {}
 
   static async deleteComapny(companyId) {

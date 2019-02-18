@@ -8,7 +8,7 @@
           <div v-if="alertDetail.auto==1">
             <div v-if="userInfo.role==1">
               <v-btn flat round @click.stop="uncertainAlert">
-                <v-icon>flag</v-icon>标记
+                <v-icon class="mr-1">flag</v-icon>标记
               </v-btn>
 
               <v-btn flat round @click.stop="errorAlert">
