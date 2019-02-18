@@ -225,8 +225,12 @@ export default {
         return newArr;
       };
       if (rsp.humiture) {
-        this.humitureClassified = humiture(rsp.humiture);
-        this.filter(0);
+        try {
+          this.humitureClassified = humiture(rsp.humiture);
+          this.filter(0);
+        } catch (err) {
+          err;
+        }
       }
     },
     filter(id) {

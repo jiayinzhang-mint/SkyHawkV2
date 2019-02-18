@@ -1,37 +1,34 @@
 <template>
-  <v-data-table
-    :headers="headers"
-    :items="alertListShow"
-    no-data-text="暂无数据"
-    rows-per-page-text="每页项数"
-    :rows-per-page-items="rowsPerPage"
-  >
-    <template slot="items" slot-scope="props">
-      <td class="text-xs-center">{{ props.item.title }}</td>
-      <td class="text-xs-center">{{ props.item.create_time | moment("YYYY-MM-DD HH:mm:ss") }}</td>
-      <td class="text-xs-center" v-if="props.item.state == 1">监管部门处理中</td>
-      <td class="text-xs-center" v-else-if="props.item.state == 2">企业整改中</td>
-      <td class="text-xs-center" v-else-if="props.item.state == 3">整改审核中</td>
-      <td class="text-xs-center" v-else-if="props.item.state == 4">已完成</td>
-      <td class="text-xs-center" v-else-if="props.item.state == 9">告警错误</td>
-      <td class="text-xs-center">
-        <v-btn flat round color="primary" @click="showAlertDetail(props.item.id)">详情</v-btn>
-      </td>
-    </template>
-    <template
-      slot="pageText"
-      slot-scope="props"
-    >{{ props.pageStart }} - {{ props.pageStop }} 共 {{ props.itemsLength }} 条记录</template>
-  </v-data-table>
+  <div>
+    <v-data-table :headers="headers" :items="alertListShow" no-data-text="暂无数据" hide-actions>
+      <template slot="items" slot-scope="props">
+        <td class="text-xs-center">{{ props.item.title }}</td>
+        <td class="text-xs-center">{{ props.item.create_time | moment("YYYY-MM-DD HH:mm:ss") }}</td>
+        <td class="text-xs-center" v-if="props.item.state == 1">监管部门处理中</td>
+        <td class="text-xs-center" v-else-if="props.item.state == 2">企业整改中</td>
+        <td class="text-xs-center" v-else-if="props.item.state == 3">整改审核中</td>
+        <td class="text-xs-center" v-else-if="props.item.state == 4">已完成</td>
+        <td class="text-xs-center" v-else-if="props.item.state == 9">告警错误</td>
+        <td class="text-xs-center">
+          <v-btn flat round color="primary" @click="showAlertDetail(props.item.id)">详情</v-btn>
+        </td>
+      </template>
+    </v-data-table>
+    <v-layout>
+      <v-container>
+        <v-btn block depressed round @click.native="getMoreAlert">加载更多</v-btn>
+      </v-container>
+    </v-layout>
+  </div>
 </template>
 
 <script>
 import { mapGetters } from "vuex";
+import alertService from "../../service/AlertService";
 
 export default {
   data: () => ({
     alertListShow: [],
-    rowsPerPage: [10, 25, { text: "全部", value: -1 }],
     headers: [
       {
         text: "标题",
@@ -69,6 +66,12 @@ export default {
     },
     showAlertDetail(id) {
       this.$router.push({ path: "/alert/" + id });
+    },
+    async getMoreAlert() {
+      this.$loading.show(true);
+      await alertService.updateAlertList();
+      this.getAlertList();
+      this.$loading.show(false);
     }
   },
   computed: {
