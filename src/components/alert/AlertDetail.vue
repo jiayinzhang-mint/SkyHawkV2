@@ -60,7 +60,7 @@
       <v-tabs-items
         class="no-scrollbar"
         v-model="tab"
-        style="height:calc(100vh - 225px);overflow :auto"
+        style="height:calc(100vh - 210px);overflow :auto"
       >
         <v-tab-item key="1">
           <alert-basic-info ref="alertBasicInfo"></alert-basic-info>
@@ -103,7 +103,7 @@ export default {
   async mounted() {
     this.$loading.show(true);
     await alertService.getAlertDetail(this.$route.params.id);
-    this.$refs.alertBasicInfo.getBasicInfo();
+    await this.$refs.alertBasicInfo.getBasicInfo();
     this.$loading.show(false);
   },
   computed: {
@@ -119,7 +119,7 @@ export default {
     this.$loading.show(true);
     next();
     await alertService.getAlertDetail(this.$route.params.id);
-    this.$refs.alertBasicInfo.getBasicInfo();
+    await this.$refs.alertBasicInfo.getBasicInfo();
     this.tab = 0;
     this.$loading.show(false);
   }

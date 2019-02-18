@@ -15,3 +15,11 @@
 .v-treeview {
   padding: 8px
 }
+
+.container {
+  padding: 15px !important
+}
+
+.theme--dark.v-table, .v-datatable__actions {
+  background: transparent !important
+}

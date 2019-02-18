@@ -28,7 +28,7 @@
             </template>
           </v-list>
         </v-flex>
-        <v-flex xs9 style="height:calc(100vh - 113px);overflow :auto;background:#3a3a3a">
+        <v-flex xs9 style="height:calc(100vh - 95px);overflow :auto;background:#3a3a3a">
           <router-view></router-view>
         </v-flex>
       </v-layout>

@@ -66,6 +66,15 @@ export default new Router({
                 {
                   path: "/company/:id/gallery",
                   component: () => import("./components/company/CompanyGallery")
+                },
+                {
+                  path: "/company/:id/alert",
+                  component: () => import("./components/company/CompanyAlert")
+                },
+                {
+                  path: "/company/:id/humiture",
+                  component: () =>
+                    import("./components/company/CompanyHumiture")
                 }
               ]
             }

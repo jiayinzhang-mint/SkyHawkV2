@@ -93,7 +93,7 @@ export default {
   },
   methods: {
     redirect() {},
-    getBasicInfo() {
+    async getBasicInfo() {
       this.company = this.companyList.find(element => {
         return element.id == this.alertDetail.company;
       });

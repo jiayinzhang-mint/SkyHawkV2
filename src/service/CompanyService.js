@@ -25,10 +25,10 @@ class companyService {
     return rsp;
   }
 
-  static async getCompanyGallery(companyId) {
+  static async getCompanyGallery(companyId, page) {
     const rsp = await basicService.getRequest("/gallery/list", {
       company: companyId,
-      page: 1
+      page: page
     });
     return rsp;
   }
@@ -36,6 +36,13 @@ class companyService {
   static async getCompanySupervisor(companyId) {
     const rsp = await basicService.getRequest("/company/supervise", {
       id: companyId
+    });
+    return rsp;
+  }
+
+  static async getCompanyHumiture(companyId) {
+    const rsp = await basicService.getRequest("/monitor/humiture", {
+      company: companyId
     });
     return rsp;
   }

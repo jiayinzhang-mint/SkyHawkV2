@@ -26,6 +26,9 @@
           </v-card>
         </v-flex>
       </v-layout>
+      <v-layout class="mt-2">
+        <v-btn block round depressed @click="updateGalleryList">加载更多</v-btn>
+      </v-layout>
     </v-container>
   </v-layout>
 </template>
@@ -36,47 +39,26 @@ import companyService from "../../service/CompanyService";
 export default {
   data: () => ({
     companyInfo: [],
-    loading: true,
-    companySupervisor: [],
-    station: [],
-    group: [],
-    rowsPerPageItems: [6],
-    pagination: {
-      rowsPerPage: 6
-    },
-    headers: [
-      {
-        text: "标题",
-        align: "center",
-        sortable: false,
-        value: "username"
-      },
-      {
-        text: "时间",
-        align: "center",
-        sortable: false,
-        value: "name"
-      },
-      {
-        text: "状态",
-        value: "phone",
-        align: "center",
-        sortable: false
-      }
-    ],
-    galleryList: [],
     page: 1,
-    alertForm: {},
-    rules: {
-      title: [{ required: true, message: "请输入标题", trigger: "blur" }],
-      detail: [{ required: true, message: "请输入详情", trigger: "blur" }]
-    },
-    alertDialog: false
+    galleryList: []
   }),
   methods: {
     async getGalleryList() {
-      const rsp = await companyService.getCompanyGallery(this.$route.params.id);
+      const rsp = await companyService.getCompanyGallery(
+        this.$route.params.id,
+        this.page
+      );
       this.galleryList = rsp.galleryList;
+    },
+    async updateGalleryList() {
+      const rsp = await companyService.getCompanyGallery(
+        this.$route.params.id,
+        this.page
+      );
+      rsp.galleryList.forEach(e => {
+        this.galleryList.push(e);
+      });
+      this.page += 1;
     },
 
     show(e) {
@@ -120,8 +102,9 @@ export default {
       this.$router.push({ path: "/company/" + this.$route.params.id });
     }
   },
-  mounted() {
-    this.getGalleryList();
+  async mounted() {
+    await this.getGalleryList();
+    this.page = 2;
   },
   computed: {
     ...mapGetters({
@@ -131,9 +114,10 @@ export default {
       companyList: "company/companyList"
     })
   },
-  beforeRouteUpdate(to, from, next) {
+  async beforeRouteUpdate(to, from, next) {
     next();
-    this.getGalleryList();
+    await this.getGalleryList();
+    this.page = 2;
   }
 };
 </script>
