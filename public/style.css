@@ -23,3 +23,8 @@
 .theme--dark.v-table, .v-datatable__actions {
   background: transparent !important
 }
+
+.v-treeview-node__label {
+  user-select: none;
+  -webkit-user-select: none
+}
