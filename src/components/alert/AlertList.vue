@@ -69,7 +69,7 @@
       </v-list>
     </v-flex>
     <v-flex xs9>
-      <router-view v-if="this.$route.params.id"></router-view>
+      <router-view v-if="this.$route.params.alertId"></router-view>
       <v-container v-else fluid fill-height>
         <v-layout align-center justify-center>
           <div class="headline font-weight-light">请选择告警</div>

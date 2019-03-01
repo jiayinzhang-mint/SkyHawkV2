@@ -85,7 +85,7 @@ export default {
   methods: {
     async getCompanyInfo() {
       this.$loading.show(true);
-      const rsp = await companyService.getCompanyDetail(this.$route.params.id);
+      const rsp = await companyService.getCompanyDetail(this.$route.params.companyId);
       this.companyInfo = rsp.companyDetail;
       const map = new AMap.Map("markermap", {
         resizeEnable: true,

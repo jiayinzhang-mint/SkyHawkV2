@@ -103,7 +103,7 @@ export default {
     async getOrganizationDetail() {
       this.$loading.show(true);
       const rsp = await organizationService.getOrganizationDetail(
-        this.$route.params.id
+        this.$route.params.organizationId
       );
       this.organizeInfo = rsp.organizeInfo;
       this.userList = rsp.userList;

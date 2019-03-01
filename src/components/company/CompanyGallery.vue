@@ -45,14 +45,14 @@ export default {
   methods: {
     async getGalleryList() {
       const rsp = await companyService.getCompanyGallery(
-        this.$route.params.id,
+        this.$route.params.companyId,
         this.page
       );
       this.galleryList = rsp.galleryList;
     },
     async updateGalleryList() {
       const rsp = await companyService.getCompanyGallery(
-        this.$route.params.id,
+        this.$route.params.companyId,
         this.page
       );
       rsp.galleryList.forEach(e => {
@@ -99,7 +99,7 @@ export default {
       });
     },
     goToCompany() {
-      this.$router.push({ path: "/company/" + this.$route.params.id });
+      this.$router.push({ path: "/company/" + this.$route.params.companyId });
     }
   },
   async mounted() {

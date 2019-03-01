@@ -27,7 +27,7 @@
         <v-scroll-x-transition group>
           <template v-for="(item,index) in companyListShow">
             <div :key="index">
-              <v-list-tile v-if="item.id==$route.params.id" ripple class="grey darken-2">
+              <v-list-tile v-if="item.id==$route.params.companyId" ripple class="grey darken-2">
                 <v-list-tile-content>
                   <v-list-tile-title class="text-uppercase" style="color:white" v-html="item.brand"></v-list-tile-title>
                 </v-list-tile-content>
@@ -50,7 +50,7 @@
       </v-list>
     </v-flex>
     <v-flex sm9>
-      <router-view ref="companyDetail" v-if="this.$route.params.id"></router-view>
+      <router-view ref="companyDetail" v-if="this.$route.params.companyId"></router-view>
       <v-container v-else fluid fill-height>
         <v-layout align-center justify-center>
           <div class="headline font-weight-light">请选择企业</div>

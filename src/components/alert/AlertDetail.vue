@@ -102,7 +102,7 @@ export default {
   },
   async mounted() {
     this.$loading.show(true);
-    await alertService.getAlertDetail(this.$route.params.id);
+    await alertService.getAlertDetail(this.$route.params.alertId);
     await this.$refs.alertBasicInfo.getBasicInfo();
     this.$loading.show(false);
   },
@@ -118,7 +118,7 @@ export default {
   async beforeRouteUpdate(to, from, next) {
     this.$loading.show(true);
     next();
-    await alertService.getAlertDetail(this.$route.params.id);
+    await alertService.getAlertDetail(this.$route.params.alertId);
     await this.$refs.alertBasicInfo.getBasicInfo();
     this.tab = 0;
     this.$loading.show(false);

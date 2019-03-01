@@ -26,8 +26,18 @@ export default new Router({
           component: () => import("./components/alert/AlertList"),
           children: [
             {
-              path: "/alert/:id",
+              path: "/alert/:alertId",
               component: () => import("./components/alert/AlertDetail")
+            }
+          ]
+        },
+        {
+          path: "/admin/company",
+          component: () => import("./components/company/CompanyList"),
+          children: [
+            {
+              path: "/admin/company/:companyId",
+              component: () => import("./components/company/CompanyList")
             }
           ]
         },
@@ -36,7 +46,7 @@ export default new Router({
           component: () => import("./components/organization/OrganizationList"),
           children: [
             {
-              path: "/organization/:id",
+              path: "/organization/:organizationId",
               component: () =>
                 import("./components/organization/OrganizationDetail")
             }
@@ -47,32 +57,32 @@ export default new Router({
           component: () => import("./components/company/CompanyList"),
           children: [
             {
-              path: "/company/:id",
+              path: "/company/:companyId",
               component: () => import("./components/company/CompanyDetail"),
               children: [
                 {
-                  path: "/company/:id/info",
+                  path: "/company/:companyId/info",
                   component: () => import("./components/company/CompanyInfo")
                 },
                 {
-                  path: "/company/:id/supervisor",
+                  path: "/company/:companyId/supervisor",
                   component: () =>
                     import("./components/company/CompanySupervisor")
                 },
                 {
-                  path: "/company/:id/device",
+                  path: "/company/:companyId/device",
                   component: () => import("./components/company/CompanyDevice")
                 },
                 {
-                  path: "/company/:id/gallery",
+                  path: "/company/:companyId/gallery",
                   component: () => import("./components/company/CompanyGallery")
                 },
                 {
-                  path: "/company/:id/alert",
+                  path: "/company/:companyId/alert",
                   component: () => import("./components/company/CompanyAlert")
                 },
                 {
-                  path: "/company/:id/humiture",
+                  path: "/company/:companyId/humiture",
                   component: () =>
                     import("./components/company/CompanyHumiture")
                 }

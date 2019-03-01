@@ -77,7 +77,7 @@ export default {
   methods: {
     getCurrentCompany() {
       this.currentCompany = this.companyList.find(element => {
-        return element.id == this.$route.params.id;
+        return element.id == this.$route.params.companyId;
       });
     }
   },

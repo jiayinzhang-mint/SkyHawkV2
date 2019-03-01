@@ -59,13 +59,13 @@ export default {
     getAlertList() {
       this.alertListShow = [];
       this.alertList.forEach(element => {
-        if (element.company == this.$route.params.id) {
+        if (element.company == this.$route.params.companyId) {
           this.alertListShow.push(element);
         }
       });
     },
-    showAlertDetail(id) {
-      this.$router.push({ path: "/alert/" + id });
+    showAlertDetail(companyId) {
+      this.$router.push({ path: "/alert/" + companyId });
     },
     async getMoreAlert() {
       this.$loading.show(true);

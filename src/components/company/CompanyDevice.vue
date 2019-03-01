@@ -44,7 +44,7 @@ export default {
   methods: {
     async getDeviceList() {
       this.$loading.show(true);
-      const rsp = await companyService.getCompanyDevice(this.$route.params.id);
+      const rsp = await companyService.getCompanyDevice(this.$route.params.companyId);
       this.nvrList = rsp.nvrList;
       this.$loading.show(false);
     }

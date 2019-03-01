@@ -204,7 +204,7 @@ export default {
   methods: {
     async getHumiture() {
       const rsp = await companyService.getCompanyHumiture(
-        this.$route.params.id
+        this.$route.params.companyId
       );
       this.humiture = rsp.humiture;
       const humiture = arr => {

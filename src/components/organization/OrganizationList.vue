@@ -18,7 +18,7 @@
       ></v-treeview>
     </v-flex>
     <v-flex sm9>
-      <router-view v-if="this.$route.params.id"></router-view>
+      <router-view v-if="this.$route.params.organizationId"></router-view>
       <v-container fluid fill-height v-else>
         <v-layout align-center justify-center>
           <div class="headline font-weight-light">请选择组织</div>
