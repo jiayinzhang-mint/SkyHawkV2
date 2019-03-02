@@ -50,10 +50,26 @@
 
       <v-spacer></v-spacer>
 
+      <v-btn icon @click.stop="searchDrawer=true">
+        <v-icon>search</v-icon>
+      </v-btn>
+
       <v-btn icon>
         <v-avatar color="primary" size="32px">{{getFirstLetter(userInfo.name)}}</v-avatar>
       </v-btn>
     </v-toolbar>
+
+    <v-navigation-drawer width="500" right v-model="searchDrawer" absolute clipped temporary>
+      <v-toolbar class="transparent" flat>
+        <v-toolbar-title>搜索</v-toolbar-title>
+        <v-spacer></v-spacer>
+        <v-btn icon small @click="searchDrawer=false">
+          <v-icon>close</v-icon>
+        </v-btn>
+      </v-toolbar>
+
+      <search-view></search-view>
+    </v-navigation-drawer>
 
     <v-content>
       <router-view></router-view>
@@ -65,13 +81,16 @@
 import getFirstLetter from "../utils/FirstLetter";
 import { mapGetters } from "vuex";
 import companyService from "../service/CompanyService";
+import searchView from "../components/drawer/Search";
 export default {
+  components: { searchView: searchView },
   data() {
     return {
       mini: false,
       value2: false,
       userHelp: false,
       drawer: true,
+      searchDrawer: false,
       menuManage: [
         { heading: "管理" },
         {

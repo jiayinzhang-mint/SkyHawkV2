@@ -32,3 +32,7 @@
 .v-toolbar__title {
   font-size: 17px !important
 }
+
+.v-toolbar__content {
+  padding: 0 15px !important
+}
