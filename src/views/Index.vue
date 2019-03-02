@@ -82,7 +82,7 @@ export default {
         {
           icon: "people",
           text: "组织管理",
-          route: "/admin/organize"
+          route: "/admin/organization"
         }
       ],
       menuCommon: [

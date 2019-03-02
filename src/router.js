@@ -70,6 +70,18 @@ export default new Router({
           ]
         },
         {
+          path: "/admin/organization",
+          component: () =>
+            import("./components/admin/organization/OrganizationList"),
+          children: [
+            {
+              path: "/admin/organization/:organizationId",
+              component: () =>
+                import("./components/admin/organization/OrganizationConfig")
+            }
+          ]
+        },
+        {
           path: "/organization",
           component: () => import("./components/organization/OrganizationList"),
           children: [
