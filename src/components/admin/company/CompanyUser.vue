@@ -91,7 +91,7 @@ export default {
     return {
       createUserDialog: false,
       updateUserDialog: false,
-      userInfo: [],
+      userInfo: {},
       userList: [],
       headers: [
         {

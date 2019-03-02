@@ -1,19 +1,10 @@
 import basicService from "./BasicService";
 import message from "../utils/Message";
 import store from "../store/store";
-import { userInfo } from "os";
 
 class userService {
   static async createUser(newUser) {
-    console.log(newUser);
-    const rsp = await basicService.postRequest("/user/list", {
-      username: newUser.username,
-      name: newUser.name,
-      phone: newUser.phone,
-      role: newUser.role,
-      company: newUser.company,
-      organization: newUser.organization
-    });
+    const rsp = await basicService.postRequest("/user/list", newUser);
     message.snackbar(rsp.msg);
     return rsp;
   }
@@ -24,9 +15,7 @@ class userService {
   }
 
   static async updateUser(userInfo) {
-    const rsp = await basicService.putRequest("/user/info", {
-      userInfo: userInfo
-    });
+    const rsp = await basicService.putRequest("/user/info", userInfo);
     message.snackbar(rsp.msg);
     return rsp;
   }
