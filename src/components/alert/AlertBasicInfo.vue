@@ -93,18 +93,25 @@ export default {
   },
   methods: {
     redirect() {},
-    async getBasicInfo() {
+    async getCompanyInfo() {
       this.company = this.companyList.find(element => {
         return element.id == this.alertDetail.company;
       });
-
+    },
+    async getStationInfo() {
       this.station = this.organizationList[1].children.find(element => {
         return element.id == this.company.station;
       });
-
+    },
+    async getGroupInfo() {
       this.group = this.station.children.find(element => {
         return element.id == this.company.besupervised;
       });
+    },
+    async getBasicInfo() {
+      await this.getCompanyInfo();
+      await this.getStationInfo();
+      await this.getGroupInfo();
     }
   },
   computed: {
