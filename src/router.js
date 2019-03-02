@@ -59,6 +59,11 @@ export default new Router({
                   path: "/admin/company/:companyId/monitor",
                   component: () =>
                     import("./components/admin/company/CompanyMonitor")
+                },
+                {
+                  path: "/admin/company/:companyId/setting",
+                  component: () =>
+                    import("./components/admin/company/CompanySetting")
                 }
               ]
             }

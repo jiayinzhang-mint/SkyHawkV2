@@ -55,7 +55,6 @@ export default {
         text: "企业用户",
         route: "user"
       },
-
       {
         divider: true
       },
@@ -63,6 +62,14 @@ export default {
       {
         text: "监控点",
         route: "monitor"
+      },
+      {
+        divider: true
+      },
+      { heading: "其他" },
+      {
+        text: "设置",
+        route: "setting"
       }
     ]
   }),
