@@ -1,7 +1,7 @@
 <template>
   <div>
     <v-container>
-      <v-text-field prepend-inner-icon="search" label="键入以搜索" box v-model="search"></v-text-field>
+      <v-text-field prepend-inner-icon="search" label="键入以搜索" box v-model="search" ref="searchBox"></v-text-field>
     </v-container>
     <v-container v-if="companyQuery.length>=1">
       <h3>企业</h3>
@@ -46,6 +46,11 @@ export default {
           return e.station == f.id;
         });
       });
+    },
+    focus() {
+      setTimeout(() => {
+        this.$refs.searchBox.focus();
+      }, 300);
     }
   },
   watch: {

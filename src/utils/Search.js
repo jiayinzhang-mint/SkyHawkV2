@@ -1,17 +1,19 @@
 class Search {
   static searchInArray(s, arr, key) {
     var returnArr = [];
-    for (let i = 0; i < arr.length; i++) {
-      if (this.isInString(s, arr[i][key])) {
-        returnArr.push(arr[i]);
+    if (s) {
+      // won't search if searchbox is empty
+      for (let i = 0; i < arr.length; i++) {
+        if (this.isInString(s, arr[i][key])) {
+          returnArr.push(arr[i]);
+        }
       }
     }
-    return returnArr
+    return returnArr;
   }
   static isInString(s, str) {
     str = str.replace(/\s*/g, ""); // remove spaces
-    var arr = str.split(""); // string 2 array
-    if (this.isInArray(s, arr)) {
+    if (str.indexOf(s) > -1) {
       return true;
     } else {
       return false;

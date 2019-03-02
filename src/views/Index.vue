@@ -50,7 +50,7 @@
 
       <v-spacer></v-spacer>
 
-      <v-btn icon @click.stop="searchDrawer=true">
+      <v-btn icon @click.stop="searchDrawer=true;$refs.searchView.focus()">
         <v-icon>search</v-icon>
       </v-btn>
 
@@ -68,7 +68,7 @@
         </v-btn>
       </v-toolbar>
 
-      <search-view></search-view>
+      <search-view ref="searchView"></search-view>
     </v-navigation-drawer>
 
     <v-content>
