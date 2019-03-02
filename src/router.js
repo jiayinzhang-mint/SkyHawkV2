@@ -77,7 +77,24 @@ export default new Router({
             {
               path: "/admin/organization/:organizationId",
               component: () =>
-                import("./components/admin/organization/OrganizationConfig")
+                import("./components/admin/organization/OrganizationConfig"),
+              children: [
+                {
+                  path: "/admin/organization/:organizationId/info",
+                  component: () =>
+                    import("./components/admin/organization/OrganizationInfo")
+                },
+                {
+                  path: "/admin/organization/:organizationId/user",
+                  component: () =>
+                    import("./components/admin/organization/OrganizationUser")
+                },
+                {
+                  path: "/admin/organization/:organizationId/setting",
+                  component: () =>
+                    import("./components/admin/organization/OrganizationSetting")
+                }
+              ]
             }
           ]
         },

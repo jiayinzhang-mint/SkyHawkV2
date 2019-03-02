@@ -73,7 +73,7 @@ export default {
   },
   methods: {
     async login() {
-      this.$loading.show(true);
+
       if (this.$refs.loginForm.validate()) {
         const rsp = await authService.login(this.username, this.password);
         if (rsp.msg == "success") {
@@ -83,7 +83,7 @@ export default {
 
           this.$router.push({ path: "/today" });
         }
-        this.$loading.show(false);
+  
       }
     }
   },

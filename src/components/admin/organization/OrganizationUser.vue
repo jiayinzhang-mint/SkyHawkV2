@@ -1,7 +1,7 @@
 <template>
   <div>
     <v-toolbar flat color="transparent">
-      <v-toolbar-title>企业用户</v-toolbar-title>
+      <v-toolbar-title>{{organizationInfo.name}}</v-toolbar-title>
       <v-spacer></v-spacer>
       <v-btn flat round @click="createUserDialog=true;userInfo=[]">
         <v-icon>add</v-icon>&nbsp;&nbsp;新建
@@ -9,8 +9,8 @@
     </v-toolbar>
     <v-data-table :headers="headers" :items="userList" hide-actions no-data-text="暂无数据">
       <template slot="items" slot-scope="props">
-        <td class="text-xs-center">{{ props.item.username }}</td>
         <td class="text-xs-center">{{ props.item.name }}</td>
+        <td class="text-xs-center">{{ props.item.index }}</td>
         <td class="text-xs-center">{{ props.item.phone }}</td>
         <td class="text-xs-center">
           <v-chip v-if="props.item.wechat" small text-color="white" color="green">在线</v-chip>
@@ -43,6 +43,12 @@
               :rules="[v => !!v || '请填写真实姓名']"
               required
             ></v-text-field>
+            <v-text-field
+              v-model="userInfo.index"
+              label="工号"
+              :rules="[v => !!v || '请填写工号']"
+              required
+            ></v-text-field>
             <v-text-field v-model="userInfo.phone" label="移动电话"></v-text-field>
           </v-form>
         </v-container>
@@ -70,6 +76,12 @@
               :rules="[v => !!v || '请填写真实姓名']"
               required
             ></v-text-field>
+            <v-text-field
+              v-model="userInfo.index"
+              label="工号"
+              :rules="[v => !!v || '请填写工号']"
+              required
+            ></v-text-field>
             <v-text-field v-model="userInfo.phone" label="移动电话"></v-text-field>
           </v-form>
         </v-container>
@@ -85,88 +97,89 @@
 
 <script>
 import userService from "../../../service/UserService";
+import organizationService from "../../../service/OrganizationService";
 export default {
-  data() {
-    return {
-      createUserDialog: false,
-      updateUserDialog: false,
-      userInfo: {},
-      userList: [],
-      headers: [
-        {
-          text: "用户名",
-          align: "center",
-          sortable: false,
-          value: "username"
-        },
-        {
-          text: "姓名",
-          align: "center",
-          sortable: false,
-          value: "name"
-        },
-        {
-          text: "移动电话",
-          value: "phone",
-          align: "center",
-          sortable: false
-        },
-        {
-          text: "微信",
-          value: "wechat",
-          align: "center",
-          sortable: false
-        },
-        {
-          text: "操作",
-          align: "center",
-          sortable: false
-        }
-      ]
-    };
-  },
+  data: () => ({
+    organizationInfo: [],
+    userList: [],
+    createUserDialog: false,
+    updateUserDialog: false,
+    userInfo: {},
+    headers: [
+      {
+        text: "姓名",
+        align: "center",
+        sortable: false,
+        value: "name"
+      },
+      {
+        text: "工号",
+        value: "index",
+        align: "center",
+        sortable: false
+      },
+      {
+        text: "移动电话",
+        value: "phone",
+        align: "center",
+        sortable: false
+      },
+      {
+        text: "微信",
+        align: "center",
+        sortable: false
+      },
+      {
+        text: "操作",
+        align: "center",
+        sortable: false
+      }
+    ]
+  }),
   methods: {
+    async getOrganizationDetail() {
+
+      const rsp = await organizationService.getOrganizationDetail(
+        this.$route.params.organizationId
+      );
+      this.organizationInfo = rsp.organizeInfo;
+      this.userList = rsp.userList;
+
+    },
     async createUser() {
       if (this.$refs.createUserForm.validate()) {
-        this.userInfo.role = 4;
-        this.userInfo.company = this.$route.params.companyId;
+        this.userInfo.role = this.organizationInfo.level;
+        this.userinfo.organization = this.$route.params.organizationId;
         const rsp = await userService.createUser(this.userInfo);
-        this.getUserList();
+        this.getOrganizationDetail();
       }
-    },
-    async getUserList() {
-
-      const rsp = await userService.getUserList({
-        company: this.$route.params.companyId
-      });
-      this.userList = rsp.companyUser;
-
     },
     async updateUser() {
       if (this.$refs.updateUserForm.validate()) {
         await userService.updateUser(this.userInfo);
-        this.getUserList();
+        this.getOrganizationDetail();
       }
     },
-    async deleteUser(userId) {
+    async deleteUser() {
       try {
         await this.$confirm("确认删除？");
         await userService.deleteUser({
           id: userId
         });
-        this.getUserList();
+        this.getOrganizationDetail();
       } catch (err) {
         err;
       }
     }
   },
-  computed: {
-  },
   mounted() {
-    this.getUserList();
+    this.getOrganizationDetail();
+  },
+  computed: {},
+  beforeRouteUpdate(to, from, next) {
+    next();
+    this.getOrganizationDetail();
   }
 };
 </script>
 
-<style>
-</style>

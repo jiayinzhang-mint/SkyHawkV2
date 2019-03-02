@@ -76,12 +76,12 @@ export default {
   },
   methods: {
     async getSupervisor() {
-      this.$loading.show(true);
+
       const rsp = await companyService.getCompanySupervisor(
         this.$route.params.companyId
       );
       this.supervisorList = rsp.companySupervisor;
-      this.$loading.show(false);
+
     },
     async getSupervisorOptions() {
       var company = this.companyList.find(e => {

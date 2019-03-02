@@ -81,7 +81,7 @@ export default {
   },
   methods: {
     async getCompanyInfo() {
-      this.$loading.show(true);
+
       const rsp = await companyService.getCompanyDetail(
         this.$route.params.companyId
       );
@@ -92,7 +92,7 @@ export default {
       this.group = this.station.children.find(element => {
         return (element.id = this.companyInfo.besupervised);
       });
-      this.$loading.show(false);
+
     },
     async updateCompanyInfo() {
       console.log(this.companyInfo);

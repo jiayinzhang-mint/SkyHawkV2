@@ -3,10 +3,17 @@ import message from "../utils/Message";
 import store from "../store/store";
 
 class organizationService {
-  static async createOrganization() {}
+  static async createOrganization(organizationInfo) {
+    const rsp = await basicService.postRequest(
+      "/organize/list",
+      organizationInfo
+    );
+    message.snackbar(rsp.msg);
+    return rsp;
+  }
 
-  static async getOrganizationList(params) {
-    const rsp = await basicService.getRequest("/organize/list", params);
+  static async getOrganizationList(query) {
+    const rsp = await basicService.getRequest("/organize/list", query);
     store.dispatch("organization/getOrganizationList", rsp.organizeTree);
     return rsp;
   }

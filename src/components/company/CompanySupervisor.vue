@@ -29,12 +29,12 @@ export default {
   }),
   methods: {
     async getSupervisor() {
-      this.$loading.show(true);
+
       const rsp = await companyService.getCompanySupervisor(
         this.$route.params.companyId
       );
       this.companySupervisor = rsp.companySupervisor;
-      this.$loading.show(false);
+
     }
   },
   computed: {

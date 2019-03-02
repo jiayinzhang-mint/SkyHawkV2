@@ -92,9 +92,9 @@ export default {
   }),
   methods: {
     async refreshAlertList() {
-      this.$loading.show(true);
+
       await alertService.restoreAlertList();
-      this.$loading.show(false);
+
     },
     filter(id) {
       this.filted = true;
@@ -131,7 +131,7 @@ export default {
       this.filted = false;
     },
     async getMoreAlert() {
-      this.$loading.show(true);
+
       await alertService.updateAlertList();
       this.updateAlertList();
       if (this.userInfo.role <= 1 && this.filted) {
@@ -144,7 +144,7 @@ export default {
       if (this.filted) {
         this.filter(this.selectedStation.id);
       }
-      this.$loading.show(false);
+
     }
   },
   computed: {

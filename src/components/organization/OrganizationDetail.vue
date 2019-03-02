@@ -101,13 +101,13 @@ export default {
   }),
   methods: {
     async getOrganizationDetail() {
-      this.$loading.show(true);
+
       const rsp = await organizationService.getOrganizationDetail(
         this.$route.params.organizationId
       );
       this.organizeInfo = rsp.organizeInfo;
       this.userList = rsp.userList;
-      this.$loading.show(false);
+
     },
     showDetail(item) {
       this.userInfoDialog = true;

@@ -67,7 +67,7 @@
             <v-text-field
               v-model="monitorInfo.name"
               label="名称"
-              :rules="[v => !!v || '请填写明晨']"
+              :rules="[v => !!v || '请填写名称']"
               required
             ></v-text-field>
             <v-text-field
@@ -134,12 +134,12 @@ export default {
   },
   methods: {
     async getMonitorList() {
-      this.$loading.show(true);
+
       const rsp = await deviceService.getMonitorList({
         company: this.$route.params.companyId
       });
       this.monitorList = rsp.monitorList;
-      this.$loading.show(false);
+
     },
     async createMonitor() {
       if (this.$refs.createMonitorForm.validate()) {

@@ -68,10 +68,10 @@ export default {
       this.$router.push({ path: "/alert/" + companyId });
     },
     async getMoreAlert() {
-      this.$loading.show(true);
+
       await alertService.updateAlertList();
       this.getAlertList();
-      this.$loading.show(false);
+
     }
   },
   computed: {

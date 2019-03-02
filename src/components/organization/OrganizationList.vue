@@ -7,7 +7,6 @@
         </v-scroll-x-transition>
       </v-toolbar>
       <v-divider></v-divider>
-
       <v-treeview
         activatable
         hoverable
@@ -25,6 +24,7 @@
         </v-layout>
       </v-container>
     </v-flex>
+
   </v-layout>
 </template>
 
@@ -33,10 +33,11 @@ import { mapGetters } from "vuex";
 export default {
   data() {
     return {
-      active: []
+      active: [],
     };
   },
-  methods: {},
+  methods: {
+  },
   watch: {
     // can't use es6 syntax here
     active: function() {
