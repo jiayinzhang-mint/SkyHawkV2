@@ -3,7 +3,7 @@
     <v-flex sm3>
       <v-toolbar color="grey darken-3" flat>
         <v-scroll-x-transition>
-          <v-toolbar-title style="font-size:17px" v-if="!filted || userInfo.role>1 ">企业列表</v-toolbar-title>
+          <v-toolbar-title  v-if="!filted || userInfo.role>1 ">企业列表</v-toolbar-title>
         </v-scroll-x-transition>
         <v-spacer></v-spacer>
         <v-scroll-x-transition>
@@ -34,7 +34,7 @@
               </v-list-tile>
               <v-list-tile
                 v-else
-                :to=" '/company/' +item.id+'/info'"
+                :to="'/admin/company/' +item.id+'/info'"
                 ripple
                 active-class="grey darken-2"
               >
@@ -66,7 +66,8 @@ export default {
   data: () => ({
     companyListShow: [],
     filted: false,
-    selectedStation: []
+    selectedStation: [],
+    pageProp: ""
   }),
   methods: {
     filter(id) {
@@ -98,7 +99,6 @@ export default {
     if (this.userInfo.role > 1) {
       this.filter(this.userInfo.station);
     }
-    console.log(this.$route.fullPath.split("/")[1]);
   },
   beforeRouteUpdate(to, from, next) {
     next();

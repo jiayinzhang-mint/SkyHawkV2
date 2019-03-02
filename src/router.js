@@ -33,11 +33,34 @@ export default new Router({
         },
         {
           path: "/admin/company",
-          component: () => import("./components/company/CompanyList"),
+          component: () => import("./components/admin/company/CompanyList"),
           children: [
             {
               path: "/admin/company/:companyId",
-              component: () => import("./components/company/CompanyList")
+              component: () =>
+                import("./components/admin/company/CompanyConfig"),
+              children: [
+                {
+                  path: "/admin/company/:companyId/info",
+                  component: () =>
+                    import("./components/admin/company/CompanyInfo")
+                },
+                {
+                  path: "/admin/company/:companyId/supervisor",
+                  component: () =>
+                    import("./components/admin/company/CompanySupervisor")
+                },
+                {
+                  path: "/admin/company/:companyId/user",
+                  component: () =>
+                    import("./components/admin/company/CompanyUser")
+                },
+                {
+                  path: "/admin/company/:companyId/monitor",
+                  component: () =>
+                    import("./components/admin/company/CompanyMonitor")
+                }
+              ]
             }
           ]
         },

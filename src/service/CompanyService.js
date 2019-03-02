@@ -47,12 +47,40 @@ class companyService {
     return rsp;
   }
 
-  static async updateCompany() {}
+  static async updateCompany(companyId, companyDetail) {
+    // timezone
+    companyDetail.license_validity =
+      companyDetail.license_validity + " 00:00:00+08:00";
+    const rsp = await basicService.putRequest("/company/detail", {
+      id: companyId,
+      companyDetail: companyDetail
+    });
+    return rsp;
+  }
+
+  static async updateCompanySupervisor(companyId, newSupervisor) {
+    const rsp = await basicService.postRequest("/company/supervise", {
+      company: companyId,
+      supervisor: newSupervisor
+    });
+    message.snackbar(rsp.msg);
+    return rsp;
+  }
+
+  static async deleteComapnySupervisor(companyId, supervisor) {
+    const rsp = await basicService.deleteRequest("/company/supervise", {
+      company: companyId,
+      supervisor: supervisor
+    });
+    message.snackbar(rsp.msg);
+    return rsp;
+  }
 
   static async deleteComapny(companyId) {
     const rsp = await basicService.deleteRequest("/company/list", {
       id: companyId
     });
+    message.snackbar(rsp.msg);
     return rsp;
   }
 }

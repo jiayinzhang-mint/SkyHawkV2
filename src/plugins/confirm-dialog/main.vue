@@ -1,6 +1,6 @@
 <template>
   <v-layout row justify-center>
-    <v-dialog light v-model="dialog" persistent max-width="300">
+    <v-dialog dark v-model="dialog" persistent max-width="300">
       <v-card>
         <v-card-title class="subheading">{{title}}</v-card-title>
         <v-card-text>{{text}}</v-card-text>

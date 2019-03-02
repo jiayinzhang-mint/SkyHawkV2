@@ -77,12 +77,12 @@ export default {
         {
           icon: "business",
           text: "企业管理",
-          route: "/manage/company"
+          route: "/admin/company"
         },
         {
           icon: "people",
           text: "组织管理",
-          route: "/manage/organize"
+          route: "/admin/organize"
         }
       ],
       menuCommon: [
