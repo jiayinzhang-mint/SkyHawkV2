@@ -18,10 +18,8 @@ class organizationService {
     return rsp;
   }
 
-  static async getOrganizationDetail(organizationId) {
-    const rsp = await basicService.getRequest("/organize/detail", {
-      id: organizationId
-    });
+  static async getOrganizationDetail(query) {
+    const rsp = await basicService.getRequest("/organize/detail", query);
     return rsp;
   }
 
@@ -33,7 +31,14 @@ class organizationService {
     return rsp;
   }
 
-  static async updateOrganization() {}
+  static async updateOrganization(organizationDetaik) {
+    const rsp = await basicService.putRequest(
+      "/organize/list",
+      organizationDetaik
+    );
+    message.snackbar(rsp.msg);
+    return rsp;
+  }
 
   static async deleteOrganization(stationId) {
     const rsp = await basicService.deleteRequest("/organize/list", {
@@ -41,6 +46,8 @@ class organizationService {
     });
     return rsp;
   }
+
+  static async uploadPicture(fileForm) {}
 }
 
 export default organizationService;

@@ -17,10 +17,13 @@
           <v-chip v-else small text-color="white" color="red darken-3">离线</v-chip>
         </td>
         <td class="text-xs-center">
-          <v-btn color="primary" icon flat @click="updateUserDialog=true;userInfo=props.item">
+          <v-btn color="primary" icon flat small @click="updateUserDialog=true;userInfo=props.item">
             <v-icon>edit</v-icon>
           </v-btn>
-          <v-btn color="error" icon flat @click="deleteUser(props.item.id)">
+          <v-btn icon flat small @click="uploadPictureDialog=true;userInfo=props.item">
+            <v-icon>photo</v-icon>
+          </v-btn>
+          <v-btn color="error" icon flat small @click="deleteUser(props.item.id)">
             <v-icon>delete</v-icon>
           </v-btn>
         </td>
@@ -92,6 +95,25 @@
         </v-card-actions>
       </v-card>
     </v-dialog>
+    <v-dialog v-model="uploadPictureDialog" max-width="250">
+      <v-card>
+        <v-card-title class="subheading">上传肖像</v-card-title>
+        <v-img contain :src="userInfo.avatar" v-if="userInfo.avatar" lazy-src="/img/lazy.jpg">
+          <v-layout slot="placeholder" fill-height align-center justify-center ma-0>
+            <v-progress-circular indeterminate color="grey lighten-5"></v-progress-circular>
+          </v-layout>
+        </v-img>
+        <v-container>
+          <dim-upload v-model="file" type="jpg"></dim-upload>
+          <small class="text-xs-center">仅支持.jpg</small>
+        </v-container>
+        <v-card-actions>
+          <v-layout align-center justify-center>
+            <v-btn round color="primary" flat @click="uploadPicture">上传</v-btn>
+          </v-layout>
+        </v-card-actions>
+      </v-card>
+    </v-dialog>
   </div>
 </template>
 
@@ -104,7 +126,9 @@ export default {
     userList: [],
     createUserDialog: false,
     updateUserDialog: false,
+    uploadPictureDialog: false,
     userInfo: {},
+    file: null,
     headers: [
       {
         text: "姓名",
@@ -138,13 +162,16 @@ export default {
   }),
   methods: {
     async getOrganizationDetail() {
-
-      const rsp = await organizationService.getOrganizationDetail(
-        this.$route.params.organizationId
-      );
+      const rsp = await organizationService.getOrganizationDetail({
+        id: this.$route.params.organizationId
+      });
       this.organizationInfo = rsp.organizeInfo;
-      this.userList = rsp.userList;
-
+    },
+    async getOrganizationUser() {
+      const rsp = await userService.getUserList({
+        organization: this.$route.params.organizationId
+      });
+      this.userList = rsp.organizationUser;
     },
     async createUser() {
       if (this.$refs.createUserForm.validate()) {
@@ -170,15 +197,25 @@ export default {
       } catch (err) {
         err;
       }
+    },
+    async uploadPicture() {
+      let fileForm = new FormData();
+      fileForm.append("name", this.file.name);
+      fileForm.append("file", this.file);
+      await organizationService.uploadPicture(fileForm);
+      this.file = null;
+      this.uploadPictureDialog = false;
     }
   },
   mounted() {
     this.getOrganizationDetail();
+    this.getOrganizationUser();
   },
   computed: {},
   beforeRouteUpdate(to, from, next) {
     next();
     this.getOrganizationDetail();
+    this.getOrganizationUser();
   }
 };
 </script>

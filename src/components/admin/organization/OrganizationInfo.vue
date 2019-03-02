@@ -30,15 +30,15 @@ export default {
   },
   methods: {
     async getOrganizationDetail() {
-
-      const rsp = await organizationService.getOrganizationDetail(
-        this.$route.params.organizationId
-      );
-      this.organizationInfo = rsp.organizeInfo;
-      this.userList = rsp.userList;
-
+      const rsp = await organizationService.getOrganizationDetail({
+        id: this.$route.params.organizationId
+      });
+      this.organizationDetail = rsp.organizeInfo;
     },
-    async updateOrganizationDetail() {}
+    async updateOrganizationDetail() {
+      this.organizationDetail.id = this.$route.params.organizationId;
+      await organizationService.updateOrganization(this.organizationDetail);
+    }
   },
   computed: {
     ...mapGetters({
@@ -46,9 +46,12 @@ export default {
       stationList: "organization/stationList"
     })
   },
-  async mounted() {},
+  async mounted() {
+    this.getOrganizationDetail();
+  },
   async beforeRouteUpdate(to, from, next) {
     next();
+    this.getOrganizationDetail();
   }
 };
 </script>

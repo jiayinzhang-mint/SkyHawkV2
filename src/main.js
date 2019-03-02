@@ -7,7 +7,9 @@ import axios from "axios";
 import "viewerjs/dist/viewer.css";
 import Viewer from "v-viewer";
 import qs from "qs";
+import dimUpload from "./plugins/upload";
 
+Vue.use(dimUpload);
 Vue.use(Viewer, {
   defaultOptions: {
     title: false,
