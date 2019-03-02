@@ -1,10 +1,14 @@
 import basicService from "./BasicService";
 import message from "../utils/Message";
 import store from "../store/store";
+import qs from "qs";
 
 class userService {
   static async createUser(newUser) {
-    const rsp = await basicService.postRequest("/user/list", newUser);
+    const rsp = await basicService.postRequest(
+      "/user/list",
+      qs.stringify(newUser)
+    );
     message.snackbar(rsp.msg);
     return rsp;
   }

@@ -27,9 +27,6 @@ axios.interceptors.request.use(config => {
   try {
     config.headers["Authorization"] = store.getters["user/userInfo"].token;
   } catch (err) {}
-  if (config.method === "post" || config.method === "put") {
-    config.data = qs.stringify(config.data);
-  }
   return config;
 });
 

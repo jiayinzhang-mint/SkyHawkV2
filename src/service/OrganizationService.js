@@ -31,10 +31,10 @@ class organizationService {
     return rsp;
   }
 
-  static async updateOrganization(organizationDetaik) {
+  static async updateOrganization(organizationDetail) {
     const rsp = await basicService.putRequest(
       "/organize/list",
-      organizationDetaik
+      organizationDetail
     );
     message.snackbar(rsp.msg);
     return rsp;
@@ -47,7 +47,11 @@ class organizationService {
     return rsp;
   }
 
-  static async uploadPicture(fileForm) {}
+  static async uploadPicture(fileForm) {
+    const rsp = await basicService.postRequest("/organize/picture", fileForm);
+    message.snackbar(rsp.msg);
+    return rsp;
+  }
 }
 
 export default organizationService;

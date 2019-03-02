@@ -176,24 +176,24 @@ export default {
     async createUser() {
       if (this.$refs.createUserForm.validate()) {
         this.userInfo.role = this.organizationInfo.level;
-        this.userinfo.organization = this.$route.params.organizationId;
+        this.userInfo.organization = this.$route.params.organizationId;
         const rsp = await userService.createUser(this.userInfo);
-        this.getOrganizationDetail();
+        this.getOrganizationUser();
       }
     },
     async updateUser() {
       if (this.$refs.updateUserForm.validate()) {
         await userService.updateUser(this.userInfo);
-        this.getOrganizationDetail();
+        this.getOrganizationUser();
       }
     },
-    async deleteUser() {
+    async deleteUser(userId) {
       try {
         await this.$confirm("确认删除？");
         await userService.deleteUser({
           id: userId
         });
-        this.getOrganizationDetail();
+        this.getOrganizationUser();
       } catch (err) {
         err;
       }
@@ -201,6 +201,8 @@ export default {
     async uploadPicture() {
       let fileForm = new FormData();
       fileForm.append("name", this.file.name);
+      fileForm.append("organizationId", this.$route.params.organizationId);
+      fileForm.append("userId", this.userInfo.id);
       fileForm.append("file", this.file);
       await organizationService.uploadPicture(fileForm);
       this.file = null;
