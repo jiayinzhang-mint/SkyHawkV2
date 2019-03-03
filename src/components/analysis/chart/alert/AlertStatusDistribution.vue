@@ -5,13 +5,13 @@
         <!-- <v-icon class="mr-4" size="64">alarm</v-icon> -->
         <v-layout column align-start>
           <div class="subheading font-weight-bold mb-1">
-            告警类型
+            告警状态
             <span class="grey--text">| 今日</span>
           </div>
         </v-layout>
       </v-card-title>
       <div
-        id="alerttypedistribution"
+        id="alertstatusdistribution"
         style="min-height:300px;height:100%"
         class="chart"
         ref="echarts"
@@ -32,7 +32,7 @@ export default {
       require("echarts/lib/component/tooltip");
       // 基于准备好的dom，初始化echarts实例
       var myChart = echarts.init(
-        document.getElementById("alerttypedistribution")
+        document.getElementById("alertstatusdistribution")
       );
       // 绘制图表
 
@@ -95,11 +95,11 @@ export default {
       series: [
         {
           data: [
-            { value: 335, name: "鼠患" },
-            { value: 310, name: "口罩" },
-            { value: 274, name: "帽子" },
-            { value: 235, name: "温湿度" },
-            { value: 400, name: "服装" }
+            { value: 28, name: "已完成" },
+            { value: 15, name: "未处理" },
+            { value: 12, name: "处理中" },
+            { value: 78, name: "待确认" },
+            { value: 10, name: "整改中" }
           ]
         }
       ]

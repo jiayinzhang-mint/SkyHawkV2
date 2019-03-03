@@ -52,6 +52,12 @@
         <v-flex xs12 sm4>
           <alerttypedistribution></alerttypedistribution>
         </v-flex>
+        <v-flex xs12 sm4>
+          <alertstatusdistribution></alertstatusdistribution>
+        </v-flex>
+         <v-flex xs12 sm4>
+          <alertsourcerank></alertsourcerank>
+        </v-flex>
       </v-layout>
     </v-container>
   </div>
@@ -64,7 +70,11 @@ import alertcount from "../../components/analysis/block/alert/AlertCount";
 import handledalert from "../../components/analysis/block/alert/HandledAlert";
 import unhandledalert from "../../components/analysis/block/alert/UnhandledAlert";
 import wrongalert from "../../components/analysis/block/alert/WrongAlert";
+
+// alert chart
 import alerttypedistribution from "../../components/analysis/chart/alert/AlertTypeDistribution";
+import alertstatusdistribution from "../../components/analysis/chart/alert/AlertStatusDistribution";
+import alertsourcerank from "../../components/analysis/chart/alert/AlertSourceRank";
 
 // device block
 import onlinedevice from "../../components/analysis/block/device/OnlineDevice";
@@ -81,7 +91,9 @@ export default {
     wrongalert,
     onlinedevice,
     onlineuser,
-    alerttypedistribution
+    alerttypedistribution,
+    alertstatusdistribution,
+    alertsourcerank
   },
   data() {
     return {};

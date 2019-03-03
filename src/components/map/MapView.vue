@@ -11,12 +11,7 @@
           <v-btn icon @click="initTool" v-if="select">
             <v-icon>arrow_back</v-icon>
           </v-btn>
-          <v-toolbar-title
-            v-html="highlight"
-            v-if="!select"
-            class="subheading"
-            style="margin-left:-8px"
-          >请选择辖区</v-toolbar-title>
+          <v-toolbar-title v-html="highlight" v-if="!select" class="subheading">请选择辖区</v-toolbar-title>
           <v-toolbar-title v-html="select" class="subheading" v-else></v-toolbar-title>
         </v-toolbar>
         <v-divider></v-divider>
@@ -41,7 +36,7 @@
         style="z-index:1"
       >
         <v-toolbar flat>
-          <v-toolbar-title class="subheading" style="margin-left:-8px">请选择企业</v-toolbar-title>
+          <v-toolbar-title class="subheading">请选择企业</v-toolbar-title>
         </v-toolbar>
       </v-card>
       <v-card
@@ -51,11 +46,7 @@
         v-if="select && !selectCompany"
       >
         <v-toolbar flat class="aero">
-          <v-toolbar-title
-            style="margin-left:-8px"
-            class="subheading"
-            v-html="highlightCompany"
-          >请选择企业</v-toolbar-title>
+          <v-toolbar-title class="subheading" v-html="highlightCompany">请选择企业</v-toolbar-title>
         </v-toolbar>
         <v-divider></v-divider>
         <v-navigation-drawer floating permanent stateless value="true" v-if="!selectCompany">

@@ -6,7 +6,6 @@
           <v-toolbar color="transparent" flat>
             <v-toolbar-title
               class="subheading font-weight-medium text-uppercase"
-              style="margin-left:-7px"
             >{{currentCompany.brand}}</v-toolbar-title>
           </v-toolbar>
           <v-list class="transparent">

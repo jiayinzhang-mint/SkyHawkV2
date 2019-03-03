@@ -33,37 +33,32 @@ export default new Router({
         },
         {
           path: "/admin/company",
-          component: () => import("./components/admin/company/CompanyList"),
+          component: () => import("./components/admin/company/List"),
           children: [
             {
               path: "/admin/company/:companyId",
-              component: () =>
-                import("./components/admin/company/CompanyConfig"),
+              component: () => import("./components/admin/company/Config"),
               children: [
                 {
                   path: "/admin/company/:companyId/info",
-                  component: () =>
-                    import("./components/admin/company/CompanyInfo")
+                  component: () => import("./components/admin/company/Info")
                 },
                 {
                   path: "/admin/company/:companyId/supervisor",
                   component: () =>
-                    import("./components/admin/company/CompanySupervisor")
+                    import("./components/admin/company/Supervisor")
                 },
                 {
                   path: "/admin/company/:companyId/user",
-                  component: () =>
-                    import("./components/admin/company/CompanyUser")
+                  component: () => import("./components/admin/company/User")
                 },
                 {
                   path: "/admin/company/:companyId/monitor",
-                  component: () =>
-                    import("./components/admin/company/CompanyMonitor")
+                  component: () => import("./components/admin/company/Monitor")
                 },
                 {
                   path: "/admin/company/:companyId/setting",
-                  component: () =>
-                    import("./components/admin/company/CompanySetting")
+                  component: () => import("./components/admin/company/Setting")
                 }
               ]
             }
@@ -71,28 +66,26 @@ export default new Router({
         },
         {
           path: "/admin/organization",
-          component: () =>
-            import("./components/admin/organization/OrganizationList"),
+          component: () => import("./components/admin/organization/List"),
           children: [
             {
               path: "/admin/organization/:organizationId",
-              component: () =>
-                import("./components/admin/organization/OrganizationConfig"),
+              component: () => import("./components/admin/organization/Config"),
               children: [
                 {
                   path: "/admin/organization/:organizationId/info",
                   component: () =>
-                    import("./components/admin/organization/OrganizationInfo")
+                    import("./components/admin/organization/Info")
                 },
                 {
                   path: "/admin/organization/:organizationId/user",
                   component: () =>
-                    import("./components/admin/organization/OrganizationUser")
+                    import("./components/admin/organization/User")
                 },
                 {
                   path: "/admin/organization/:organizationId/setting",
                   component: () =>
-                    import("./components/admin/organization/OrganizationSetting")
+                    import("./components/admin/organization/Setting")
                 }
               ]
             }
@@ -100,48 +93,46 @@ export default new Router({
         },
         {
           path: "/organization",
-          component: () => import("./components/organization/OrganizationList"),
+          component: () => import("./components/organization/List"),
           children: [
             {
               path: "/organization/:organizationId",
-              component: () =>
-                import("./components/organization/OrganizationDetail")
+              component: () => import("./components/organization/Detail")
             }
           ]
         },
         {
           path: "/company",
-          component: () => import("./components/company/CompanyList"),
+          component: () => import("./components/company/List"),
           children: [
             {
               path: "/company/:companyId",
-              component: () => import("./components/company/CompanyDetail"),
+              component: () => import("./components/company/Detail"),
               children: [
                 {
                   path: "/company/:companyId/info",
-                  component: () => import("./components/company/CompanyInfo")
+                  component: () => import("./components/company/Info")
                 },
                 {
                   path: "/company/:companyId/supervisor",
-                  component: () =>
-                    import("./components/company/CompanySupervisor")
+                  component: () => import("./components/company/Supervisor")
                 },
                 {
                   path: "/company/:companyId/device",
-                  component: () => import("./components/company/CompanyDevice")
+                  component: () => import("./components/company/Device")
                 },
                 {
                   path: "/company/:companyId/gallery",
-                  component: () => import("./components/company/CompanyGallery")
+                  component: () => import("./components/company/Gallery")
                 },
                 {
                   path: "/company/:companyId/alert",
-                  component: () => import("./components/company/CompanyAlert")
+                  component: () => import("./components/company/Alert")
                 },
                 {
                   path: "/company/:companyId/humiture",
                   component: () =>
-                    import("./components/company/CompanyHumiture")
+                    import("./components/company/Humiture")
                 }
               ]
             }
