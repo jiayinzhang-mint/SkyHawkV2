@@ -88,7 +88,7 @@ export default {
             })
             .then(data => {
               data = data.data;
-              if ((data.msg = "success")) {
+              if (data.msg == "success") {
                 this.$message({
                   message: "操作成功",
                   type: "success"

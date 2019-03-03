@@ -1,5 +1,5 @@
 <template>
-  <div>
+  <div style="height:calc(100vh - 64px);overflow :auto">
     <v-toolbar class="transparent" flat>
       <v-toolbar-title class="headline font-weight-bold">今日</v-toolbar-title>
       <v-spacer></v-spacer>
@@ -55,7 +55,7 @@
         <v-flex xs12 sm4>
           <alertstatusdistribution></alertstatusdistribution>
         </v-flex>
-         <v-flex xs12 sm4>
+        <v-flex xs12 sm4>
           <alertsourcerank></alertsourcerank>
         </v-flex>
       </v-layout>

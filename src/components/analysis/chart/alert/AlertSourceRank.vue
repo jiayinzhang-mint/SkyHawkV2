@@ -24,7 +24,6 @@ export default {
     init() {
       var echarts = require("echarts/lib/echarts");
       require("echarts/lib/chart/bar");
-      require("echarts/lib/component/legend");
       require("echarts/lib/component/tooltip");
       var myChart = echarts.init(document.getElementById("alertsourcerank"));
 
@@ -50,8 +49,27 @@ export default {
           bottom: "10%",
           containLabel: true
         },
-        xAxis: { name: "次数" },
-        yAxis: { type: "category" },
+        xAxis: {
+          name: "次数",
+          axisLine: {
+            lineStyle: {
+              color: "rgba(255,255,255,0.3)"
+            }
+          },
+          splitLine: {
+            lineStyle: {
+              color: "rgba(255,255,255,0.3)"
+            }
+          }
+        },
+        yAxis: {
+          type: "category",
+          axisLine: {
+            lineStyle: {
+              color: "rgba(255,255,255,0.3)"
+            }
+          }
+        },
         series: [
           {
             type: "bar",
