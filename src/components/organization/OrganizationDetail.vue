@@ -19,7 +19,7 @@
         </template>
       </v-data-table>
     </v-card>
-    <v-dialog v-model="userInfoDialog" max-width="280">
+    <v-dialog v-model="userInfoDialog" max-width="250">
       <v-card>
         <v-toolbar>
           <v-toolbar-title>{{currentUser.name}}</v-toolbar-title>
@@ -62,6 +62,7 @@
 <script>
 import { mapGetters } from "vuex";
 import organizationService from "../../service/OrganizationService";
+import userService from '../../service/UserService';
 export default {
   data: () => ({
     organizeInfo: [],
@@ -101,21 +102,25 @@ export default {
   }),
   methods: {
     async getOrganizationDetail() {
-
-      const rsp = await organizationService.getOrganizationDetail(
-        this.$route.params.organizationId
-      );
+      const rsp = await organizationService.getOrganizationDetail({
+        id: this.$route.params.organizationId
+      });
       this.organizeInfo = rsp.organizeInfo;
-      this.userList = rsp.userList;
-
     },
     showDetail(item) {
       this.userInfoDialog = true;
       this.currentUser = item;
+    },
+    async getOrganizationUser() {
+      const rsp = await userService.getUserList({
+        organization: this.$route.params.organizationId
+      });
+      this.userList = rsp.organizationUser;
     }
   },
   mounted() {
     this.getOrganizationDetail();
+    this.getOrganizationUser();
   },
   computed: {
     ...mapGetters({ userInfo: "user/userInfo" })
@@ -123,6 +128,7 @@ export default {
   beforeRouteUpdate(to, from, next) {
     next();
     this.getOrganizationDetail();
+    this.getOrganizationUser();
   }
 };
 </script>
