@@ -1,8 +1,8 @@
 <template>
   <div>
-    <v-card flat v-if="humitureShow.length > 1" color="transparent">
+    <v-card flat color="transparent">
       <v-container>
-        <ve-line :data="chartData" :grid="grid" :settings="settings" :extend="extend"></ve-line>
+        <div id="humiture" style="min-height:400px;height:100%"></div>
       </v-container>
     </v-card>
     <v-tabs v-model="tab" centered icons-and-text color="transparent">
@@ -18,7 +18,7 @@
     <v-tabs-items v-model="tab">
       <v-tab-item key="1">
         <v-toolbar dense class="transparent">
-          <v-toolbar-title style="margin-left:-7px">近期监测数据</v-toolbar-title>
+          <v-toolbar-title>近期监测数据</v-toolbar-title>
           <v-spacer></v-spacer>监控点
           <v-toolbar-items class="ml-2">
             <v-menu open-on-hover bottom offset-y>
@@ -51,7 +51,7 @@
       </v-tab-item>
       <v-tab-item key="2">
         <v-toolbar dense class="transparent">
-          <v-toolbar-title style="margin-left:-7px">近期监测数据</v-toolbar-title>
+          <v-toolbar-title>近期监测数据</v-toolbar-title>
           <v-spacer></v-spacer>监控点
           <v-toolbar-items class="ml-2">
             <v-menu open-on-hover bottom offset-y>
@@ -87,14 +87,14 @@
 </template>
 
 <script>
-import VeLine from "v-charts/lib/line.common";
 import companyService from "../../service/CompanyService";
+import arrUtil from "../../utils/ArrUtil";
 export default {
-  components: { VeLine },
   data() {
     return {
       tab: 0,
       humiture: [],
+      myChart: null,
       humitureShow: [],
       humitureClassified: [],
       indexList: [],
@@ -115,143 +115,136 @@ export default {
           align: "center",
           sortable: false
         }
-      ],
-      extend: {
-        legend: {
-          textStyle: {
-            color: "#fff"
-          },
-          selectedMode: false
-        },
+      ]
+    };
+  },
+  methods: {
+    init() {
+      var echarts = require("echarts/lib/echarts");
+      require("echarts/lib/chart/line");
+      require("echarts/lib/component/tooltip");
+      var myChart = echarts.init(document.getElementById("humiture"));
+      // console.log(document.getElementById("humiture"));
+      myChart.setOption({
         textStyle: {
-          color: "#fff"
+          color: "rgba(255,255,255,0.7)"
+        },
+        grid: {
+          top: "5%",
+          left: "5%",
+          right: "3%",
+          bottom: "12%"
         },
         xAxis: {
-          axisLabel: {
-            color: "#fff"
-          },
           type: "time",
+          gridIndex: 0,
+          boundaryGap: false,
+          axisLine: {
+            lineStyle: {
+              color: "rgba(255,255,255,0.1)"
+            }
+          },
           splitLine: {
             lineStyle: {
-              opacity: 0.2
+              color: "rgba(255,255,255,0.1)"
             }
           }
         },
         yAxis: {
-          axisLabel: {
-            color: "#fff"
+          type: "value",
+          axisLine: {
+            lineStyle: {
+              color: "rgba(255,255,255,0.1)"
+            }
           },
           splitLine: {
             lineStyle: {
-              opacity: 0.2
+              color: "rgba(255,255,255,0.1)"
             }
           },
-          // max: 40,
-          min: value => {
-            return value.min - 2;
-          },
           max: value => {
-            return value.max + 2;
+            return value.max + 5;
+          },
+          min: value => {
+            return value.min - 5;
           }
-        }
-      },
-      settings: {
-        labelMap: {
-          temperature: "温度",
-          humidity: "湿度"
         },
-        area: true,
-        itemStyle: {
-          color: "rgb(76, 159, 236)"
-        },
-        lineStyle: {
-          color: "rgb(76, 159, 236)"
-        },
-        areaStyle: {
-          color: {
-            type: "linear",
-            x: 0,
-            y: 0,
-            x2: 0,
-            y2: 1,
-            colorStops: [
-              {
-                offset: 0,
-                color: "rgba(18, 164, 240, 0.8)" // 0% 处的颜色
-              },
-              {
-                offset: 1,
-                color: "rgba(18, 164, 240, 0.1)" // bottom 处的颜色
+        series: [
+          {
+            type: "line",
+            lineStyle: {
+              color: "rgb(76, 159, 236)"
+            },
+            symbol: "none",
+            smooth: true,
+            areaStyle: {
+              color: {
+                type: "linear",
+                x: 0,
+                y: 0,
+                x2: 0,
+                y2: 1,
+                colorStops: [
+                  {
+                    offset: 0,
+                    color: "rgba(18, 164, 240, 0.8)" // 0% 处的颜色
+                  },
+                  {
+                    offset: 1,
+                    color: "rgba(18, 164, 240, 0.1)" // bottom 处的颜色
+                  }
+                ],
+                globalCoord: false // 缺省为 false
               }
-            ],
-            globalCoord: false // 缺省为 false
+            }
           }
-        },
-        symbol: "none"
-      },
-      grid: {
-        top: 50,
-        bottom: 15,
-        left: 10,
-        right: 20
-      },
-      chartData: {
-        columns: ["time", "temperature"],
-        rows: []
-      }
-    };
-  },
-  methods: {
+        ]
+      });
+      this.myChart = myChart;
+    },
     async getHumiture() {
       const rsp = await companyService.getCompanyHumiture(
         this.$route.params.companyId
       );
-      this.humiture = rsp.humiture;
-      const humiture = arr => {
-        let newArr = [{ index: arr[0].index, data: [] }];
-        this.indexList = [arr[0].index];
-        for (let i = 1; i < arr.length; i++) {
-          if (arr[i].index != arr[i - 1].index || i == 0) {
-            newArr.push({ index: arr[i].index, data: [] });
-            this.indexList.push(arr[i].index);
-          } else {
-            for (let j = 0; j < newArr.length; j++) {
-              if (newArr[j].index == arr[i].index) {
-                newArr[j].data.push(arr[i]);
-              }
-            }
-          }
-        }
-        return newArr;
-      };
       if (rsp.humiture) {
-        try {
-          this.humitureClassified = humiture(rsp.humiture);
-          this.filter(0);
-        } catch (err) {
-          err;
-        }
+        this.humiture = rsp.humiture;
+        this.humitureClassified = arrUtil.groupArr(rsp.humiture, "index");
+        // console.log(this.humitureClassified);
+        this.myChart.dataset = {};
+        this.humitureClassified.forEach(e => {
+          this.indexList.push(e.key);
+        });
+        this.filter(0);
       }
     },
     filter(id) {
       this.selectedIndex = id;
-      this.humitureShow = this.humitureClassified[id].data;
-      this.chartData.rows = this.humitureShow;
+      this.humitureShow = this.humitureClassified[id].item;
+      this.myChart.setOption({
+        dataset: {
+          dimensions: ["time", "temperature"],
+          source: this.humitureShow
+        }
+      });
+      // console.log(this.myChart.dataset);
+      // this.chartData.rows = this.humitureShow;
     },
     alterChart(type) {
-      this.chartData.columns = ["time", type];
+      this.myChart.setOption({
+        dataset: {
+          dimensions: ["time", type]
+        }
+      });
     }
   },
   mounted() {
+    this.init();
+    setTimeout(() => {
+      this.myChart.resize();
+    }, 300);
     this.getHumiture();
     const moment = require("moment");
   }
 };
 </script>
 
-
-<style scoped>
-::-webkit-scrollbar {
-  width: 0px;
-}
-</style>

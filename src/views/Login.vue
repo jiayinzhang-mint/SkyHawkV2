@@ -78,7 +78,7 @@ export default {
         const rsp = await authService.login(this.username, this.password);
         if (rsp.msg == "success") {
           organizationService.getOrganizationList({ all: true });
-          await companyService.getCompanyList();
+          companyService.getCompanyList();
           alertService.getALertList();
 
           this.$router.push({ path: "/today" });
