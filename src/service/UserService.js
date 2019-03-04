@@ -29,6 +29,15 @@ class userService {
     message.snackbar(rsp.msg);
     return rsp;
   }
+
+  // dashboard
+
+  static async getOnlineRate() {
+    const rsp = await basicService.getRequest("/dashboard/userinstant");
+    var onlineRate = (rsp.userOnline / rsp.userCount).toFixed(4) * 100;
+    store.commit("user/updateOnlineRate", onlineRate);
+    return rsp;
+  }
 }
 
 export default userService;

@@ -1,5 +1,6 @@
 import basicService from "./BasicService";
 import message from "../utils/Message";
+import store from "../store/store";
 
 class monitorService {
   static async getMonitorList(query) {
@@ -24,7 +25,13 @@ class monitorService {
   static async deleteMonitor(query) {
     const rsp = await basicService.deleteRequest("/monitor/list", query);
     message.snackbar(rsp.msg);
+    return rsp;
+  }
 
+  static async getOnlineRate() {
+    const rsp = await basicService.getRequest("/dashboard/deviceinstant");
+    var onlineRate = (rsp.deviceOnline / rsp.deviceCount).toFixed(4) * 100;
+    store.commit("device/getOnlineRate", onlineRate);
     return rsp;
   }
 }

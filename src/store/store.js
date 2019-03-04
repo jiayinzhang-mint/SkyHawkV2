@@ -7,7 +7,7 @@ import user from "./modules/user";
 import organization from "./modules/organization";
 import company from "./modules/company";
 import alert from "./modules/alert";
-import dashboard from "./modules/dashboard";
+import device from "./modules/device";
 
 Vue.use(Vuex);
 
@@ -27,16 +27,17 @@ const vuexSession = new VuexPersistence({
     user: state.user,
     company: state.company,
     organization: state.organization,
-    alert: state.alert,
-    dashboard: state.dashboard
+    alert: state.alert
   }),
   filter: mutation =>
     mutation.type == "user/updateUserInfo" ||
+    "user/updateOnlineRate" ||
     "company/getCompanyList" ||
     "organization/getOrganizationList" ||
     "alert/getAlertList" ||
     "alert/updateAlertList" ||
-    "alert/restoreAlertList"
+    "alert/restoreAlertList" ||
+    "device/updateOnlineRate"
 });
 
 export default new Vuex.Store({
@@ -45,7 +46,7 @@ export default new Vuex.Store({
     company,
     organization,
     alert,
-    dashboard
+    device
   },
   plugins: [vuexCookie.plugin, vuexSession.plugin]
 });

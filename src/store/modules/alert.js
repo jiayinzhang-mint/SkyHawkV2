@@ -2,7 +2,8 @@ import store from "../store";
 const state = {
   alertList: [],
   alertPage: 1,
-  alertDetail: {}
+  alertDetail: {},
+  alertStatistic: {}
 };
 
 const getters = {

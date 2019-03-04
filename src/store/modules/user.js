@@ -1,6 +1,9 @@
 const state = {
   userInfo: null,
-  userList: []
+  userList: [],
+  userStatistic: {
+    onlineRate: ""
+  }
 };
 const getters = {
   userInfo: state => {
@@ -8,6 +11,9 @@ const getters = {
   },
   userList: state => {
     return state.userList;
+  },
+  userStatistic: state => {
+    return state.userStatistic;
   }
 };
 const mutations = {
@@ -16,6 +22,9 @@ const mutations = {
   },
   updateUserList: (state, userList) => {
     state.userList = userList;
+  },
+  updateOnlineRate: (state, onlineRate) => {
+    state.userStatistic.onlineRate = onlineRate;
   }
 };
 const actions = {

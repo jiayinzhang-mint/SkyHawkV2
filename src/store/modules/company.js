@@ -1,5 +1,6 @@
 const state = {
-  companyList: []
+  companyList: [],
+  companyStatistic: {}
 };
 const getters = {
   companyList: state => {

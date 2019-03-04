@@ -6,7 +6,7 @@
         <v-layout column align-start>
           <div class="body-2 font-weigth-bold mb-1">用户在线</div>
           <div>
-            <span class="display-3 font-weight-bold">98.1</span>
+            <span class="display-3 font-weight-bold">{{userStatistic.onlineRate}}</span>
             <strong>&nbsp;&nbsp;%</strong>
           </div>
         </v-layout>
@@ -20,11 +20,19 @@
 </template>
 
 <script>
+import { mapGetters } from "vuex";
+
 export default {
   data() {
     return {};
   },
-  methods:{}
+  methods: {},
+  computed: {
+    ...mapGetters({
+      userStatistic: "user/userStatistic"
+    })
+  },
+  async mounted() {}
 };
 </script>
 
