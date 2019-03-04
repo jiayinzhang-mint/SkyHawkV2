@@ -1,7 +1,7 @@
 <template>
   <v-layout row>
-    <v-flex xs12 sm3>
-      <v-toolbar flat color="grey darken-3">
+    <v-flex xs12>
+      <v-toolbar flat color="transparent">
         <v-scroll-x-transition>
           <v-toolbar-title style="font-size:17px" v-if="!filted">告警流转</v-toolbar-title>
         </v-scroll-x-transition>
@@ -9,27 +9,13 @@
         <v-scroll-x-transition>
           <v-chip v-if="filted && userInfo.role<=1" close @input="reFill">{{selectedStation.name}}</v-chip>
         </v-scroll-x-transition>
-        <v-toolbar-items>
-          <v-menu bottom left v-if="userInfo.role <=1">
-            <v-btn slot="activator" icon>
-              <v-icon>sort</v-icon>
-            </v-btn>
-
-            <v-list style="height:375px ;overflow :auto">
-              <v-list-tile v-for="(item, i) in stationList" :key="i" @click="filter(item.id)">
-                <v-list-tile-title>{{ item.name }}</v-list-tile-title>
-              </v-list-tile>
-            </v-list>
-          </v-menu>
-        </v-toolbar-items>
 
         <v-btn icon @click="refreshAlertList">
           <v-icon>refresh</v-icon>
         </v-btn>
       </v-toolbar>
       <v-divider></v-divider>
-
-      <v-list style="height:calc(100vh - 129px);overflow :auto" two-line>
+      <v-list style="height:calc(100vh - 64px);overflow :auto" two-line>
         <v-scroll-x-transition group>
           <template v-for="(item,index) in alertListShow">
             <div :key="index">
@@ -68,14 +54,6 @@
         </v-list-tile>
       </v-list>
     </v-flex>
-    <v-flex xs9>
-      <router-view v-if="this.$route.params.alertId"></router-view>
-      <v-container v-else fluid fill-height>
-        <v-layout align-center justify-center>
-          <div class="headline font-weight-light">请选择告警</div>
-        </v-layout>
-      </v-container>
-    </v-flex>
   </v-layout>
 </template>
 
@@ -92,9 +70,7 @@ export default {
   }),
   methods: {
     async refreshAlertList() {
-
       await alertService.restoreAlertList();
-
     },
     filter(id) {
       this.filted = true;
@@ -131,7 +107,6 @@ export default {
       this.filted = false;
     },
     async getMoreAlert() {
-
       await alertService.updateAlertList();
       this.updateAlertList();
       if (this.userInfo.role <= 1 && this.filted) {
@@ -144,7 +119,6 @@ export default {
       if (this.filted) {
         this.filter(this.selectedStation.id);
       }
-
     }
   },
   computed: {

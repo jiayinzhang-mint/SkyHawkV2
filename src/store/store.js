@@ -7,6 +7,7 @@ import user from "./modules/user";
 import organization from "./modules/organization";
 import company from "./modules/company";
 import alert from "./modules/alert";
+import dashboard from "./modules/dashboard";
 
 Vue.use(Vuex);
 
@@ -26,7 +27,8 @@ const vuexSession = new VuexPersistence({
     user: state.user,
     company: state.company,
     organization: state.organization,
-    alert: state.alert
+    alert: state.alert,
+    dashboard: state.dashboard
   }),
   filter: mutation =>
     mutation.type == "user/updateUserInfo" ||
@@ -42,7 +44,8 @@ export default new Vuex.Store({
     user,
     company,
     organization,
-    alert
+    alert,
+    dashboard
   },
   plugins: [vuexCookie.plugin, vuexSession.plugin]
 });
