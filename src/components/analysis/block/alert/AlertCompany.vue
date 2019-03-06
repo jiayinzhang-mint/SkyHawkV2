@@ -10,10 +10,6 @@
             <strong>&nbsp;&nbsp;家</strong>
           </div>
         </v-layout>
-        <v-spacer></v-spacer>
-        <v-btn icon class="align-self-start" size="28">
-          <v-icon>arrow_forward</v-icon>
-        </v-btn>
       </v-card-title>
       <v-sheet color="transparent">
         <v-sparkline

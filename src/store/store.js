@@ -27,7 +27,8 @@ const vuexSession = new VuexPersistence({
     user: state.user,
     company: state.company,
     organization: state.organization,
-    alert: state.alert
+    alert: state.alert,
+    device: state.device
   }),
   filter: mutation =>
     mutation.type == "user/updateUserInfo" ||

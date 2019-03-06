@@ -4,9 +4,9 @@
       <v-card-title>
         <!-- <v-icon class="mr-4" size="64">alarm</v-icon> -->
         <v-layout column align-start>
-          <div class="body-2 font-weigth-bold mb-1">用户在线</div>
+          <div class="body-2 font-weigth-bold mb-1">系统负载</div>
           <div>
-            <span class="display-3 font-weight-bold">{{userStatistic.onlineRate}}</span>
+            <span class="display-3 font-weight-bold">{{deviceStatistic.onlineRate}}</span>
             <strong>&nbsp;&nbsp;%</strong>
           </div>
         </v-layout>
@@ -25,10 +25,10 @@ export default {
   methods: {},
   computed: {
     ...mapGetters({
-      userStatistic: "user/userStatistic"
+      deviceStatistic: "device/deviceStatistic"
     })
   },
-  async mounted() {}
+  mounted() {}
 };
 </script>
 

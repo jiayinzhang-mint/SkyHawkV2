@@ -1,3 +1,7 @@
+body {
+  -webkit-overflow-scrolling: touch;
+}
+
 .v-tooltip__content {
   background: #1d1d1d !important;
   border-radius: 5px !important;

@@ -15,7 +15,7 @@
         </v-btn>
       </v-toolbar>
       <v-divider></v-divider>
-      <v-list style="height:calc(100vh - 64px);overflow :auto" two-line>
+      <v-list style="height:calc(100vh - 129px);overflow :auto" two-line>
         <v-scroll-x-transition group>
           <template v-for="(item,index) in alertListShow">
             <div :key="index">

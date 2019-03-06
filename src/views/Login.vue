@@ -63,6 +63,7 @@ import authService from "../service/AuthService";
 import companyService from "../service/CompanyService";
 import organizationService from "../service/OrganizationService";
 import alertService from "../service/AlertService";
+import dashboardShortcut from "../shortcut/Dashboard";
 import { mapGetters } from "vuex";
 export default {
   data() {
@@ -73,17 +74,15 @@ export default {
   },
   methods: {
     async login() {
-
       if (this.$refs.loginForm.validate()) {
         const rsp = await authService.login(this.username, this.password);
         if (rsp.msg == "success") {
           organizationService.getOrganizationList({ all: true });
           companyService.getCompanyList();
           alertService.getALertList();
-
+          dashboardShortcut.getInstantData();
           this.$router.push({ path: "/today" });
         }
-  
       }
     }
   },

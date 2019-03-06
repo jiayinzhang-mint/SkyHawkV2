@@ -34,7 +34,7 @@ class userService {
 
   static async getOnlineRate() {
     const rsp = await basicService.getRequest("/dashboard/userinstant");
-    var onlineRate = (rsp.userOnline / rsp.userCount).toFixed(4) * 100;
+    var onlineRate = (100 * (rsp.userOnline / rsp.userCount)).toFixed(2);
     store.commit("user/updateOnlineRate", onlineRate);
     return rsp;
   }
