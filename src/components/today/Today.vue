@@ -11,9 +11,9 @@
       </v-btn>
     </v-toolbar>
     <v-container fluid grid-list-md>
-      <v-layout>
+      <v-layout row wrap>
         <v-flex xs12 sm3>
-          <unhandled-alert></unhandled-alert>
+          <unprocessed-alert></unprocessed-alert>
         </v-flex>
         <v-flex xs12 sm3>
           <online-device></online-device>
@@ -31,7 +31,7 @@
       <v-spacer></v-spacer>
     </v-toolbar>
     <v-container fluid grid-list-md>
-      <v-layout>
+      <v-layout row wrap>
         <v-flex xs12 sm3>
           <alert-count></alert-count>
         </v-flex>
@@ -39,7 +39,7 @@
           <alert-company></alert-company>
         </v-flex>
         <v-flex xs12 sm3>
-          <handled-alert></handled-alert>
+          <processed-alert></processed-alert>
         </v-flex>
         <v-flex xs12 sm3>
           <wrong-alert></wrong-alert>
@@ -51,7 +51,7 @@
       <v-spacer></v-spacer>
     </v-toolbar>
     <v-container fluid grid-list-md>
-      <v-layout>
+      <v-layout row wrap>
         <v-flex xs12 sm4>
           <alert-type-distribution></alert-type-distribution>
         </v-flex>
@@ -70,8 +70,8 @@
 // alert block
 import alertCompany from "../../components/analysis/block/alert/AlertCompany";
 import alertCount from "../../components/analysis/block/alert/AlertCount";
-import handledAlert from "../../components/analysis/block/alert/HandledAlert";
-import unhandledAlert from "../../components/analysis/block/alert/UnhandledAlert";
+import processedAlert from "../../components/analysis/block/alert/ProcessedAlert";
+import unprocessedAlert from "../../components/analysis/block/alert/UnprocessedAlert";
 import wrongAlert from "../../components/analysis/block/alert/WrongAlert";
 
 // alert chart
@@ -93,8 +93,8 @@ export default {
   components: {
     alertCompany,
     alertCount,
-    handledAlert,
-    unhandledAlert,
+    processedAlert,
+    unprocessedAlert,
     wrongAlert,
     onlineDevice,
     onlineUser,

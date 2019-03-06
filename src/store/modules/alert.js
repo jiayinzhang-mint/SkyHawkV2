@@ -3,7 +3,9 @@ const state = {
   alertList: [],
   alertPage: 1,
   alertDetail: {},
-  alertStatistic: {}
+  alertStatistic: {
+    unprocessedAlertCount: ""
+  }
 };
 
 const getters = {
@@ -15,6 +17,9 @@ const getters = {
   },
   alertDetail: state => {
     return state.alertDetail;
+  },
+  alertStatistic: state => {
+    return state.alertStatistic;
   }
 };
 
@@ -43,6 +48,9 @@ const mutations = {
   },
   getAlertDetail: (state, alertDetail) => {
     state.alertDetail = alertDetail;
+  },
+  updateUnprocessedAlert: (state, unprocessedAlertCount) => {
+    state.alertStatistic.unprocessedAlertCount = unprocessedAlertCount;
   }
 };
 const actions = {

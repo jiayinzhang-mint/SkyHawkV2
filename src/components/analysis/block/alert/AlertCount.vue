@@ -30,7 +30,7 @@
 export default {
   data() {
     return {
-      heartbeats: [0, 2, 5, 9, 5, 10, 3, 5, 0, 0, 1, 8, 2, 9, 0]
+      heartbeats: [30, 42, 95, 91, 53, 102, 32, 59, 101, 70]
     };
   }
 };

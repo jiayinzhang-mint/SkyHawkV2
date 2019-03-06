@@ -30,10 +30,11 @@
 export default {
   data() {
     return {
-      heartbeats: [0, 2, 5, 9, 5, 10, 3, 5, 0, 0, 1, 8, 2, 9, 0]
+      heartbeats: [5, 9, 5, 9, 5, 10, 8, 4, 6, 2]
     };
   }
-};</script>
+};
+</script>
 
 <style>
 </style>

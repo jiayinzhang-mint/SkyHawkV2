@@ -34,6 +34,12 @@ class alertService {
     return rsp;
   }
 
+  static async getUnprocessedAlert() {
+    const rsp = await basicService.getRequest("dashboard/alertinstant");
+    store.commit("alert/updateUnprocessedAlert", rsp.alertUnprocessed);
+    return rsp;
+  }
+
   static async updateALert() {}
 
   static async deleteComapny() {}

@@ -38,7 +38,8 @@ const vuexSession = new VuexPersistence({
     "alert/getAlertList" ||
     "alert/updateAlertList" ||
     "alert/restoreAlertList" ||
-    "device/updateOnlineRate"
+    "device/updateOnlineRate" ||
+    "alert/updateUnprocessedAlert"
 });
 
 export default new Vuex.Store({
