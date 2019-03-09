@@ -150,6 +150,15 @@ export default {
             }
           }
         },
+        tooltip: {
+          trigger: "axis",
+          axisPointer: {
+            type: "cross",
+            label: {
+              backgroundColor: "#6a7985"
+            }
+          }
+        },
         yAxis: {
           type: "value",
           axisLine: {
@@ -172,10 +181,13 @@ export default {
         series: [
           {
             type: "line",
+            itemStyle: {
+              color: "rgb(76, 159, 236)"
+            },
             lineStyle: {
               color: "rgb(76, 159, 236)"
             },
-            symbol: "none",
+            symbol: "emptyCircle",
             smooth: true,
             areaStyle: {
               color: {
@@ -206,7 +218,7 @@ export default {
       const rsp = await companyService.getCompanyHumiture(
         this.$route.params.companyId
       );
-      if (rsp.humiture) {
+      if (rsp.humiture.length > 10) {
         this.humiture = rsp.humiture;
         this.humitureClassified = arrUtil.groupArr(rsp.humiture, "index");
         // console.log(this.humitureClassified);
@@ -219,6 +231,7 @@ export default {
     },
     filter(id) {
       this.selectedIndex = id;
+
       this.humitureShow = this.humitureClassified[id].item;
       this.myChart.setOption({
         dataset: {
@@ -230,9 +243,14 @@ export default {
       // this.chartData.rows = this.humitureShow;
     },
     alterChart(type) {
+      var typeName = type == "temperature" ? "温度" : "湿度";
+
       this.myChart.setOption({
         dataset: {
           dimensions: ["time", type]
+        },
+        tooltip: {
+          formatter: ""
         }
       });
     }
@@ -242,6 +260,9 @@ export default {
     setTimeout(() => {
       this.myChart.resize();
     }, 300);
+    window.onresize = () => {
+      this.myChart.resize();
+    };
     this.getHumiture();
     const moment = require("moment");
   }
