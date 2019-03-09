@@ -3,12 +3,18 @@
     <v-toolbar class="transparent" flat>
       <v-toolbar-title class="headline font-weight-bold">今日</v-toolbar-title>
       <v-spacer></v-spacer>
-      <v-btn icon @click="refresh">
-        <v-icon>refresh</v-icon>
-      </v-btn>
-      <v-btn icon>
-        <v-icon>print</v-icon>
-      </v-btn>
+      <v-tooltip bottom>
+        <v-btn icon @click="refresh" slot="activator">
+          <v-icon>refresh</v-icon>
+        </v-btn>
+        <span>刷新</span>
+      </v-tooltip>
+      <v-tooltip bottom>
+        <v-btn icon slot="activator">
+          <v-icon>print</v-icon>
+        </v-btn>
+        <span>打印</span>
+      </v-tooltip>
     </v-toolbar>
     <v-container fluid grid-list-md>
       <v-layout row wrap>
@@ -87,6 +93,7 @@ import systemStatus from "../../components/analysis/block/system/SystemStatus";
 
 // user block
 import onlineUser from "../../components/analysis/block/user/OnlineUser";
+
 import dashboardShortcut from "../../shortcut/Dashboard";
 
 export default {
@@ -107,9 +114,12 @@ export default {
     return {};
   },
   methods: {
-    refresh() {
-      dashboardShortcut.getInstantData();
+    async refresh() {
+      await dashboardShortcut.getInstantData();
     }
+  },
+  mounted() {
+    dashboardShortcut.getInstantData();
   }
 };
 </script>

@@ -38,7 +38,9 @@ const vuexSession = new VuexPersistence({
     "alert/getAlertList" ||
     "alert/updateAlertList" ||
     "alert/restoreAlertList" ||
+    "alert/updateAlertPageFront" ||
     "device/updateOnlineRate" ||
+    "device/updateSystemStatus" ||
     "alert/updateUnprocessedAlert"
 });
 

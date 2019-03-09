@@ -6,7 +6,7 @@
         <v-layout column align-start>
           <div class="body-2 font-weigth-bold mb-1">系统负载</div>
           <div>
-            <span class="display-3 font-weight-bold">{{deviceStatistic.onlineRate}}</span>
+            <span class="display-3 font-weight-bold">{{systemStatistic.cpuPercent}}</span>
             <strong>&nbsp;&nbsp;%</strong>
           </div>
         </v-layout>
@@ -25,7 +25,7 @@ export default {
   methods: {},
   computed: {
     ...mapGetters({
-      deviceStatistic: "device/deviceStatistic"
+      systemStatistic: "device/systemStatistic"
     })
   },
   mounted() {}

@@ -107,6 +107,9 @@ export default {
     setTimeout(() => {
       this.myChart.resize();
     }, 300);
+    window.onresize = () => {
+      this.myChart.resize();
+    };
   }
 };
 </script>

@@ -40,6 +40,10 @@ class alertService {
     return rsp;
   }
 
+  static async updateAlertPageFront(alertPageFront) {
+    store.commit("alert/updateAlertPageFront", alertPageFront);
+  }
+
   static async updateALert() {}
 
   static async deleteComapny() {}

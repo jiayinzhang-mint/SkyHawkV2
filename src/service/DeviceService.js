@@ -34,6 +34,12 @@ class monitorService {
     store.commit("device/updateOnlineRate", onlineRate);
     return rsp;
   }
+
+  static async getSystemStatus() {
+    const rsp = await basicService.getRequest("/utils/systemstatus");
+    store.commit("device/updateSystemStatus", rsp);
+    return rsp;
+  }
 }
 
 export default monitorService;

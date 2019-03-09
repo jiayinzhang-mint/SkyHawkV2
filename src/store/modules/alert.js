@@ -1,6 +1,9 @@
 import store from "../store";
 const state = {
   alertList: [],
+  // front end pagination
+  alertPageFront: 1,
+  // back end pagination
   alertPage: 1,
   alertDetail: {},
   alertStatistic: {
@@ -20,6 +23,9 @@ const getters = {
   },
   alertStatistic: state => {
     return state.alertStatistic;
+  },
+  alertPageFront: state => {
+    return state.alertPageFront;
   }
 };
 
@@ -51,6 +57,9 @@ const mutations = {
   },
   updateUnprocessedAlert: (state, unprocessedAlertCount) => {
     state.alertStatistic.unprocessedAlertCount = unprocessedAlertCount;
+  },
+  updateAlertPageFront: (state, alertPageFront) => {
+    state.alertPageFront = alertPageFront;
   }
 };
 const actions = {

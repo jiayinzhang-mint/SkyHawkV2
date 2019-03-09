@@ -23,13 +23,11 @@ export default new Router({
         },
         {
           path: "/alert",
-          component: () => import("./components/alert/AlertList"),
-          children: [
-            {
-              path: "/alert/:alertId",
-              component: () => import("./components/alert/AlertDetail")
-            }
-          ]
+          component: () => import("./components/alert/AlertList")
+        },
+        {
+          path: "/alert/:alertId",
+          component: () => import("./components/alert/AlertDetail")
         },
         {
           path: "/admin/company",
@@ -131,8 +129,7 @@ export default new Router({
                 },
                 {
                   path: "/company/:companyId/humiture",
-                  component: () =>
-                    import("./components/company/Humiture")
+                  component: () => import("./components/company/Humiture")
                 }
               ]
             }

@@ -1,8 +1,15 @@
 <template>
-  <v-container>
+  <v-container fluid>
     <v-card>
       <v-toolbar flat color="transparent">
-        <v-toolbar-title style="font-size:17px">{{alertDetail.title}}</v-toolbar-title>
+        <v-tooltip bottom>
+          <v-btn icon slot="activator" :to="'/alert'">
+            <v-icon>arrow_back</v-icon>
+          </v-btn>
+          <span>返回</span>
+        </v-tooltip>
+
+        <v-toolbar-title>{{alertDetail.title}}</v-toolbar-title>
         <v-spacer></v-spacer>
         <div v-if="alertDetail.state==1">
           <div v-if="alertDetail.auto==1">
