@@ -17,7 +17,7 @@
               <img :data-large="item.src">
             </div>
             <v-card-actions ref="picture2">
-              <span>{{item.time | moment("YYYY-MM-DD HH:mm:ss")}}</span>
+              <span>{{item.time| timeFormat}}</span>
               <v-spacer></v-spacer>
               <v-btn flat icon slot="activator" class="mr-2" @click="show">
                 <v-icon>search</v-icon>

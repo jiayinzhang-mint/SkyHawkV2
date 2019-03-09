@@ -18,6 +18,10 @@ Vue.use(Viewer, {
     navbar: 0
   }
 });
+Vue.filter("timeFormat", v => {
+  var date = new Date(v);
+  return date.toLocaleString();
+});
 
 //axios.defaults.baseURL = 'http://skyhawkapi.huilab.cn/api';
 //axios.defaults.baseURL = "http://monitor2.huilab.cn/api";
@@ -29,8 +33,6 @@ axios.interceptors.request.use(config => {
   } catch (err) {}
   return config;
 });
-
-Vue.use(require("vue-moment"));
 
 new Vue({
   router,

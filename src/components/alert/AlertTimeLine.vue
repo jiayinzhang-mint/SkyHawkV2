@@ -11,7 +11,7 @@
           >
             <v-layout pt-3>
               <v-flex xs5>
-                <strong>{{alertDetail.create_time | moment("YYYY-MM-DD HH:mm:ss")}}</strong>
+                <strong>{{alertDetail.create_time | timeFormat}}</strong>
               </v-flex>
               <v-flex>
                 <strong>触发告警</strong>
@@ -23,7 +23,7 @@
           <v-timeline-item color="pink" fill-dot small v-if="alertDetail.uncertain==1">
             <v-layout wrap pt-3>
               <v-flex xs5>
-                <strong>{{alertDetail.uncertain_time | moment("YYYY-MM-DD HH:mm:ss")}}</strong>
+                <strong>{{alertDetail.uncertain_time| timeFormat}}</strong>
               </v-flex>
               <v-flex>
                 <strong>转发处理</strong>
@@ -40,7 +40,7 @@
           >
             <v-layout wrap pt-3>
               <v-flex xs5>
-                <strong>{{alertDetail.repost_time | moment("YYYY-MM-DD HH:mm:ss")}}</strong>
+                <strong>{{alertDetail.repost_time | timeFormat}}</strong>
               </v-flex>
               <v-flex>
                 <strong>下发整改</strong>
@@ -57,7 +57,7 @@
           >
             <v-layout pt-3>
               <v-flex xs5>
-                <strong>{{alertDetail.rectify_time | moment("YYYY-MM-DD HH:mm:ss")}}</strong>
+                <strong>{{alertDetail.rectify_time| timeFormat}}</strong>
               </v-flex>
               <v-flex>
                 <strong>企业反馈</strong>
@@ -74,7 +74,7 @@
           >
             <v-layout pt-3>
               <v-flex xs5>
-                <strong>{{alertDetail.finish_time | moment("YYYY-MM-DD HH:mm:ss")}}</strong>
+                <strong>{{alertDetail.finish_time| timeFormat}}</strong>
               </v-flex>
               <v-flex>
                 <strong>整改完成</strong>
@@ -85,7 +85,7 @@
           <v-timeline-item color="pink" fill-dot small v-if="alertDetail.state==9">
             <v-layout pt-3>
               <v-flex xs5>
-                <strong>{{alertDetail.error_time | moment("YYYY-MM-DD HH:mm:ss")}}</strong>
+                <strong>{{alertDetail.error_time | timeFormat}}</strong>
               </v-flex>
               <v-flex>
                 <strong>告警错误</strong>

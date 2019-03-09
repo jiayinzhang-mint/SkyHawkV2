@@ -3,7 +3,7 @@
     <v-data-table :headers="headers" :items="alertListShow" no-data-text="暂无数据" hide-actions>
       <template slot="items" slot-scope="props">
         <td class="text-xs-center">{{ props.item.title }}</td>
-        <td class="text-xs-center">{{ props.item.create_time | moment("YYYY-MM-DD HH:mm:ss") }}</td>
+        <td class="text-xs-center">{{ props.item.create_time | timeFormat }}</td>
         <td class="text-xs-center" v-if="props.item.state == 1">监管部门处理中</td>
         <td class="text-xs-center" v-else-if="props.item.state == 2">企业整改中</td>
         <td class="text-xs-center" v-else-if="props.item.state == 3">整改审核中</td>
@@ -68,12 +68,11 @@ export default {
       this.$router.push({ path: "/alert/" + companyId });
     },
     async getMoreAlert() {
-
       await alertService.updateAlertList();
       this.getAlertList();
-
     }
   },
+
   computed: {
     ...mapGetters({ alertList: "alert/alertList" })
   },

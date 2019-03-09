@@ -264,7 +264,6 @@ export default {
       this.myChart.resize();
     };
     this.getHumiture();
-    const moment = require("moment");
   }
 };
 </script>

@@ -54,6 +54,10 @@ export default {
         text: "告警历史",
         route: "alert"
       },
+      {
+        text: "每日晨检",
+        route: "dailycheck"
+      },
 
       {
         divider: true

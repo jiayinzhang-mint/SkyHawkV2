@@ -46,7 +46,7 @@
             <td
               class="text-xs-left"
               @click="showAlertDetail(props.item.id)"
-            >{{ props.item.create_time | moment("YYYY-MM-DD HH:mm") }}</td>
+            >{{ props.item.create_time | timeFormat }}</td>
             <td class="text-xs-left">
               <v-chip
                 color="primary darken-1"

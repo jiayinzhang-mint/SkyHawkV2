@@ -130,6 +130,11 @@ export default new Router({
                 {
                   path: "/company/:companyId/humiture",
                   component: () => import("./components/company/Humiture")
+                },
+                {
+                  path: "/company/:companyId/dailycheck",
+                  component: () =>
+                    import("./components/company/DailyCheck")
                 }
               ]
             }

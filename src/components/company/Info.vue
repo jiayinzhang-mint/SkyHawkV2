@@ -65,7 +65,7 @@
           <v-icon color="primary">av_timer</v-icon>
         </v-list-tile-action>
         <v-list-tile-content>
-          <v-list-tile-title>{{companyInfo.license_validity | moment("YYYY-MM-DD HH:mm:ss")}}</v-list-tile-title>
+          <v-list-tile-title>{{companyInfo.license_validity| timeFormat}}</v-list-tile-title>
         </v-list-tile-content>
       </v-list-tile>
     </v-list>
@@ -84,8 +84,9 @@ export default {
   }),
   methods: {
     async getCompanyInfo() {
-
-      const rsp = await companyService.getCompanyDetail(this.$route.params.companyId);
+      const rsp = await companyService.getCompanyDetail(
+        this.$route.params.companyId
+      );
       this.companyInfo = rsp.companyDetail;
       const map = new AMap.Map("markermap", {
         resizeEnable: true,
@@ -114,7 +115,6 @@ export default {
       this.group = this.station.children.find(element => {
         return (element.id = this.companyInfo.besupervised);
       });
-
     }
   },
   computed: {
