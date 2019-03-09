@@ -15,10 +15,12 @@
         <v-scroll-x-transition>
           <v-chip v-if="filted && userInfo.role<=1" close @input="reFill">{{selectedStation.name}}</v-chip>
         </v-scroll-x-transition>
-
-        <v-btn icon @click="refreshAlertList">
-          <v-icon>refresh</v-icon>
-        </v-btn>
+        <v-tooltip bottom>
+          <v-btn slot="activator" icon @click="refreshAlertList">
+            <v-icon>refresh</v-icon>
+          </v-btn>
+          <span>刷新</span>
+        </v-tooltip>
       </v-toolbar>
       <v-divider></v-divider>
       <v-data-table
@@ -82,6 +84,7 @@
 <script>
 import { mapGetters, mapActions } from "vuex";
 import alertService from "../../service/AlertService";
+import { setTimeout } from "timers";
 export default {
   data: () => ({
     alertListShow: [],
@@ -98,6 +101,8 @@ export default {
   methods: {
     async refreshAlertList() {
       await alertService.restoreAlertList();
+      this.updateAlertList();
+      console.log(this.alertListShow.length);
     },
     filter(id) {
       this.filted = true;
@@ -153,6 +158,8 @@ export default {
     },
     async changeAlertPage(e) {
       alertService.updateAlertPageFront(e);
+      console.log(e);
+      this.pagination.page = this.changeableAlertPageFront;
       if (e == this.totalPages && !this.noMore) {
         const rsp = await this.getMoreAlert();
         if (rsp.msg == "nomore") {
@@ -177,8 +184,11 @@ export default {
   },
   mounted() {
     this.alertListShow = this.alertList;
-    console.log(this.alertPageFront);
-    this.changeableAlertPageFront = this.alertPageFront;
+    setTimeout(() => {
+      this.pagination.page = this.alertPageFront;
+      console.log(this.pagination.page);
+      this.changeableAlertPageFront = this.alertPageFront;
+    }, 10);
   }
 };
 </script>

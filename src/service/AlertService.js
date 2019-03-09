@@ -25,7 +25,7 @@ class alertService {
 
   static async restoreAlertList() {
     await store.dispatch("alert/restoreAlertList");
-    this.getALertList();
+    await this.getALertList();
   }
 
   static async getAlertDetail(alertId) {

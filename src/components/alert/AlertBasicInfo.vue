@@ -56,27 +56,6 @@
 
         <v-divider inset></v-divider>
       </div>
-
-      <v-subheader>企业信息</v-subheader>
-      <v-list-tile ripple @click="redirect">
-        <v-list-tile-action>
-          <v-icon color="primary">assignment_ind</v-icon>
-        </v-list-tile-action>
-        <v-list-tile-content>
-          <v-list-tile-title>{{company.brand}}</v-list-tile-title>
-          <v-list-tile-sub-title>点击查看企业详细信息</v-list-tile-sub-title>
-        </v-list-tile-content>
-      </v-list-tile>
-      <v-divider inset></v-divider>
-      <v-list-tile>
-        <v-list-tile-action>
-          <v-icon color="primary">group</v-icon>
-        </v-list-tile-action>
-        <v-list-tile-content>
-          <v-list-tile-title>{{station.name}} - {{group.name}}</v-list-tile-title>
-        </v-list-tile-content>
-      </v-list-tile>
-      <v-divider inset></v-divider>
     </v-list>
   </div>
 </template>
