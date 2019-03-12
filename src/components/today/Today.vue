@@ -119,14 +119,14 @@ export default {
       dashboardShortcut.getInstantData();
       dashboardShortcut.getOrganizationCalculateData(
         1,
-        1,
+        10,
         this.userInfo.station
       );
     }
   },
   computed: {
     ...mapGetters({
-      userInfo: "user/userInfo"
+      userInfo: "user/userInfo",
     })
   },
   mounted() {

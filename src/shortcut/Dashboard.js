@@ -1,3 +1,4 @@
+import store from "../store/store";
 import basicService from "../service/BasicService";
 import userService from "../service/UserService";
 import deviceService from "../service/DeviceService";
@@ -25,6 +26,7 @@ class dashboardShortcut {
       number: number,
       station: station
     });
+    store.commit("organization/updateOrganizationStatistic", rsp.data);
     return rsp;
   }
 }

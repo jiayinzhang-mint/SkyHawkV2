@@ -35,6 +35,7 @@ const vuexSession = new VuexPersistence({
     "user/updateOnlineRate" ||
     "company/getCompanyList" ||
     "organization/getOrganizationList" ||
+    "organization/updateOrganizationStatistic" ||
     "alert/getAlertList" ||
     "alert/updateAlertList" ||
     "alert/restoreAlertList" ||

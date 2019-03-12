@@ -1,6 +1,7 @@
 const state = {
   organizationList: [],
-  stationList: []
+  stationList: [],
+  organizationStatistic: []
 };
 const getters = {
   organizationList: state => {
@@ -8,6 +9,9 @@ const getters = {
   },
   stationList: state => {
     return state.stationList;
+  },
+  organizationStatistic: state => {
+    return state.organizationStatistic;
   }
 };
 const mutations = {
@@ -21,6 +25,9 @@ const mutations = {
     });
     state.organizationList = organizationList;
     state.stationList = stationList;
+  },
+  updateOrganizationStatistic: (state, organizationStatistic) => {
+    state.organizationStatistic = organizationStatistic;
   }
 };
 const actions = {
