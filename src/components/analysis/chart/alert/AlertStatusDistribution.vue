@@ -6,7 +6,7 @@
         <v-layout column align-start>
           <div class="subheading font-weight-bold mb-1">
             告警状态
-            <span class="grey--text">| 今日</span>
+            <span class="grey--text">| 本月</span>
           </div>
         </v-layout>
       </v-card-title>

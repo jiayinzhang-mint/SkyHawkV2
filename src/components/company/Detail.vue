@@ -56,13 +56,17 @@ export default {
       },
       {
         text: "每日晨检",
-        route: "dailycheck"
+        route: "dailychecklist"
       },
 
       {
         divider: true
       },
       { heading: "数据监测" },
+      {
+        text: "历史评分",
+        route: "score"
+      },
       {
         text: "设备状态",
         route: "device"

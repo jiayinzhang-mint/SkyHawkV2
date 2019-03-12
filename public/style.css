@@ -45,3 +45,7 @@
 .v-pagination {
   user-select: none;
 }
+
+.v-stepper__content {
+  padding: 0 !important
+}

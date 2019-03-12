@@ -132,9 +132,12 @@ export default new Router({
                   component: () => import("./components/company/Humiture")
                 },
                 {
-                  path: "/company/:companyId/dailycheck",
-                  component: () =>
-                    import("./components/company/DailyCheck")
+                  path: "/company/:companyId/dailychecklist",
+                  component: () => import("./components/company/DailyCheckList")
+                },
+                {
+                  path: "/company/:companyId/score",
+                  component: () => import("./components/company/Score")
                 }
               ]
             }
@@ -144,7 +147,13 @@ export default new Router({
     },
     {
       path: "/mobile",
-      component: () => import("./views/IndexMobile")
+      component: () => import("./views/IndexMobile"),
+      children: [
+        {
+          path: "/company/:companyId/dailycheckform",
+          component: () => import("./components/company/DailyCheckForm")
+        }
+      ]
     }
   ]
 });

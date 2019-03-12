@@ -64,7 +64,6 @@
               <v-btn round flat @click="deleteAlert">
                 <v-icon class="mr-1">delete</v-icon>删除
               </v-btn>
-              
             </div>
           </v-toolbar>
           <v-tabs v-model="tab" centered>
@@ -92,6 +91,25 @@
           <v-toolbar flat class="transparent">
             <v-toolbar-title>{{company.brand}}</v-toolbar-title>
           </v-toolbar>
+          <v-container>
+            <v-layout>
+              <v-flex xs12>
+                <company-score></company-score>
+              </v-flex>
+            </v-layout>
+            <v-layout>
+              <v-flex xs12>
+                <section-score></section-score>
+              </v-flex>
+            </v-layout>
+            <v-layout>
+              <v-flex xs12>
+                <v-btn flat block round :to="'/company/'+company.id+'/info'">前往企业信息
+                  <v-icon>arrow_right</v-icon>
+                </v-btn>
+              </v-flex>
+            </v-layout>
+          </v-container>
         </v-card>
       </v-flex>
     </v-layout>
@@ -101,12 +119,17 @@
 <script>
 import alertBasicInfo from "./AlertBasicInfo";
 import alertTimeLine from "./AlertTimeLine";
+import companyScore from "../analysis/block/company/CompanyScore";
+import sectionScore from "../analysis/chart/company/SectionScore";
+
 import { mapGetters } from "vuex";
 import alertService from "../../service/AlertService";
 export default {
   components: {
     alertBasicInfo: alertBasicInfo,
-    alertTimeLine: alertTimeLine
+    alertTimeLine: alertTimeLine,
+    companyScore: companyScore,
+    sectionScore: sectionScore
   },
   data: () => ({
     tab: 0,
