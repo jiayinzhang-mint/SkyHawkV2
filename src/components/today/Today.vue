@@ -73,6 +73,7 @@
 </template>
 
 <script>
+import { mapGetters } from "vuex";
 // alert block
 import alertCompany from "../../components/analysis/block/alert/AlertCompany";
 import alertCount from "../../components/analysis/block/alert/AlertCount";
@@ -115,8 +116,18 @@ export default {
   },
   methods: {
     async refresh() {
-      await dashboardShortcut.getInstantData();
+      dashboardShortcut.getInstantData();
+      dashboardShortcut.getOrganizationCalculateData(
+        1,
+        1,
+        this.userInfo.station
+      );
     }
+  },
+  computed: {
+    ...mapGetters({
+      userInfo: "user/userInfo"
+    })
   },
   mounted() {
     dashboardShortcut.getInstantData();

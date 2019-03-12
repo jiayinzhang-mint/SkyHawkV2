@@ -11,11 +11,21 @@ class dashboardShortcut {
     alertService.getUnprocessedAlert();
   }
 
-  static async getCalculateData(dateType, day) {
-    await basicService.getRequest("/dashboard/companyscore", {
+  static async getCompanyCalculateData(dateType, day) {
+    const rsp = await basicService.getRequest("/dashboard/companyscore", {
       dateType: dateType,
       day: day
     });
+    return rsp;
+  }
+
+  static async getOrganizationCalculateData(dateType, number, station) {
+    const rsp = await basicService.getRequest("/dashboard/organizescore", {
+      dateType: dateType,
+      number: number,
+      station: station
+    });
+    return rsp;
   }
 }
 

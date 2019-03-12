@@ -46,7 +46,10 @@
         style="margin-left:-10px"
         @click.stop="drawer = !drawer"
       ></v-toolbar-side-icon>
-      <v-toolbar-title class="ml-2 font-weight-bold" style="width:232px; font-size:20px !important">SkyHawk</v-toolbar-title>
+      <v-toolbar-title
+        class="ml-2 font-weight-bold"
+        style="width:232px; font-size:20px !important"
+      >SkyHawk</v-toolbar-title>
 
       <v-spacer></v-spacer>
 
@@ -54,9 +57,19 @@
         <v-icon>search</v-icon>
       </v-btn>
 
-      <v-btn icon>
-        <v-avatar color="primary" size="32px">{{getFirstLetter(userInfo.name)}}</v-avatar>
-      </v-btn>
+      <v-menu offset-y>
+        <v-btn icon slot="activator">
+          <v-avatar color="primary" size="32px">{{getFirstLetter(userInfo.name)}}</v-avatar>
+        </v-btn>
+        <v-list>
+          <v-list-tile v-for="(item, index) in menuUser" :key="index" :to="item.route">
+            <v-list-tile-avatar>
+              <v-icon>{{item.icon}}</v-icon>
+            </v-list-tile-avatar>
+            <v-list-tile-title>{{ item.text }}</v-list-tile-title>
+          </v-list-tile>
+        </v-list>
+      </v-menu>
     </v-toolbar>
 
     <v-navigation-drawer width="500" right v-model="searchDrawer" absolute clipped temporary>
@@ -91,6 +104,13 @@ export default {
       userHelp: false,
       drawer: true,
       searchDrawer: false,
+      menuUser: [
+        {
+          icon: "exit_to_app",
+          text: "注销",
+          route: "/"
+        }
+      ],
       menuManage: [
         { heading: "管理" },
         {
