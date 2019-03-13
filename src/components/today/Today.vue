@@ -117,16 +117,12 @@ export default {
   methods: {
     async refresh() {
       dashboardShortcut.getInstantData();
-      dashboardShortcut.getOrganizationCalculateData(
-        1,
-        10,
-        this.userInfo.station
-      );
+      dashboardShortcut.getRecentData();
     }
   },
   computed: {
     ...mapGetters({
-      userInfo: "user/userInfo",
+      userInfo: "user/userInfo"
     })
   },
   mounted() {

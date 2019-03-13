@@ -6,7 +6,7 @@
         <v-layout column align-start>
           <div class="subheading font-weight-bold mb-1">
             告警类型
-            <span class="grey--text">| 本月</span>
+            <span class="grey--text">| 本周</span>
           </div>
         </v-layout>
       </v-card-title>

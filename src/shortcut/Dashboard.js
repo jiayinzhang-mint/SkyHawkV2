@@ -12,6 +12,15 @@ class dashboardShortcut {
     alertService.getUnprocessedAlert();
   }
 
+  static async getRecentData() {
+    // this.getCompanyCalculateData();
+    this.getOrganizationCalculateData(
+      1,
+      10,
+      store.getters["user/userInfo"].station
+    );
+  }
+
   static async getCompanyCalculateData(dateType, day) {
     const rsp = await basicService.getRequest("/dashboard/companyscore", {
       dateType: dateType,

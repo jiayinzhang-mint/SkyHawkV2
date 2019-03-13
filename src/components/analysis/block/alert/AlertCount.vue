@@ -29,6 +29,7 @@
 <script>
 import { mapGetters } from "vuex";
 import alert from "../../../../store/modules/alert";
+import alertStatistic from "../../../../utils/AlertStatistic";
 
 export default {
   data() {
@@ -37,34 +38,19 @@ export default {
       alertCountTrendArr: []
     };
   },
-  methods: {
-    getAlertCount(e) {
-      var alertCount = 0;
-      // alert type won't include err & unprocessed alert
-      var alertTypeArr = JSON.parse(e.alertType);
-      for (let i = 0; i < alertTypeArr.length; i++) {
-        alertCount += alertTypeArr[i];
-      }
-      return alertCount;
-    },
-    getAlertCountTrend() {
-      // unshift: add element to head ----- push: to end
-      for (let i = 0; i < this.organizationStatistic.length; i++) {
-        this.alertCountTrendArr.unshift(
-          this.getAlertCount(this.organizationStatistic[i])
-        );
-      }
-      console.log(this.alertCountTrendArr);
-    }
-  },
+  methods: {},
   computed: {
     ...mapGetters({
       organizationStatistic: "organization/organizationStatistic"
     })
   },
   mounted() {
-    this.alertCount = this.getAlertCount(this.organizationStatistic[0]);
-    this.getAlertCountTrend();
+    this.alertCount = alertStatistic.getAlertCount(
+      this.organizationStatistic[0]
+    );
+    this.alertCountTrendArr = alertStatistic.getAlertTrend(
+      this.organizationStatistic
+    );
   }
 };
 </script>

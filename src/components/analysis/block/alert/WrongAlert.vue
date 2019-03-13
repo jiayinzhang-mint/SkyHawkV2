@@ -28,6 +28,7 @@
 
 <script>
 import { mapGetters } from "vuex";
+import alertStatistic from "../../../../utils/AlertStatistic";
 
 export default {
   data() {
@@ -36,39 +37,21 @@ export default {
       wrongAlertArr: []
     };
   },
-  methods: {
-    getWrongAlertRate(e) {
-      var wrongAlertCount = 0;
-      var alertCount = 0;
-
-      var alertStateArr = JSON.parse(e.alertState);
-      wrongAlertCount = alertStateArr[2];
-
-      var alertTypeArr = JSON.parse(e.alertType);
-      for (let i = 0; i < alertTypeArr.length; i++) {
-        alertCount += alertTypeArr[i];
-      }
-      return (wrongAlertCount / (alertCount + 1)).toFixed(2);
-    },
-    getWrongAlertTrend() {
-      for (let i = 0; i < this.organizationStatistic.length; i++) {
-        console.log(this.getWrongAlertRate(this.organizationStatistic[i]));
-        // * 100 because vuetify only support int
-        this.wrongAlertArr.unshift(
-          100 * this.getWrongAlertRate(this.organizationStatistic[i])
-        );
-      }
-      console.log(this.wrongAlertArr);
-    }
-  },
+  methods: {},
   computed: {
     ...mapGetters({
       organizationStatistic: "organization/organizationStatistic"
     })
   },
   mounted() {
-    this.wrongAlertRate = this.getWrongAlertRate(this.organizationStatistic[0]);
-    this.getWrongAlertTrend();
+    this.wrongAlertRate = alertStatistic.getAlertRate(
+      this.organizationStatistic[0],
+      2
+    );
+    this.wrongAlertArr = alertStatistic.getAlertTrend(
+      this.organizationStatistic,
+      2
+    );
   }
 };
 </script>
