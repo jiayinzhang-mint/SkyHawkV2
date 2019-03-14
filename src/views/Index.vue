@@ -201,8 +201,6 @@ export default {
     })
   },
   async mounted() {
-    var data = await companyService.getCompanyList();
-    console.log(data);
   }
 };
 </script>

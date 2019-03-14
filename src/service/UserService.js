@@ -18,6 +18,11 @@ class userService {
     return rsp;
   }
 
+  static async getUserInfo(userId) {
+    const rsp = await basicService.getRequest("/user/info", { id: userId });
+    return rsp;
+  }
+
   static async updateUser(userInfo) {
     const rsp = await basicService.putRequest("/user/info", userInfo);
     message.snackbar(rsp.msg);

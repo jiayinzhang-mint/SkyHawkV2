@@ -83,6 +83,30 @@ class companyService {
     message.snackbar(rsp.msg);
     return rsp;
   }
+
+  static async getCompanyCheck(companyId) {
+    const rsp = await basicService.getRequest("/company/check", {
+      company: companyId
+    });
+    return rsp;
+  }
+
+  static async submitDailyCheck(
+    companyId,
+    stationId,
+    all_area,
+    cooking_area,
+    special_area
+  ) {
+    const rsp = await basicService.postRequest("/company/check", {
+      company: companyId,
+      station: stationId,
+      all_area: all_area,
+      cooking_area: cooking_area,
+      special_area: special_area,
+      check_person: store.getters["user/userInfo"].id
+    });
+  }
 }
 
 export default companyService;

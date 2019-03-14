@@ -17,9 +17,9 @@
         <v-stepper-content step="1">
           <v-container>
             <h3 class="mb-3">所有区域</h3>
-            <div v-for="(item,i) in allArea" :key="i">
+            <div v-for="(item,i) in allAreaForm" :key="i">
               <small>{{item.text}}</small>
-              <v-textarea class="mt-2" auto-grow label="巡查结果" rows="1"></v-textarea>
+              <v-textarea v-model="all_area[i]" class="mt-2" auto-grow label="巡查结果" rows="1"></v-textarea>
               <v-divider class="mb-4"></v-divider>
             </div>
             <v-layout justify-center>
@@ -31,9 +31,9 @@
         <v-stepper-content step="2">
           <v-container>
             <h3 class="mb-3">加工烹饪区</h3>
-            <div v-for="(item,i) in cookingArea" :key="i">
+            <div v-for="(item,i) in cookingAreaForm" :key="i">
               <small>{{item.text}}</small>
-              <v-textarea class="mt-2" auto-grow label="巡查结果" rows="1"></v-textarea>
+              <v-textarea v-model="cooking_area[i]" class="mt-2" auto-grow label="巡查结果" rows="1"></v-textarea>
               <v-divider class="mb-4"></v-divider>
             </div>
             <v-layout justify-center>
@@ -45,9 +45,9 @@
         <v-stepper-content step="3">
           <v-container>
             <h3 class="mb-3">专间</h3>
-            <div v-for="(item,i) in specialArea" :key="i">
+            <div v-for="(item,i) in specialAreaForm" :key="i">
               <small>{{item.text}}</small>
-              <v-textarea class="mt-2" auto-grow label="巡查结果" rows="1"></v-textarea>
+              <v-textarea v-model="special_area[i]" class="mt-2" auto-grow label="巡查结果" rows="1"></v-textarea>
               <v-divider class="mb-4"></v-divider>
             </div>
             <v-layout justify-center>
@@ -61,11 +61,17 @@
 </template>
 
 <script>
+import { mapGetters } from "vuex";
+import companyService from "../../service/CompanyService";
+
 export default {
   data() {
     return {
       e1: 1,
-      allArea: [
+      all_area: [],
+      cooking_area: [],
+      special_area: [],
+      allAreaForm: [
         {
           text:
             "工作人员是否正确穿戴工作衣帽，专间工作人员是否规范穿戴专用工作衣帽和口罩"
@@ -93,7 +99,7 @@ export default {
           text: "* 是否有回收视频再加工现象"
         }
       ],
-      cookingArea: [
+      cookingAreaForm: [
         {
           text: "成品与需冷藏的原料是否长时间室温存放"
         },
@@ -104,7 +110,7 @@ export default {
           text: "* 学校食堂是否制售冷菜"
         }
       ],
-      specialArea: [
+      specialAreaForm: [
         {
           text: "专间工作人员操作前是否消毒双手"
         },
@@ -124,9 +130,32 @@ export default {
     goNext() {
       this.e1 += 1;
     },
-    submit(){
-      
+    getCurrentCompany() {
+      this.currentCompany = this.companyList.find(element => {
+        return element.id == this.$route.params.companyId;
+      });
+    },
+    submit() {
+      console.log(this.all_area);
+      console.log(this.cooking_area);
+      console.log(this.special_area);
+      companyService.submitDailyCheck(
+        this.$route.params.companyId,
+        this.currentCompany.station,
+        JSON.stringify(this.all_area),
+        JSON.stringify(this.cooking_area),
+        JSON.stringify(this.special_area)
+      );
     }
+  },
+  computed: {
+    ...mapGetters({
+      companyList: "company/companyList"
+    })
+  },
+  mounted() {
+    this.getCurrentCompany();
+    console.log(this.currentCompany);
   }
 };
 </script>
