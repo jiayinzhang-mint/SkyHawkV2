@@ -23,6 +23,26 @@
             <v-layout v-if="item.heading" :key="i" row align-center>
               <v-subheader v-if="item.heading">{{ item.heading }}</v-subheader>
             </v-layout>
+            <v-list-group v-else-if="item.children" :key="item.text" v-model="item.model">
+              <template v-slot:activator>
+                <v-list-tile>
+                  <v-list-tile-action v-if="item.icon">
+                    <v-icon>{{ item.icon }}</v-icon>
+                  </v-list-tile-action>
+                  <v-list-tile-content>
+                    <v-list-tile-title>{{ item.text }}</v-list-tile-title>
+                  </v-list-tile-content>
+                </v-list-tile>
+              </template>
+              <v-list-tile v-for="(child, i) in item.children" :key="i" :to="child.route">
+                <v-list-tile-action v-if="child.icon">
+                  <v-icon>{{ child.icon }}</v-icon>
+                </v-list-tile-action>
+                <v-list-tile-content>
+                  <v-list-tile-title>{{ child.text }}</v-list-tile-title>
+                </v-list-tile-content>
+              </v-list-tile>
+            </v-list-group>
             <v-divider v-else-if="item.divider" :key="i" dark class="my-3"></v-divider>
             <v-list-tile v-else-if="userInfo.role<=item.role" :key="i" :to="item.route" ripple>
               <v-list-tile-action>
@@ -153,8 +173,18 @@ export default {
         {
           icon: "business",
           text: "企业信息",
-          route: "/company",
-          role: 3
+          role: 3,
+          children: [
+            {
+              icon: "list",
+              text: "企业列表",
+              route: "/company"
+            },
+            {
+              icon: "report_problem",
+              text: "黑名单"
+            }
+          ]
         },
         { heading: "数据监测" },
         {
@@ -200,8 +230,7 @@ export default {
       userInfo: "user/userInfo"
     })
   },
-  async mounted() {
-  }
+  async mounted() {}
 };
 </script>
 

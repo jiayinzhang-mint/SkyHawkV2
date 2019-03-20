@@ -151,7 +151,7 @@ export default {
           return element.id === this.userInfo.station;
         });
       }
-      if (this.filted) {
+      if (this.filted || (this.userInfo.role > 1 && this.userInfo.role <= 3)) {
         this.filter(this.selectedStation.id);
       }
       return rsp;
