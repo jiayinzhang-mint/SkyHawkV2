@@ -14,6 +14,16 @@ export default new Router({
       component: () => import("./views/Index"),
       children: [
         {
+          path: "/billboard",
+          component: () => import("./components/billboard/List"),
+          children: [
+            {
+              path: "/billboard/:postId",
+              component: () => import("./components/billboard/Detail")
+            }
+          ]
+        },
+        {
           path: "/today",
           component: () => import("./components/today/Today")
         },

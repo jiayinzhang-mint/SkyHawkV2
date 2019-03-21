@@ -2,13 +2,13 @@
   <v-app id="inspire" dark>
     <v-navigation-drawer fixed app v-model="drawer" clipped>
       <v-list>
-        <v-list v-if="userInfo.role==0">
+        <v-list>
           <template v-for="(item, i) in menuManage">
             <v-layout v-if="item.heading" :key="i" row align-center>
               <v-subheader v-if="item.heading">{{ item.heading }}</v-subheader>
             </v-layout>
             <v-divider v-else-if="item.divider" :key="i" dark class="my-3"></v-divider>
-            <v-list-tile v-else :key="i" :to="item.route" ripple>
+            <v-list-tile v-else-if="userInfo.role<=item.role" :key="i" :to="item.route" ripple>
               <v-list-tile-action>
                 <v-icon>{{ item.icon }}</v-icon>
               </v-list-tile-action>
@@ -136,12 +136,20 @@ export default {
         {
           icon: "business",
           text: "企业管理",
-          route: "/admin/company"
+          route: "/admin/company",
+          role: "0"
         },
         {
           icon: "people",
           text: "组织管理",
-          route: "/admin/organization"
+          route: "/admin/organization",
+          role: "0"
+        },
+        {
+          icon: "public",
+          text: "公告板",
+          role: "1",
+          route: "/billboard"
         }
       ],
       menuCommon: [
