@@ -79,7 +79,7 @@ export default {
     },
     async getStationInfo() {
       this.station = this.organizationList[1].children.find(element => {
-        return element.id == this.company.station;
+        return element.id == this.alertDetail.station;
       });
     },
     async getGroupInfo() {
@@ -88,9 +88,9 @@ export default {
       });
     },
     async getBasicInfo() {
-      await this.getCompanyInfo();
-      await this.getStationInfo();
-      await this.getGroupInfo();
+      this.getCompanyInfo();
+      this.getStationInfo();
+      this.getGroupInfo();
     }
   },
   computed: {

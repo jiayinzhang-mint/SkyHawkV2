@@ -27,6 +27,7 @@ class billboardService {
       "/notification/articledetail",
       newPost
     );
+    this.getPostList();
     return rsp;
   }
   static async deletePost(postId) {

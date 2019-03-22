@@ -1,9 +1,12 @@
 <template>
-  <v-container>
+  <v-container fluid>
     <v-card>
       <v-layout row>
         <v-flex xs3>
           <v-toolbar color="transparent" flat>
+            <v-btn icon @click="goBack">
+              <v-icon>arrow_back</v-icon>
+            </v-btn>
             <v-toolbar-title
               class="subheading font-weight-medium text-uppercase"
             >{{currentCompany.brand}}</v-toolbar-title>
@@ -86,6 +89,9 @@ export default {
       this.currentCompany = this.companyList.find(element => {
         return element.id == this.$route.params.companyId;
       });
+    },
+    goBack() {
+      this.$router.push({ path: "/company" });
     }
   },
   mounted() {

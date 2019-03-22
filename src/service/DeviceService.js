@@ -30,7 +30,7 @@ class monitorService {
 
   static async getOnlineRate() {
     const rsp = await basicService.getRequest("/dashboard/deviceinstant");
-    var onlineRate = ((rsp.deviceOnline / rsp.deviceCount) * 100).toFixed(2);
+    var onlineRate = ((rsp.deviceOnline / rsp.deviceCount) * 100).toFixed(1);
     store.commit("device/updateOnlineRate", onlineRate);
     return rsp;
   }

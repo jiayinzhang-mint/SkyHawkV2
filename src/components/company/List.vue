@@ -1,9 +1,9 @@
 <template>
   <v-layout row>
-    <v-flex sm3>
+    <v-flex xs12>
       <v-toolbar color="grey darken-3" flat>
         <v-scroll-x-transition>
-          <v-toolbar-title style="font-size:17px" v-if="!filted || userInfo.role>1 ">企业列表</v-toolbar-title>
+          <v-toolbar-title style="font-size:17px">企业列表</v-toolbar-title>
         </v-scroll-x-transition>
         <v-spacer></v-spacer>
         <v-scroll-x-transition>
@@ -23,37 +23,18 @@
         </v-toolbar-items>
       </v-toolbar>
       <v-divider></v-divider>
-      <v-list style="height:calc(100vh - 129px);overflow :auto">
-        <v-scroll-x-transition group>
-          <template v-for="(item,index) in companyListShow">
-            <div :key="index">
-              <v-list-tile v-if="item.id==$route.params.companyId" ripple class="grey darken-2">
-                <v-list-tile-content>
-                  <v-list-tile-title class="text-uppercase" style="color:white" v-html="item.brand"></v-list-tile-title>
-                </v-list-tile-content>
-              </v-list-tile>
-              <v-list-tile
-                v-else
-                :to=" '/company/' +item.id+'/info'"
-                ripple
-                active-class="grey darken-2"
-              >
-                <v-list-tile-content>
-                  <v-list-tile-title class="text-uppercase" style="color:white" v-html="item.brand"></v-list-tile-title>
-                </v-list-tile-content>
-              </v-list-tile>
-
-              <v-divider></v-divider>
-            </div>
-          </template>
-        </v-scroll-x-transition>
-      </v-list>
-    </v-flex>
-    <v-flex sm9>
-      <router-view ref="companyDetail" v-if="this.$route.params.companyId"></router-view>
-      <v-container v-else fluid fill-height>
-        <v-layout align-center justify-center>
-          <div class="headline font-weight-light">请选择企业</div>
+      <v-container grid-list-lg fluid style="height:calc(100vh - 129px);overflow :auto">
+        <v-layout row wrap>
+          <v-flex xs3 v-for="(item,index) in companyListShow" :key="index">
+            <v-card :to=" '/company/' +item.id+'/info'" ripple active-class="grey darken-2">
+              <v-container>
+                <v-card-title
+                  class="text-uppercase font-weight-bold subheading"
+                  v-html="item.brand"
+                ></v-card-title>
+              </v-container>
+            </v-card>
+          </v-flex>
         </v-layout>
       </v-container>
     </v-flex>
@@ -62,6 +43,7 @@
 
 <script>
 import { mapGetters, mapMutations, mapActions } from "vuex";
+
 export default {
   data: () => ({
     companyListShow: [],

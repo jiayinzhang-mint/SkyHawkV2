@@ -111,45 +111,43 @@ export default new Router({
         },
         {
           path: "/company",
-          component: () => import("./components/company/List"),
+          component: () => import("./components/company/List")
+        },
+        {
+          path: "/company/:companyId",
+          component: () => import("./components/company/Detail"),
           children: [
             {
-              path: "/company/:companyId",
-              component: () => import("./components/company/Detail"),
-              children: [
-                {
-                  path: "/company/:companyId/info",
-                  component: () => import("./components/company/Info")
-                },
-                {
-                  path: "/company/:companyId/supervisor",
-                  component: () => import("./components/company/Supervisor")
-                },
-                {
-                  path: "/company/:companyId/device",
-                  component: () => import("./components/company/Device")
-                },
-                {
-                  path: "/company/:companyId/gallery",
-                  component: () => import("./components/company/Gallery")
-                },
-                {
-                  path: "/company/:companyId/alert",
-                  component: () => import("./components/company/Alert")
-                },
-                {
-                  path: "/company/:companyId/humiture",
-                  component: () => import("./components/company/Humiture")
-                },
-                {
-                  path: "/company/:companyId/dailychecklist",
-                  component: () => import("./components/company/DailyCheckList")
-                },
-                {
-                  path: "/company/:companyId/score",
-                  component: () => import("./components/company/Score")
-                }
-              ]
+              path: "/company/:companyId/info",
+              component: () => import("./components/company/Info")
+            },
+            {
+              path: "/company/:companyId/supervisor",
+              component: () => import("./components/company/Supervisor")
+            },
+            {
+              path: "/company/:companyId/device",
+              component: () => import("./components/company/Device")
+            },
+            {
+              path: "/company/:companyId/gallery",
+              component: () => import("./components/company/Gallery")
+            },
+            {
+              path: "/company/:companyId/alert",
+              component: () => import("./components/company/Alert")
+            },
+            {
+              path: "/company/:companyId/humiture",
+              component: () => import("./components/company/Humiture")
+            },
+            {
+              path: "/company/:companyId/dailychecklist",
+              component: () => import("./components/company/DailyCheckList")
+            },
+            {
+              path: "/company/:companyId/score",
+              component: () => import("./components/company/Score")
             }
           ]
         }

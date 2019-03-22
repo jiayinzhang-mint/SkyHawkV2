@@ -1,5 +1,5 @@
 <template>
-  <div style="height:calc(100vh - 64px);overflow :auto">
+  <div >
     <v-toolbar class="transparent" flat>
       <v-toolbar-title class="headline font-weight-bold">今日</v-toolbar-title>
       <v-spacer></v-spacer>
@@ -20,6 +20,9 @@
       <v-layout row wrap>
         <v-flex xs12 sm4 d-flex>
           <weather></weather>
+        </v-flex>
+        <v-flex xs12 sm4 d-flex>
+          <post-list></post-list>
         </v-flex>
         <v-flex xs12 sm4>
           <v-layout row wrap>
@@ -104,6 +107,7 @@ import onlineUser from "../../components/analysis/block/user/OnlineUser";
 
 // other block
 import weather from "../../components/analysis/block/others/Weather";
+import postList from "../../components/analysis/block/billboard/PostList";
 
 import dashboardShortcut from "../../shortcut/Dashboard";
 
@@ -120,7 +124,8 @@ export default {
     alertStatusDistribution,
     alertSourceRank,
     systemStatus,
-    weather
+    weather,
+    postList
   },
   data() {
     return {};

@@ -3,6 +3,7 @@ import basicService from "../service/BasicService";
 import userService from "../service/UserService";
 import deviceService from "../service/DeviceService";
 import alertService from "../service/AlertService";
+import billboardService from "../service/BillboardService";
 
 class dashboardShortcut {
   static async getInstantData() {
@@ -11,6 +12,7 @@ class dashboardShortcut {
     deviceService.getSystemStatus();
     alertService.getUnprocessedAlert();
     this.getWeather();
+    billboardService.getPostList();
   }
 
   static async getRecentData() {

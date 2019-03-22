@@ -86,6 +86,7 @@ export default {
       this.newPost.author = this.userInfo.id;
       console.log(this.newPost);
       const rsp = await billboardService.createPost(this.newPost);
+      this.createPostDialog = false;
     }
   },
   computed: {
