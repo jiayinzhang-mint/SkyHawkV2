@@ -49,3 +49,7 @@
 .v-stepper__content {
   padding: 0 !important
 }
+
+.weather {
+  font-size: 80px !important
+}

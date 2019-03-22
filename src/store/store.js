@@ -8,6 +8,8 @@ import organization from "./modules/organization";
 import company from "./modules/company";
 import alert from "./modules/alert";
 import device from "./modules/device";
+import billboard from "./modules/billboard";
+import others from "./modules/others";
 
 Vue.use(Vuex);
 
@@ -28,7 +30,9 @@ const vuexSession = new VuexPersistence({
     company: state.company,
     organization: state.organization,
     alert: state.alert,
-    device: state.device
+    device: state.device,
+    billboard: state.billboard,
+    others: state.others
   }),
   filter: mutation =>
     mutation.type == "user/updateUserInfo" ||
@@ -42,7 +46,9 @@ const vuexSession = new VuexPersistence({
     "alert/updateAlertPageFront" ||
     "device/updateOnlineRate" ||
     "device/updateSystemStatus" ||
-    "alert/updateUnprocessedAlert"
+    "alert/updateUnprocessedAlert" ||
+    "billboard/getPostList" ||
+    "others/getWeather"
 });
 
 export default new Vuex.Store({
@@ -51,7 +57,9 @@ export default new Vuex.Store({
     company,
     organization,
     alert,
-    device
+    device,
+    billboard,
+    others
   },
   plugins: [vuexCookie.plugin, vuexSession.plugin]
 });

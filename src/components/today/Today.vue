@@ -18,17 +18,24 @@
     </v-toolbar>
     <v-container fluid grid-list-md>
       <v-layout row wrap>
-        <v-flex xs12 sm3>
-          <unprocessed-alert></unprocessed-alert>
+        <v-flex xs12 sm4 d-flex>
+          <weather></weather>
         </v-flex>
-        <v-flex xs12 sm3>
-          <online-device></online-device>
-        </v-flex>
-        <v-flex xs12 sm3>
-          <online-user></online-user>
-        </v-flex>
-        <v-flex xs12 sm3>
-          <system-status></system-status>
+        <v-flex xs12 sm4>
+          <v-layout row wrap>
+            <v-flex xs12 sm6>
+              <unprocessed-alert></unprocessed-alert>
+            </v-flex>
+            <v-flex xs12 sm6>
+              <online-device></online-device>
+            </v-flex>
+            <v-flex xs12 sm6>
+              <online-user></online-user>
+            </v-flex>
+            <v-flex xs12 sm6>
+              <system-status></system-status>
+            </v-flex>
+          </v-layout>
         </v-flex>
       </v-layout>
     </v-container>
@@ -95,6 +102,9 @@ import systemStatus from "../../components/analysis/block/system/SystemStatus";
 // user block
 import onlineUser from "../../components/analysis/block/user/OnlineUser";
 
+// other block
+import weather from "../../components/analysis/block/others/Weather";
+
 import dashboardShortcut from "../../shortcut/Dashboard";
 
 export default {
@@ -109,7 +119,8 @@ export default {
     alertTypeDistribution,
     alertStatusDistribution,
     alertSourceRank,
-    systemStatus
+    systemStatus,
+    weather
   },
   data() {
     return {};

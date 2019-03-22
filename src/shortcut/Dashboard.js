@@ -10,6 +10,7 @@ class dashboardShortcut {
     deviceService.getOnlineRate();
     deviceService.getSystemStatus();
     alertService.getUnprocessedAlert();
+    this.getWeather();
   }
 
   static async getRecentData() {
@@ -36,6 +37,12 @@ class dashboardShortcut {
       station: station
     });
     store.commit("organization/updateOrganizationStatistic", rsp.data);
+    return rsp;
+  }
+
+  static async getWeather() {
+    const rsp = await basicService.getRequest("/utils/weather");
+    store.commit("others/getWeather", rsp.lives[0]);
     return rsp;
   }
 }

@@ -72,7 +72,7 @@ import { mapGetters } from "vuex";
 import billboardService from "../../service/BillboardService";
 export default {
   data: () => ({
-    postList: [],
+    // postList: [],
     createPostDialog: false,
     newPost: {},
     postType: ["信息", "紧急"]
@@ -90,11 +90,14 @@ export default {
   },
   computed: {
     ...mapGetters({
-      userInfo: "user/userInfo"
+      userInfo: "user/userInfo",
+      postList: "billboard/postList"
     })
   },
   mounted() {
-    this.getPostList();
+    if (this.postList.length <= 1) {
+      this.getPostList();
+    }
   },
   beforeRouteUpdate(to, from, next) {
     next();
