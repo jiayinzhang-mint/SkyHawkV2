@@ -6,7 +6,6 @@ import store from "./store/store";
 import axios from "axios";
 import "viewerjs/dist/viewer.css";
 import Viewer from "v-viewer";
-import qs from "qs";
 import dimUpload from "./plugins/upload";
 
 Vue.use(dimUpload);
@@ -18,9 +17,21 @@ Vue.use(Viewer, {
     navbar: 0
   }
 });
+
+// time format
 Vue.filter("timeFormat", v => {
   var date = new Date(v);
   return date.toLocaleString();
+});
+
+// cut long string short
+Vue.filter("longText", (v, index) => {
+  if (v.length > index) {
+    var newString = v.substring(0, index);
+    return newString + "...";
+  } else {
+    return v;
+  }
 });
 
 //axios.defaults.baseURL = 'http://skyhawkapi.huilab.cn/api';

@@ -2,9 +2,7 @@
   <v-layout row>
     <v-flex xs12>
       <v-toolbar color="grey darken-3" flat>
-        <v-scroll-x-transition>
-          <v-toolbar-title style="font-size:17px">企业列表</v-toolbar-title>
-        </v-scroll-x-transition>
+        <v-toolbar-title style="font-size:17px">企业列表</v-toolbar-title>
         <v-spacer></v-spacer>
         <v-scroll-x-transition>
           <v-chip v-if="filted && userInfo.role<=1" close @input="reFill">{{selectedStation.name}}</v-chip>
@@ -26,14 +24,15 @@
       <v-container grid-list-lg fluid style="height:calc(100vh - 129px);overflow :auto">
         <v-layout row wrap>
           <v-flex xs3 v-for="(item,index) in companyListShow" :key="index">
-            <v-card :to=" '/company/' +item.id+'/info'" ripple active-class="grey darken-2">
-              <v-container>
-                <v-card-title
-                  class="text-uppercase font-weight-bold subheading"
-                  v-html="item.brand"
-                ></v-card-title>
-              </v-container>
-            </v-card>
+            <v-slide-y-transition>
+              <v-card :to=" '/company/' +item.id+'/info'" ripple active-class="grey darken-2">
+                <v-card-title class="text-uppercase font-weight-bold">
+                  <div>{{item.brand | longText(10)}}</div>
+                  <v-spacer></v-spacer>
+                  <v-rating dense small v-model="rating"></v-rating>
+                </v-card-title>
+              </v-card>
+            </v-slide-y-transition>
           </v-flex>
         </v-layout>
       </v-container>
@@ -48,7 +47,8 @@ export default {
   data: () => ({
     companyListShow: [],
     filted: false,
-    selectedStation: []
+    selectedStation: [],
+    rating: 5
   }),
   methods: {
     filter(id) {
