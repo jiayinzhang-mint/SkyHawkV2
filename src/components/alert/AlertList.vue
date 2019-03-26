@@ -49,30 +49,35 @@
             >{{ props.item.create_time | timeFormat }}</td>
             <td class="text-xs-left">
               <v-chip
-                color="primary darken-1"
+                color="orange darken-2"
                 text-color="white"
                 small
                 v-if="props.item.uncertain==1"
-              >转发</v-chip>
-              <v-chip color="red lighten-1" text-color="white" small v-if="props.item.state==9">误报</v-chip>
-              <v-tooltip bottom>
-                <v-btn icon slot="activator">
-                  <v-icon>flag</v-icon>
-                </v-btn>
-                <span>标记</span>
-              </v-tooltip>
-              <v-tooltip bottom>
-                <v-btn icon slot="activator">
-                  <v-icon>redo</v-icon>
-                </v-btn>
-                <span>下发</span>
-              </v-tooltip>
-              <v-tooltip bottom>
-                <v-btn icon slot="activator">
-                  <v-icon>delete</v-icon>
-                </v-btn>
-                <span>删除</span>
-              </v-tooltip>
+              >标记</v-chip>
+              <v-chip
+                color="red darken-1"
+                text-color="white"
+                small
+                v-else-if="props.item.state==1"
+              >待处理</v-chip>
+              <v-chip
+                color="primary darken-1"
+                text-color="white"
+                small
+                v-else-if="props.item.state==2"
+              >整改中</v-chip>
+              <v-chip
+                color="green darken-1"
+                text-color="white"
+                small
+                v-else-if="props.item.state==4"
+              >已完成</v-chip>
+              <v-chip
+                color="grey darken-1"
+                text-color="white"
+                small
+                v-else-if="props.item.state==9"
+              >误报</v-chip>
             </td>
           </tr>
         </template>

@@ -27,23 +27,6 @@
                   <v-btn flat round @click.stop="repostAlert">
                     <v-icon class="mr-1">redo</v-icon>下发
                   </v-btn>
-
-                  <v-menu offset-y class="hidden-lg-and-up">
-                    <v-btn slot="activator" dark flat>处理
-                      <v-icon class="mr-1">keyboard_arrow_down</v-icon>
-                    </v-btn>
-                    <v-list>
-                      <v-list-tile v-if="alertDetail.uncertain !=1" @click="uncertainAlert">
-                        <v-list-tile-title>不确定</v-list-tile-title>
-                      </v-list-tile>
-                      <v-list-tile v-if="alertDetail.uncertain !=1" @click="errorAlert">
-                        <v-list-tile-title>误报</v-list-tile-title>
-                      </v-list-tile>
-                      <v-list-tile v-if="alertDetail.uncertain !=1" @click="repostAlert">
-                        <v-list-tile-title>下发</v-list-tile-title>
-                      </v-list-tile>
-                    </v-list>
-                  </v-menu>
                 </div>
               </div>
             </div>
@@ -61,7 +44,7 @@
               <v-btn depressed round color="primary" v-if="userInfo.role==2" @click="finishAlert">完成</v-btn>
             </div>
             <div v-if="userInfo.role==0">
-              <v-btn round flat @click="deleteAlert">
+              <v-btn round flat @click="deleteAlert()">
                 <v-icon class="mr-1">delete</v-icon>删除
               </v-btn>
             </div>
@@ -104,7 +87,8 @@
             </v-layout>
             <v-layout>
               <v-flex xs12>
-                <v-btn flat block round :to="'/company/'+company.id+'/info'">前往企业信息
+                <v-btn flat block round :to="'/company/'+company.id+'/info'">
+                  前往企业信息
                   <v-icon>arrow_right</v-icon>
                 </v-btn>
               </v-flex>
@@ -146,12 +130,52 @@ export default {
         return element.id == this.alertDetail.company;
       });
     },
-    uncertainAlert() {},
-    errorAlert() {},
-    repostAlert() {},
-    rectifyAlert() {},
-    finishAlert() {},
-    deleteAlert() {}
+    async uncertainAlert() {
+      try {
+        await this.$confirm("确认交由食药监处理?");
+        await alertService.uncertainAlert(this.$route.params.alertId);
+        this.$router.push({ path: "/alert" });
+      } catch (err) {
+        return;
+      }
+    },
+    async errorAlert() {
+      try {
+        await this.$confirm("确认误报?");
+        await alertService.errorAlert(this.$route.params.alertId);
+        this.$router.push({ path: "/alert" });
+      } catch (err) {
+        return;
+      }
+    },
+    async repostAlert() {
+      try {
+        await this.$confirm("确认下发?");
+        await alertService.repostAlert(this.$route.params.alertId);
+        this.$router.push({ path: "/alert" });
+      } catch (err) {
+        return;
+      }
+    },
+    async rectifyAlert() {},
+    async finishAlert() {
+      try {
+        await this.$confirm("确认完成?");
+        await alertService.finishAlert(this.$route.params.alertId);
+        this.$router.push({ path: "/alert" });
+      } catch (err) {
+        return;
+      }
+    },
+    async deleteAlert() {
+      try {
+        await this.$confirm("确认删除?");
+        await alertService.deleteAlert(this.$route.params.alertId);
+        this.$router.push({ path: "/alert" });
+      } catch (err) {
+        return;
+      }
+    }
   },
   async mounted() {
     this.$loading.show(true);
