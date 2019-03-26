@@ -1,5 +1,5 @@
 <template>
-  <div >
+  <div>
     <v-toolbar class="transparent" flat>
       <v-toolbar-title class="headline font-weight-bold">今日</v-toolbar-title>
       <v-spacer></v-spacer>

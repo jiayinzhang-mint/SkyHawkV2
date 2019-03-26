@@ -188,7 +188,7 @@ export default {
       this.pagination.page = this.alertPageFront;
       console.log(this.pagination.page);
       this.changeableAlertPageFront = this.alertPageFront;
-    }, 10);
+    }, 1);
   }
 };
 </script>
