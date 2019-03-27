@@ -32,8 +32,7 @@
       >
         <template v-slot:items="props">
           <tr class="clickable-tr" ripple @click="showCompanyDetail(props.item.id)">
-            <td class="text-uppercase">{{props.item.brand}}</td>
-            <td>{{props.item.}}</td>
+            <td class="text-uppercase" style="width:300px">{{props.item.brand}}</td>
             <td>
               <v-rating dense small v-model="rating" readonly></v-rating>
             </td>

@@ -1,22 +1,19 @@
 <template>
   <div>
-    <v-hover>
-      <v-card slot-scope="{ hover }" :class="`elevation-${hover ? 12 : 2}`">
-        <!-- <v-icon class="mr-4" size="64">alarm</v-icon> -->
-        <v-toolbar class="transparent" flat column align-start dense>
-          <div class="body-2 font-weigth-bold mb-1">公告板</div>
-        </v-toolbar>
+    <!-- <v-icon class="mr-4" size="64">alarm</v-icon> -->
+    <v-toolbar class="transparent" flat column align-start dense>
+      <div class="body-2 font-weigth-bold mb-1">公告板</div>
+    </v-toolbar>
+    <v-divider></v-divider>
+    <v-list style="max-height:205px;overflow:auto">
+      <div v-for="(item,i) in postList" :key="i">
+        <v-list-tile @click="showPost(item);postDialog=true" ripple>
+          <v-list-tile-title class="body-2">{{item.title}}</v-list-tile-title>
+        </v-list-tile>
         <v-divider></v-divider>
-        <v-list style="max-height:205px;overflow:auto">
-          <div v-for="(item,i) in postList" :key="i">
-            <v-list-tile @click="showPost(item);postDialog=true" ripple>
-              <v-list-tile-title class="body-2">{{item.title}}</v-list-tile-title>
-            </v-list-tile>
-            <v-divider></v-divider>
-          </div>
-        </v-list>
-      </v-card>
-    </v-hover>
+      </div>
+    </v-list>
+
     <v-dialog v-model="postDialog" width="500" persistent scrollable>
       <v-card>
         <v-toolbar class="transparent" flat>

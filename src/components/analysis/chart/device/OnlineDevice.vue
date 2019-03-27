@@ -2,46 +2,40 @@
   <div>
     <v-card-title>
       <!-- <v-icon class="mr-4" size="64">alarm</v-icon> -->
-      <v-layout column align-start>
-        <div class="subheading font-weight-bold mb-1">
-          告警类型
-          <span class="grey--text">| 本周</span>
-        </div>
+      <v-layout column align-center>
+        <div class="body-1 font-weight-bold mb-1">在线设备</div>
       </v-layout>
     </v-card-title>
-    <div
-      id="alerttypedistribution"
-      style="min-height:300px;height:100%"
-      class="chart"
-      ref="echarts"
-    ></div>
+    <div id="onlinedevice" style="min-height:150px;height:100%" class="chart" ref="echarts"></div>
   </div>
 </template>
 
 <script>
+import { mapGetters } from "vuex";
+
 export default {
-  data: () => ({
-    myChart: null
-  }),
+  data() {
+    return {};
+  },
   methods: {
     init() {
       var echarts = require("echarts/lib/echarts");
       require("echarts/lib/chart/pie");
       require("echarts/lib/component/tooltip");
+      require("echarts/lib/component/graphic");
+
       // 基于准备好的dom，初始化echarts实例
-      var myChart = echarts.init(
-        document.getElementById("alerttypedistribution")
-      );
+      var myChart = echarts.init(document.getElementById("onlinedevice"));
       // 绘制图表
 
       myChart.setOption({
-        color: ["#ab67d6", "#5bb0e7", "#6f6ced", "#8b7ee8", "#9c43ca"],
+        color: ["#8b7ee8", "#454163"],
         tooltip: {
           textStyle: {
             color: "#fff"
           },
           trigger: "item",
-          formatter: "{b} : {c} 件"
+          formatter: "{b} : {c} %"
         },
         grid: {
           top: "10px",
@@ -49,6 +43,19 @@ export default {
           right: "20%",
           bottom: "0",
           containLabel: true
+        },
+        graphic: {
+          type: "text",
+          left: "center",
+          top: "center",
+          style: {
+            text: "test",
+            textAlign: "center",
+            font: "bold 15px sans-serif",
+            fill: "#fff",
+            width: 30,
+            height: 30
+          }
         },
         series: [
           {
@@ -61,21 +68,10 @@ export default {
             // }),
 
             label: {
-              normal: {
-                textStyle: {
-                  color: "rgba(255, 255, 255, 0.8)"
-                }
-              }
+              show: false
             },
             labelLine: {
-              normal: {
-                lineStyle: {
-                  color: "rgba(255, 255, 255, 0.8)"
-                },
-                smooth: 0.2,
-                length: 10,
-                length2: 20
-              }
+              show: false
             },
 
             animationType: "scale",
@@ -86,21 +82,30 @@ export default {
       this.myChart = myChart;
     }
   },
-  computed: {},
-  async mounted() {
+  computed: {
+    ...mapGetters({
+      deviceStatistic: "device/deviceStatistic"
+    })
+  },
+  mounted() {
     this.init();
     this.myChart.setOption({
       series: [
         {
           data: [
-            { value: 335, name: "鼠患" },
-            { value: 310, name: "口罩" },
-            { value: 274, name: "帽子" },
-            { value: 235, name: "温湿度" },
-            { value: 400, name: "服装" }
+            { value: this.deviceStatistic.onlineRate, name: "在线" },
+            {
+              value: (100 - this.deviceStatistic.onlineRate).toFixed(1),
+              name: "离线"
+            }
           ]
         }
-      ]
+      ],
+      graphic: {
+        style: {
+          text: this.deviceStatistic.onlineRate + " %"
+        }
+      }
     });
     setTimeout(() => {
       this.myChart.resize();

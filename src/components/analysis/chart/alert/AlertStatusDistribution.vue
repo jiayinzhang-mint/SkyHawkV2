@@ -1,23 +1,21 @@
 <template>
-  <v-hover>
-    <v-card slot-scope="{ hover }" :class="`elevation-${hover ? 12 : 2}`">
-      <v-card-title>
-        <!-- <v-icon class="mr-4" size="64">alarm</v-icon> -->
-        <v-layout column align-start>
-          <div class="subheading font-weight-bold mb-1">
-            告警状态
-            <span class="grey--text">| 本周</span>
-          </div>
-        </v-layout>
-      </v-card-title>
-      <div
-        id="alertstatusdistribution"
-        style="min-height:300px;height:100%"
-        class="chart"
-        ref="echarts"
-      ></div>
-    </v-card>
-  </v-hover>
+  <div>
+    <v-card-title>
+      <!-- <v-icon class="mr-4" size="64">alarm</v-icon> -->
+      <v-layout column align-start>
+        <div class="subheading font-weight-bold mb-1">
+          告警状态
+          <span class="grey--text">| 本周</span>
+        </div>
+      </v-layout>
+    </v-card-title>
+    <div
+      id="alertstatusdistribution"
+      style="min-height:300px;height:100%"
+      class="chart"
+      ref="echarts"
+    ></div>
+  </div>
 </template>
 
 <script>

@@ -1,18 +1,16 @@
 <template>
-  <v-hover>
-    <v-card slot-scope="{ hover }" :class="`elevation-${hover ? 12 : 2}`">
-      <v-card-title>
-        <!-- <v-icon class="mr-4" size="64">alarm</v-icon> -->
-        <v-layout column align-start>
-          <div class="body-2 font-weigth-bold mb-1">设备在线</div>
-          <div>
-            <span class="display-3 font-weight-bold">{{deviceStatistic.onlineRate}}</span>
-            <strong>&nbsp;&nbsp;%</strong>
-          </div>
-        </v-layout>
-      </v-card-title>
-    </v-card>
-  </v-hover>
+  <div>
+    <v-card-title>
+      <!-- <v-icon class="mr-4" size="64">alarm</v-icon> -->
+      <v-layout column align-start>
+        <div class="body-2 font-weigth-bold mb-1">设备在线</div>
+        <div>
+          <span class="display-3 font-weight-bold">{{deviceStatistic.onlineRate}}</span>
+          <strong>&nbsp;&nbsp;%</strong>
+        </div>
+      </v-layout>
+    </v-card-title>
+  </div>
 </template>
 
 <script>

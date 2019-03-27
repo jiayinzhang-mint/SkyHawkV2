@@ -1,16 +1,14 @@
 <template>
-  <v-hover>
-    <v-card color="grey darken-3" slot-scope="{ hover }" :class="`elevation-${hover ? 12 : 2}`">
-      <v-card-title>
-        <v-layout column align-start>
-          <div class="subheading font-weight-bold mb-1">详细评分</div>
-        </v-layout>
-      </v-card-title>
-      <v-container>
-        <div class="chart" id="sectionscore" style="min-height:300px;height:100%"></div>
-      </v-container>
-    </v-card>
-  </v-hover>
+  <div>
+    <v-card-title>
+      <v-layout column align-start>
+        <div class="subheading font-weight-bold mb-1">详细评分</div>
+      </v-layout>
+    </v-card-title>
+    <v-container>
+      <div class="chart" id="sectionscore" style="min-height:300px;height:100%"></div>
+    </v-container>
+  </div>
 </template>
 
 <script>

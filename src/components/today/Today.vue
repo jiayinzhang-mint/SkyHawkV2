@@ -19,24 +19,48 @@
     <v-container fluid grid-list-md>
       <v-layout row wrap>
         <v-flex xs12 sm4 d-flex>
-          <weather></weather>
+          <v-hover>
+            <v-card slot-scope="{ hover }" :class="`elevation-${hover ? 12 : 2}`">
+              <weather></weather>
+            </v-card>
+          </v-hover>
         </v-flex>
         <v-flex xs12 sm4 d-flex>
-          <post-list></post-list>
+          <v-hover>
+            <v-card slot-scope="{ hover }" :class="`elevation-${hover ? 12 : 2}`">
+              <post-list></post-list>
+            </v-card>
+          </v-hover>
         </v-flex>
         <v-flex xs12 sm4>
           <v-layout row wrap>
             <v-flex xs12 sm6>
-              <unprocessed-alert></unprocessed-alert>
+              <v-hover>
+                <v-card slot-scope="{ hover }" :class="`elevation-${hover ? 12 : 2}`">
+                  <unprocessed-alert></unprocessed-alert>
+                </v-card>
+              </v-hover>
             </v-flex>
             <v-flex xs12 sm6>
-              <online-device></online-device>
+              <v-hover>
+                <v-card slot-scope="{ hover }" :class="`elevation-${hover ? 12 : 2}`">
+                  <online-device></online-device>
+                </v-card>
+              </v-hover>
             </v-flex>
             <v-flex xs12 sm6>
-              <online-user></online-user>
+              <v-hover>
+                <v-card slot-scope="{ hover }" :class="`elevation-${hover ? 12 : 2}`">
+                  <online-user></online-user>
+                </v-card>
+              </v-hover>
             </v-flex>
             <v-flex xs12 sm6>
-              <system-status></system-status>
+              <v-hover>
+                <v-card slot-scope="{ hover }" :class="`elevation-${hover ? 12 : 2}`">
+                  <system-status></system-status>
+                </v-card>
+              </v-hover>
             </v-flex>
           </v-layout>
         </v-flex>
@@ -49,16 +73,32 @@
     <v-container fluid grid-list-md>
       <v-layout row wrap>
         <v-flex xs12 sm3>
-          <alert-count></alert-count>
+          <v-hover>
+            <v-card slot-scope="{ hover }" :class="`elevation-${hover ? 12 : 2}`">
+              <alert-count></alert-count>
+            </v-card>
+          </v-hover>
         </v-flex>
         <v-flex xs12 sm3>
-          <alert-company></alert-company>
+          <v-hover>
+            <v-card slot-scope="{ hover }" :class="`elevation-${hover ? 12 : 2}`">
+              <alert-company></alert-company>
+            </v-card>
+          </v-hover>
         </v-flex>
         <v-flex xs12 sm3>
-          <processed-alert></processed-alert>
+          <v-hover>
+            <v-card slot-scope="{ hover }" :class="`elevation-${hover ? 12 : 2}`">
+              <processed-alert></processed-alert>
+            </v-card>
+          </v-hover>
         </v-flex>
         <v-flex xs12 sm3>
-          <wrong-alert></wrong-alert>
+          <v-hover>
+            <v-card slot-scope="{ hover }" :class="`elevation-${hover ? 12 : 2}`">
+              <wrong-alert></wrong-alert>
+            </v-card>
+          </v-hover>
         </v-flex>
       </v-layout>
     </v-container>
@@ -69,13 +109,25 @@
     <v-container fluid grid-list-md>
       <v-layout row wrap>
         <v-flex xs12 sm4>
-          <alert-type-distribution></alert-type-distribution>
+          <v-hover>
+            <v-card slot-scope="{ hover }" :class="`elevation-${hover ? 12 : 2}`">
+              <alert-type-distribution></alert-type-distribution>
+            </v-card>
+          </v-hover>
         </v-flex>
         <v-flex xs12 sm4>
-          <alert-status-distribution></alert-status-distribution>
+          <v-hover>
+            <v-card slot-scope="{ hover }" :class="`elevation-${hover ? 12 : 2}`">
+              <alert-status-distribution></alert-status-distribution>
+            </v-card>
+          </v-hover>
         </v-flex>
         <v-flex xs12 sm4>
-          <alert-source-rank></alert-source-rank>
+          <v-hover>
+            <v-card slot-scope="{ hover }" :class="`elevation-${hover ? 12 : 2}`">
+              <alert-source-rank></alert-source-rank>
+            </v-card>
+          </v-hover>
         </v-flex>
       </v-layout>
     </v-container>

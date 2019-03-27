@@ -1,18 +1,16 @@
 <template>
-  <v-hover>
-    <v-card slot-scope="{ hover }" :class="`elevation-${hover ? 12 : 2}`">
-      <v-card-title>
-        <!-- <v-icon class="mr-4" size="64">alarm</v-icon> -->
-        <v-layout column align-start>
-          <div class="subheading font-weight-bold mb-1">
-            告警来源
-            <span class="grey--text">| 本周</span>
-          </div>
-        </v-layout>
-      </v-card-title>
-      <div class="chart" id="alertsourcerank" style="min-height:300px;height:100%"></div>
-    </v-card>
-  </v-hover>
+  <div>
+    <v-card-title>
+      <!-- <v-icon class="mr-4" size="64">alarm</v-icon> -->
+      <v-layout column align-start>
+        <div class="subheading font-weight-bold mb-1">
+          告警来源
+          <span class="grey--text">| 本周</span>
+        </div>
+      </v-layout>
+    </v-card-title>
+    <div class="chart" id="alertsourcerank" style="min-height:300px;height:100%"></div>
+  </div>
 </template>
 
 <script>
@@ -53,12 +51,12 @@ export default {
           name: "次数",
           axisLine: {
             lineStyle: {
-              color: "rgba(255,255,255,0.3)"
+              color: "rgba(255,255,255,0.1)"
             }
           },
           splitLine: {
             lineStyle: {
-              color: "rgba(255,255,255,0.3)"
+              color: "rgba(255,255,255,0.1)"
             }
           }
         },
@@ -66,7 +64,7 @@ export default {
           type: "category",
           axisLine: {
             lineStyle: {
-              color: "rgba(255,255,255,0.3)"
+              color: "rgba(255,255,255,0.1)"
             }
           }
         },
