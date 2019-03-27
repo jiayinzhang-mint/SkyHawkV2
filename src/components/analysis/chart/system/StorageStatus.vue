@@ -93,9 +93,9 @@ export default {
       series: [
         {
           data: [
-            { value: this.systemStatistic.disk[3], name: "占用" },
+            { value: Math.round(this.systemStatistic.disk[3]), name: "占用" },
             {
-              value: (100 - this.systemStatistic.disk[3]).toFixed(1),
+              value: Math.round(100 - this.systemStatistic.disk[3]),
               name: "空余"
             }
           ]
@@ -103,7 +103,7 @@ export default {
       ],
       graphic: {
         style: {
-          text: this.systemStatistic.disk[3] + " %"
+          text: Math.round(this.systemStatistic.disk[3]) + " %"
         }
       }
     });

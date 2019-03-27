@@ -93,9 +93,9 @@ export default {
       series: [
         {
           data: [
-            { value: this.userStatistic.onlineRate, name: "在线" },
+            { value: Math.round(this.userStatistic.onlineRate), name: "在线" },
             {
-              value: (100 - this.userStatistic.onlineRate).toFixed(1),
+              value: Math.round(100 - this.userStatistic.onlineRate),
               name: "离线"
             }
           ]
@@ -103,7 +103,7 @@ export default {
       ],
       graphic: {
         style: {
-          text: this.userStatistic.onlineRate + " %"
+          text: Math.round(this.userStatistic.onlineRate) + " %"
         }
       }
     });

@@ -93,9 +93,12 @@ export default {
       series: [
         {
           data: [
-            { value: this.systemStatistic.cpuPercent, name: "负载" },
             {
-              value: (100 - this.systemStatistic.cpuPercent).toFixed(1),
+              value: Math.round(this.systemStatistic.cpuPercent),
+              name: "负载"
+            },
+            {
+              value: Math.round(100 - this.systemStatistic.cpuPercent),
               name: "空载"
             }
           ]
@@ -103,7 +106,7 @@ export default {
       ],
       graphic: {
         style: {
-          text: this.systemStatistic.cpuPercent + " %"
+          text: Math.round(this.systemStatistic.cpuPercent) + " %"
         }
       }
     });

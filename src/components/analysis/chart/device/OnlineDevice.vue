@@ -93,9 +93,12 @@ export default {
       series: [
         {
           data: [
-            { value: this.deviceStatistic.onlineRate, name: "在线" },
             {
-              value: (100 - this.deviceStatistic.onlineRate).toFixed(1),
+              value: Math.round(this.deviceStatistic.onlineRate),
+              name: "在线"
+            },
+            {
+              value: Math.round(100 - this.deviceStatistic.onlineRate),
               name: "离线"
             }
           ]
@@ -103,7 +106,7 @@ export default {
       ],
       graphic: {
         style: {
-          text: this.deviceStatistic.onlineRate + " %"
+          text: Math.round(this.deviceStatistic.onlineRate) + " %"
         }
       }
     });
