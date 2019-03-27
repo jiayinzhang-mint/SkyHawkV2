@@ -1,9 +1,10 @@
 <template>
   <v-layout row>
-    <v-flex xs12>
+    <v-flex xs12 class="grey-back">
       <v-toolbar color="grey darken-3" flat>
         <v-toolbar-title style="font-size:17px">企业列表</v-toolbar-title>
         <v-spacer></v-spacer>
+        <v-pagination v-model="pagination.page" :total-visible="7" :length="pages"></v-pagination>
         <v-scroll-x-transition>
           <v-chip v-if="filted && userInfo.role<=1" close @input="reFill">{{selectedStation.name}}</v-chip>
         </v-scroll-x-transition>
@@ -21,21 +22,24 @@
         </v-toolbar-items>
       </v-toolbar>
       <v-divider></v-divider>
-      <v-container grid-list-lg fluid style="height:calc(100vh - 129px);overflow :auto">
-        <v-layout row wrap>
-          <v-flex xs3 v-for="(item,index) in companyListShow" :key="index">
-            <v-slide-y-transition>
-              <v-card :to=" '/company/' +item.id+'/info'" ripple active-class="grey darken-2">
-                <v-card-title class="text-uppercase font-weight-bold">
-                  <div>{{item.brand | longText(10)}}</div>
-                  <v-spacer></v-spacer>
-                  <v-rating dense small v-model="rating"></v-rating>
-                </v-card-title>
-              </v-card>
-            </v-slide-y-transition>
-          </v-flex>
-        </v-layout>
-      </v-container>
+      <v-data-table
+        hide-actions
+        hide-headers
+        :items="companyListShow"
+        :pagination.sync="pagination"
+        item-key="name"
+        style="height:calc(100vh - 129px);overflow :auto"
+      >
+        <template v-slot:items="props">
+          <tr class="clickable-tr" ripple @click="showCompanyDetail(props.item.id)">
+            <td class="text-uppercase">{{props.item.brand}}</td>
+            <td>{{props.item.}}</td>
+            <td>
+              <v-rating dense small v-model="rating" readonly></v-rating>
+            </td>
+          </tr>
+        </template>
+      </v-data-table>
     </v-flex>
   </v-layout>
 </template>
@@ -48,7 +52,10 @@ export default {
     companyListShow: [],
     filted: false,
     selectedStation: [],
-    rating: 5
+    rating: 5,
+    pagination: {
+      rowsPerPage: 25
+    }
   }),
   methods: {
     filter(id) {
@@ -66,6 +73,9 @@ export default {
     reFill() {
       this.companyListShow = this.companyList;
       this.filted = false;
+    },
+    showCompanyDetail(id) {
+      this.$router.push({ path: "/company/" + id + "/info" });
     }
   },
   computed: {
@@ -73,7 +83,12 @@ export default {
       companyList: "company/companyList",
       stationList: "organization/stationList",
       userInfo: "user/userInfo"
-    })
+    }),
+    pages() {
+      var totalItems = this.companyListShow.length;
+      this.totalPages = Math.ceil(totalItems / this.pagination.rowsPerPage);
+      return this.totalPages;
+    }
   },
   mounted() {
     this.companyListShow = this.companyList;
@@ -89,4 +104,10 @@ export default {
 </script>
 
 <style>
+.clickable-tr {
+  cursor: pointer;
+}
+td {
+  font-size: 14px !important;
+}
 </style>
