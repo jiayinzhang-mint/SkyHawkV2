@@ -2,7 +2,7 @@
   <v-app dark class="dashboard">
     <v-toolbar dark flat tabs color="rgb(47,50,58)">
       <v-toolbar-title class="ml-2 font-weight-bold" style="font-size:20px !important">SkyHawk</v-toolbar-title>
-      <v-toolbar-title class="title-des ml-2">数据视图</v-toolbar-title>
+      <v-toolbar-title class="title-des ml-2">数据仪表板</v-toolbar-title>
       <template v-slot:extension>
         <v-tabs v-model="model" left color="transparent" slider-color="primary" show-arrows>
           <v-tab v-for="(item,i) in stationListShow" :key="i" :href="`#tab-${i}`">{{item.name}}</v-tab>
@@ -17,28 +17,43 @@
       </v-tab-item>
     </v-tabs-items>
     <v-container fluid grid-list-md>
-      <v-layout row wrap>
-        <v-flex xs3>
-          <alert-type-distribution></alert-type-distribution>
+      <v-layout row wrap fill-height>
+        <v-flex xs5>
+          <div class="wrapper wrapper-v" style="max-height:100%">
+            <div class="widget border" style="grid-row:1">
+              <alert-count-trend></alert-count-trend>
+            </div>
+            <div class="widget border" style="grid-row:2">
+              <alert-type-trend></alert-type-trend>
+            </div>
+          </div>
         </v-flex>
-        <v-flex xs3>
-          <alert-status-distribution></alert-status-distribution>
-        </v-flex>
-        <v-flex xs6 d-flex>
-          <v-layout>
-            <v-flex xs2>
-              <system-status></system-status>
-            </v-flex>
-            <v-flex xs2>
-              <storage-status></storage-status>
-            </v-flex>
-            <v-flex xs2>
-              <online-device></online-device>
-            </v-flex>
-            <v-flex xs2>
-              <online-user></online-user>
-            </v-flex>
-          </v-layout>
+        <v-flex xs5>
+          <div class="wrapper" style="max-height:100%">
+            <v-layout row wrap>
+              <v-flex xs3>
+                <system-status></system-status>
+              </v-flex>
+              <v-flex xs3>
+                <storage-status></storage-status>
+              </v-flex>
+              <v-flex xs3>
+                <online-device></online-device>
+              </v-flex>
+              <v-flex xs3>
+                <online-user></online-user>
+              </v-flex>
+              <v-flex xs6>
+                <alert-type-distribution></alert-type-distribution>
+              </v-flex>
+               <v-flex xs6>
+                <alert-status-distribution></alert-status-distribution>
+              </v-flex>
+               <v-flex xs6>
+                <alert-source-rank></alert-source-rank>
+              </v-flex>
+            </v-layout>
+          </div>
         </v-flex>
       </v-layout>
     </v-container>
@@ -59,6 +74,8 @@ import wrongAlert from "../block/alert/WrongAlert";
 import alertTypeDistribution from "../chart/alert/AlertTypeDistribution";
 import alertStatusDistribution from "../chart/alert/AlertStatusDistribution";
 import alertSourceRank from "../chart/alert/AlertSourceRank";
+import alertCountTrend from "../chart/alert/AlertCountTrend";
+import alertTypeTrend from "../chart/alert/AlertTypeTrend";
 
 // device block
 import onlineDevice from "../chart/device/OnlineDevice";
@@ -78,6 +95,8 @@ export default {
   components: {
     alertCompany,
     alertCount,
+    alertCountTrend,
+    alertTypeTrend,
     processedAlert,
     unprocessedAlert,
     wrongAlert,
@@ -123,4 +142,18 @@ export default {
 </script>
 
 <style>
+.wrapper {
+  display: grid;
+  grid-auto-rows: auto;
+  justify-items: stretch;
+  align-items: stretch;
+  align-content: stretch;
+  justify-content: stretch;
+  height: 100%;
+  box-sizing: border-box;
+}
+
+.wrapper-v {
+  grid-template-columns: repeat(1, 1fr);
+}
 </style>
