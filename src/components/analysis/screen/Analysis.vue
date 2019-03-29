@@ -28,7 +28,7 @@
             </div>
           </div>
         </v-flex>
-        <v-flex xs5>
+        <v-flex xs5 style="border-right: thin solid rgba(200,200,200,0.2);border-left: thin solid rgba(200,200,200,0.2);">
           <div class="wrapper" style="max-height:100%">
             <v-layout row wrap>
               <v-flex xs3>
@@ -46,11 +46,35 @@
               <v-flex xs6>
                 <alert-type-distribution></alert-type-distribution>
               </v-flex>
-               <v-flex xs6>
+              <v-flex xs6>
                 <alert-status-distribution></alert-status-distribution>
               </v-flex>
-               <v-flex xs6>
+              <v-flex xs6>
                 <alert-source-rank></alert-source-rank>
+              </v-flex>
+              <v-flex xs6>
+                <black-list></black-list>
+              </v-flex>
+            </v-layout>
+          </div>
+        </v-flex>
+        <v-flex xs2>
+          <div class="wrapper" style="max-height:100%">
+            <v-layout row wrap>
+              <v-flex xs6>
+                <alert-count dashboard></alert-count>
+              </v-flex>
+              <v-flex xs6>
+                <alert-company dashboard></alert-company>
+              </v-flex>
+              <v-flex xs6>
+                <unprocessed-alert dashboard></unprocessed-alert>
+              </v-flex>
+              <v-flex xs6>
+                <processed-alert dashboard></processed-alert>
+              </v-flex>
+              <v-flex xs12>
+                <alert-list></alert-list>
               </v-flex>
             </v-layout>
           </div>
@@ -69,6 +93,7 @@ import alertCount from "../block/alert/AlertCount";
 import processedAlert from "../block/alert/ProcessedAlert";
 import unprocessedAlert from "../block/alert/UnprocessedAlert";
 import wrongAlert from "../block/alert/WrongAlert";
+import alertList from "../block/alert/AlertList";
 
 // alert chart
 import alertTypeDistribution from "../chart/alert/AlertTypeDistribution";
@@ -76,6 +101,9 @@ import alertStatusDistribution from "../chart/alert/AlertStatusDistribution";
 import alertSourceRank from "../chart/alert/AlertSourceRank";
 import alertCountTrend from "../chart/alert/AlertCountTrend";
 import alertTypeTrend from "../chart/alert/AlertTypeTrend";
+
+// company
+import blackList from "../chart/company/BlackList";
 
 // device block
 import onlineDevice from "../chart/device/OnlineDevice";
@@ -108,7 +136,9 @@ export default {
     systemStatus,
     storageStatus,
     weather,
-    postList
+    postList,
+    blackList,
+    alertList
   },
   data() {
     return {

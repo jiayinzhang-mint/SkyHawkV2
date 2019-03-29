@@ -2,11 +2,18 @@
   <div>
     <v-card-title>
       <!-- <v-icon class="mr-4" size="64">alarm</v-icon> -->
-      <v-layout column align-start>
-        <div class="body-2 font-weigth-bold mb-1">待处理告警</div>
+      <v-layout column align-start v-if="!dashboard">
+        <div class="body-2 font-weight-bold mb-1">待处理告警</div>
         <div>
           <span class="display-3 font-weight-bold">{{alertStatistic.unprocessedAlertCount}}</span>
-          <strong>&nbsp;&nbsp;起</strong>
+          <strong>&nbsp;&nbsp;次</strong>
+        </div>
+      </v-layout>
+      <v-layout column align-center v-else>
+        <div class="body-2 font-weight-bold mb-1">待处理告警</div>
+        <div>
+          <span class="display-3 font-weight-light">{{alertStatistic.unprocessedAlertCount}}</span>
+          <strong>&nbsp;&nbsp;次</strong>
         </div>
       </v-layout>
     </v-card-title>
@@ -17,6 +24,9 @@
 import { mapGetters } from "vuex";
 
 export default {
+  props: {
+    dashboard: Boolean
+  },
   data() {
     return {};
   },
