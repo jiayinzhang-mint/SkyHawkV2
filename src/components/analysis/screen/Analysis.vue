@@ -3,6 +3,10 @@
     <v-toolbar dark flat tabs color="rgb(47,50,58)">
       <v-toolbar-title class="ml-2 font-weight-bold" style="font-size:20px !important">SkyHawk</v-toolbar-title>
       <v-toolbar-title class="title-des ml-2">数据仪表板</v-toolbar-title>
+      <v-spacer></v-spacer>
+      <v-btn icon>
+        <v-icon>refresh</v-icon>
+      </v-btn>
       <template v-slot:extension>
         <v-tabs v-model="model" left color="transparent" slider-color="primary" show-arrows>
           <v-tab v-for="(item,i) in stationListShow" :key="i" :href="`#tab-${i}`">{{item.name}}</v-tab>
@@ -28,7 +32,10 @@
             </div>
           </div>
         </v-flex>
-        <v-flex xs5 style="border-right: thin solid rgba(200,200,200,0.2);border-left: thin solid rgba(200,200,200,0.2);">
+        <v-flex
+          xs5
+          style="border-right: thin solid rgba(200,200,200,0.2);border-left: thin solid rgba(200,200,200,0.2);"
+        >
           <div class="wrapper" style="max-height:100%">
             <v-layout row wrap>
               <v-flex xs3>
