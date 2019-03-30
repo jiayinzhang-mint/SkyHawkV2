@@ -6,12 +6,13 @@
           <v-toolbar-title style="font-size:17px" v-if="!filted">告警流转</v-toolbar-title>
         </v-scroll-x-transition>
         <v-spacer></v-spacer>
-        <v-pagination
-          v-model="changeableAlertPageFront"
-          :total-visible="7"
-          :length="pages"
-          @input="changeAlertPage"
-        ></v-pagination>
+        <v-toolbar-title class="body-2 mr-3">{{alertRange}}</v-toolbar-title>
+        <v-btn :disabled="alertPage==1" icon @click="changeAlertPage(-1)">
+          <v-icon>keyboard_arrow_left</v-icon>
+        </v-btn>
+        <v-btn :disabled="noMore" icon @click="changeAlertPage(1)">
+          <v-icon>keyboard_arrow_right</v-icon>
+        </v-btn>
         <v-scroll-x-transition>
           <v-chip v-if="filted && userInfo.role<=1" close @input="reFill">{{selectedStation.name}}</v-chip>
         </v-scroll-x-transition>
@@ -27,7 +28,6 @@
         hide-headers
         hide-actions
         :items="alertListShow"
-        :pagination.sync="pagination"
         item-key="name"
         style="height:calc(100vh - 129px);overflow :auto"
       >
@@ -162,14 +162,11 @@ export default {
       return rsp;
     },
     async changeAlertPage(e) {
-      alertService.updateAlertPageFront(e);
+      alertService.updateAlertPage(e);
       console.log(e);
-      this.pagination.page = this.changeableAlertPageFront;
-      if (e == this.totalPages && !this.noMore) {
-        const rsp = await this.getMoreAlert();
-        if (rsp.msg == "nomore") {
-          this.noMore = true;
-        }
+      const rsp = await this.getMoreAlert();
+      if (rsp.msg == "nomore") {
+        this.noMore = true;
       }
     }
   },
@@ -177,7 +174,7 @@ export default {
     ...mapGetters({
       companyList: "company/companyList",
       alertList: "alert/alertList",
-      alertPageFront: "alert/alertPageFront",
+      alertPage: "alert/alertPage",
       stationList: "organization/stationList",
       userInfo: "user/userInfo"
     }),
@@ -185,15 +182,19 @@ export default {
       var totalItems = this.alertListShow.length;
       this.totalPages = Math.ceil(totalItems / this.pagination.rowsPerPage);
       return this.totalPages;
+    },
+    alertRange() {
+      var alertRange =
+        "第 " +
+        `${(this.alertPage - 1) * 50 + 1}` +
+        "-" +
+        `${this.alertPage * 50}` +
+        " 行";
+      return alertRange;
     }
   },
   mounted() {
     this.alertListShow = this.alertList;
-    setTimeout(() => {
-      this.pagination.page = this.alertPageFront;
-      console.log(this.pagination.page);
-      this.changeableAlertPageFront = this.alertPageFront;
-    }, 1);
   }
 };
 </script>

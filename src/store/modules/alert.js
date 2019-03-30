@@ -1,8 +1,6 @@
 import store from "../store";
 const state = {
   alertList: [],
-  // front end pagination
-  alertPageFront: 1,
   // back end pagination
   alertPage: 1,
   alertDetail: {},
@@ -37,16 +35,16 @@ const mutations = {
       });
     });
     state.alertList = alertList;
-    state.alertPage = 2;
+    state.alertPage = 1;
   },
   updateAlertList: (state, alertList) => {
-    state.alertPage = state.alertPage + 1;
     alertList.forEach(e => {
       e.brand = store.getters["company/companyList"].find(company => {
         return company.id == e.company;
       });
-      state.alertList.push(e);
+      // state.alertList.push(e);
     });
+    state.alertList = alertList;
   },
   restoreAlertList: state => {
     state.alertList = [];
@@ -58,8 +56,9 @@ const mutations = {
   updateUnprocessedAlert: (state, unprocessedAlertCount) => {
     state.alertStatistic.unprocessedAlertCount = unprocessedAlertCount;
   },
-  updateAlertPageFront: (state, alertPageFront) => {
-    state.alertPageFront = alertPageFront;
+  updateAlertPage: (state, alertPage) => {
+    console.log(alertPage);
+    state.alertPage += alertPage;
   }
 };
 const actions = {

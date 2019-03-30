@@ -98,8 +98,8 @@ class alertService {
     return rsp;
   }
 
-  static async updateAlertPageFront(alertPageFront) {
-    store.commit("alert/updateAlertPageFront", alertPageFront);
+  static async updateAlertPage(alertPage) {
+    store.commit("alert/updateAlertPage", alertPage);
   }
 }
 
