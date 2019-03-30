@@ -80,7 +80,33 @@ export default {
         ]
       });
       this.myChart = myChart;
+    },
+    setData() {
+      this.myChart.setOption({
+        series: [
+          {
+            data: [
+              {
+                value: Math.round(this.systemStatistic.cpuPercent),
+                name: "负载"
+              },
+              {
+                value: Math.round(100 - this.systemStatistic.cpuPercent),
+                name: "空载"
+              }
+            ]
+          }
+        ],
+        graphic: {
+          style: {
+            text: Math.round(this.systemStatistic.cpuPercent) + " %"
+          }
+        }
+      });
     }
+  },
+  watch: {
+    systemStatistic: "setData"
   },
   computed: {
     ...mapGetters({
@@ -89,27 +115,7 @@ export default {
   },
   mounted() {
     this.init();
-    this.myChart.setOption({
-      series: [
-        {
-          data: [
-            {
-              value: Math.round(this.systemStatistic.cpuPercent),
-              name: "负载"
-            },
-            {
-              value: Math.round(100 - this.systemStatistic.cpuPercent),
-              name: "空载"
-            }
-          ]
-        }
-      ],
-      graphic: {
-        style: {
-          text: Math.round(this.systemStatistic.cpuPercent) + " %"
-        }
-      }
-    });
+    this.setData();
     setTimeout(() => {
       this.myChart.resize();
     }, 300);

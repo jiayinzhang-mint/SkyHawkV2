@@ -80,7 +80,30 @@ export default {
         ]
       });
       this.myChart = myChart;
+    },
+    setData() {
+      this.myChart.setOption({
+        series: [
+          {
+            data: [
+              { value: Math.round(this.systemStatistic.disk[3]), name: "占用" },
+              {
+                value: Math.round(100 - this.systemStatistic.disk[3]),
+                name: "空余"
+              }
+            ]
+          }
+        ],
+        graphic: {
+          style: {
+            text: Math.round(this.systemStatistic.disk[3]) + " %"
+          }
+        }
+      });
     }
+  },
+  watch: {
+    systemStatistic: "setData"
   },
   computed: {
     ...mapGetters({
@@ -89,24 +112,7 @@ export default {
   },
   mounted() {
     this.init();
-    this.myChart.setOption({
-      series: [
-        {
-          data: [
-            { value: Math.round(this.systemStatistic.disk[3]), name: "占用" },
-            {
-              value: Math.round(100 - this.systemStatistic.disk[3]),
-              name: "空余"
-            }
-          ]
-        }
-      ],
-      graphic: {
-        style: {
-          text: Math.round(this.systemStatistic.disk[3]) + " %"
-        }
-      }
-    });
+    this.setData();
     setTimeout(() => {
       this.myChart.resize();
     }, 300);

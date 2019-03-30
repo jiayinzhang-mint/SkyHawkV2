@@ -4,7 +4,7 @@
       <v-toolbar-title class="ml-2 font-weight-bold" style="font-size:20px !important">SkyHawk</v-toolbar-title>
       <v-toolbar-title class="title-des ml-2">数据仪表板</v-toolbar-title>
       <v-spacer></v-spacer>
-      <v-btn icon>
+      <v-btn icon @click="getInstantData()">
         <v-icon>refresh</v-icon>
       </v-btn>
       <template v-slot:extension>
@@ -126,6 +126,8 @@ import onlineUser from "../chart/user/OnlineUser";
 import weather from "../block/others/Weather";
 import postList from "../block/billboard/PostList";
 
+import dashboardShortcut from "../../../shortcut/Dashboard";
+
 export default {
   components: {
     alertCompany,
@@ -165,6 +167,9 @@ export default {
         }
       }
       console.log(this.stationListShow);
+    },
+    getInstantData() {
+      dashboardShortcut.getInstantData();
     }
   },
   computed: {
@@ -174,6 +179,7 @@ export default {
   },
   mounted() {
     this.getStationList();
+    dashboardShortcut.getInstantData();
   }
 };
 </script>

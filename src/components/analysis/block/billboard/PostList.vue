@@ -2,7 +2,7 @@
   <div>
     <!-- <v-icon class="mr-4" size="64">alarm</v-icon> -->
     <v-toolbar class="transparent" flat column align-start dense>
-      <div class="body-2 font-weigth-bold mb-1">公告板</div>
+      <div class="body-2 font-weight-bold mb-1">公告板</div>
     </v-toolbar>
     <v-divider></v-divider>
     <v-list style="max-height:205px;overflow:auto">

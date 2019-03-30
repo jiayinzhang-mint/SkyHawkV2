@@ -80,7 +80,33 @@ export default {
         ]
       });
       this.myChart = myChart;
+    },
+    setData() {
+      this.myChart.setOption({
+        series: [
+          {
+            data: [
+              {
+                value: Math.round(this.deviceStatistic.onlineRate),
+                name: "在线"
+              },
+              {
+                value: Math.round(100 - this.deviceStatistic.onlineRate),
+                name: "离线"
+              }
+            ]
+          }
+        ],
+        graphic: {
+          style: {
+            text: Math.round(this.deviceStatistic.onlineRate) + " %"
+          }
+        }
+      });
     }
+  },
+  watch: {
+    deviceStatistic: "setData"
   },
   computed: {
     ...mapGetters({
@@ -89,27 +115,7 @@ export default {
   },
   mounted() {
     this.init();
-    this.myChart.setOption({
-      series: [
-        {
-          data: [
-            {
-              value: Math.round(this.deviceStatistic.onlineRate),
-              name: "在线"
-            },
-            {
-              value: Math.round(100 - this.deviceStatistic.onlineRate),
-              name: "离线"
-            }
-          ]
-        }
-      ],
-      graphic: {
-        style: {
-          text: Math.round(this.deviceStatistic.onlineRate) + " %"
-        }
-      }
-    });
+    this.setData();
     setTimeout(() => {
       this.myChart.resize();
     }, 300);

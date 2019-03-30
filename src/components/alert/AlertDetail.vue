@@ -80,11 +80,13 @@
                 <company-score></company-score>
               </v-flex>
             </v-layout>
+            <v-divider></v-divider>
             <v-layout>
               <v-flex xs12>
                 <section-score></section-score>
               </v-flex>
             </v-layout>
+            <v-divider></v-divider>
             <v-layout>
               <v-flex xs12>
                 <v-btn flat block round :to="'/company/'+company.id+'/info'">
