@@ -127,6 +127,7 @@ import weather from "../block/others/Weather";
 import postList from "../block/billboard/PostList";
 
 import dashboardShortcut from "../../../shortcut/Dashboard";
+import { setInterval } from "timers";
 
 export default {
   components: {
@@ -170,6 +171,7 @@ export default {
     },
     getInstantData() {
       dashboardShortcut.getInstantData();
+      dashboardShortcut.getRecentData();
     }
   },
   computed: {

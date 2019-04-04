@@ -19,6 +19,7 @@
 </template>
 
 <script>
+import { mapGetters } from "vuex";
 export default {
   data: () => ({
     myChart: null
@@ -84,24 +85,34 @@ export default {
         ]
       });
       this.myChart = myChart;
+    },
+    setData() {
+      var alertDistributionArr = this.organizationStatistic[0].alertState;
+      this.myChart.setOption({
+        series: [
+          {
+            data: [
+              { value: alertDistributionArr[1] + 1, name: "未处理" },
+              { value: alertDistributionArr[3] + 1, name: "处理中" },
+              { value: alertDistributionArr[4] + 1, name: "审核中" },
+              { value: alertDistributionArr[5] + 1, name: "已完成" }
+            ]
+          }
+        ]
+      });
     }
   },
-  computed: {},
+  watch: {
+    organizationStatistic: "setData"
+  },
+  computed: {
+    ...mapGetters({
+      organizationStatistic: "organization/organizationStatistic"
+    })
+  },
   async mounted() {
     this.init();
-    this.myChart.setOption({
-      series: [
-        {
-          data: [
-            { value: 28, name: "已完成" },
-            { value: 15, name: "未处理" },
-            { value: 12, name: "处理中" },
-            { value: 78, name: "待确认" },
-            { value: 10, name: "整改中" }
-          ]
-        }
-      ]
-    });
+    this.setData();
     setTimeout(() => {
       this.myChart.resize();
     }, 300);

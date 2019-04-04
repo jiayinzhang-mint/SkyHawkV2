@@ -1,7 +1,7 @@
 <template>
   <v-container grid-list-lg>
     <v-layout wrap>
-      <v-flex v-for="(item,i) in companySupervisor" :key="i" xs4 md3>
+      <v-flex v-for="(item,i) in companySupervisor" :key="i" xs2>
         <v-card>
           <v-img class="mb-1" contain :src="item.avatar" lazy-src="/img/lazy.jpg">
             <v-layout slot="placeholder" fill-height align-center justify-center ma-0>

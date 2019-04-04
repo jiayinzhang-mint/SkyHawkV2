@@ -19,6 +19,7 @@
 </template>
 
 <script>
+import { mapGetters } from "vuex";
 export default {
   data: () => ({
     myChart: null
@@ -84,24 +85,35 @@ export default {
         ]
       });
       this.myChart = myChart;
+    },
+    setData() {
+      var alertTypeArr = this.organizationStatistic[0].alertType;
+      this.myChart.setOption({
+        series: [
+          {
+            data: [
+              { value: alertTypeArr[1] + 1, name: "鼠患" },
+              { value: alertTypeArr[2] + 1, name: "口罩" },
+              { value: alertTypeArr[3] + 1, name: "帽子" },
+              { value: alertTypeArr[4] + 1, name: "温湿度" },
+              { value: 2, name: "服装" }
+            ]
+          }
+        ]
+      });
     }
   },
-  computed: {},
+  watch: {
+    organizationStatistic: "setData"
+  },
+  computed: {
+    ...mapGetters({
+      organizationStatistic: "organization/organizationStatistic"
+    })
+  },
   async mounted() {
     this.init();
-    this.myChart.setOption({
-      series: [
-        {
-          data: [
-            { value: 335, name: "鼠患" },
-            { value: 310, name: "口罩" },
-            { value: 274, name: "帽子" },
-            { value: 235, name: "温湿度" },
-            { value: 400, name: "服装" }
-          ]
-        }
-      ]
-    });
+    this.setData();
     setTimeout(() => {
       this.myChart.resize();
     }, 300);

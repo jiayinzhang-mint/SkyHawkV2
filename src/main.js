@@ -38,6 +38,7 @@ Vue.filter("longText", (v, index) => {
 //axios.defaults.baseURL = "http://monitor2.huilab.cn/api";
 axios.defaults.baseURL = "http://127.0.0.1:8001/api";
 // axios.defaults.baseURL = 'https://skyhawkapi.insdim.com/api';
+
 axios.interceptors.request.use(config => {
   try {
     config.headers["AUTH"] = store.getters["user/userInfo"].token;
