@@ -9,7 +9,12 @@
       </v-btn>
       <template v-slot:extension>
         <v-tabs v-model="model" left color="transparent" slider-color="primary" show-arrows>
-          <v-tab v-for="(item,i) in stationListShow" :key="i" :href="`#tab-${i}`">{{item.name}}</v-tab>
+          <v-tab
+            @click="alterTab(item)"
+            v-for="(item,i) in stationListShow"
+            :key="i"
+            :href="`#tab-${i}`"
+          >{{item.name}}</v-tab>
         </v-tabs>
       </template>
     </v-toolbar>
@@ -159,7 +164,7 @@ export default {
   methods: {
     getStationList() {
       this.stationListShow.push({
-        id: 0,
+        id: 1,
         name: "静安区"
       });
       for (let i = 0; i < this.stationList.length; i++) {
@@ -171,7 +176,15 @@ export default {
     },
     getInstantData() {
       dashboardShortcut.getInstantData();
-      dashboardShortcut.getRecentData();
+      dashboardShortcut.getOrganizationCalculateData(
+        1,
+        10,
+        store.getters["user/userInfo"].station
+      );
+    },
+    alterTab(item) {
+      console.log(item);
+      dashboardShortcut.getOrganizationCalculateData(1, 10, item.id);
     }
   },
   computed: {
