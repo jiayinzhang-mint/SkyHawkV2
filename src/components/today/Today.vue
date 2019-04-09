@@ -185,7 +185,11 @@ export default {
   methods: {
     async refresh() {
       dashboardShortcut.getInstantData();
-      dashboardShortcut.getRecentData();
+      dashboardShortcut.getOrganizationCalculateData(
+        1,
+        10,
+        this.userInfo.station
+      );
     }
   },
   computed: {

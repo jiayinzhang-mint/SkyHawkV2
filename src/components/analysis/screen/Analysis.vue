@@ -179,7 +179,7 @@ export default {
       dashboardShortcut.getOrganizationCalculateData(
         1,
         10,
-        store.getters["user/userInfo"].station
+        this.userInfo.station
       );
     },
     alterTab(item) {
@@ -189,7 +189,8 @@ export default {
   },
   computed: {
     ...mapGetters({
-      stationList: "organization/stationList"
+      stationList: "organization/stationList",
+      userInfo: "user/userInfo"
     })
   },
   mounted() {

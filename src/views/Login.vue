@@ -79,7 +79,11 @@ export default {
         if (rsp.msg == "success") {
           organizationService.getOrganizationList({ all: true });
           dashboardShortcut.getInstantData();
-          dashboardShortcut.getRecentData();
+          dashboardShortcut.getOrganizationCalculateData(
+            1,
+            10,
+            this.userInfo.station
+          );
           await companyService.getCompanyList();
           alertService.getALertList();
           this.$router.push({ path: "/today" });
