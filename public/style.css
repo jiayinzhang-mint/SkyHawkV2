@@ -5,41 +5,43 @@
 }
 
 .v-treeview-node__label {
-  font-size: 0.97rem !important
+  font-size: 0.97rem !important;
 }
 
 .grey-back {
-  background-color: #424242
+  background-color: #424242;
 }
 
 .v-treeview {
-  padding: 8px
+  padding: 8px;
 }
 
 .container {
-  padding: 15px !important
+  padding: 15px !important;
 }
 
-.theme--dark.v-table, .v-datatable__actions {
-  background: transparent !important
+.theme--dark.v-table,
+.v-datatable__actions {
+  background: transparent !important;
 }
 
 .v-treeview-node__label {
   user-select: none;
-  -webkit-user-select: none
+  -webkit-user-select: none;
 }
 
 .v-toolbar__title {
   font-size: 17px !important;
-  margin-left: 5px !important
+  margin-left: 5px !important;
 }
 
 .v-toolbar__content {
-  padding: 0 15px !important
+  padding: 0 15px !important;
 }
 
-.v-card, .flex {
-  border-radius: 5px !important
+.v-card,
+.flex {
+  border-radius: 5px !important;
 }
 
 .v-pagination {
@@ -47,17 +49,29 @@
 }
 
 .v-stepper__content {
-  padding: 0 !important
+  padding: 0 !important;
 }
 
 .weather {
-  font-size: 80px !important
+  font-size: 80px !important;
 }
 
 .title-des {
-  color: #ffffff81
+  color: #ffffff81;
 }
 
 .dashboard {
-  background-color: rgb(47, 50, 58) !important
+  background-color: rgb(47, 50, 58) !important;
+}
+
+.clickable-tr {
+  cursor: pointer;
+}
+
+td {
+  font-size: 14px !important;
+}
+
+.v-input__slot {
+  margin-bottom: 0 !important;
 }

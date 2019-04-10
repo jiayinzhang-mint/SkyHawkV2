@@ -5,18 +5,20 @@ import store from "../store/store";
 class alertService {
   static async createALert() {}
 
-  static async getALertList() {
+  static async getALertList(stationId, type) {
     var params = {};
-    params.stationAlt = store.getters["user/userInfo"].station;
+    if (stationId != null) params.stationId = stationId;
+    if (type != null) params.type = type;
     params.page = 1;
     const rsp = await basicService.getRequest("/alert/list", params);
     store.dispatch("alert/getAlertList", rsp.alertList);
     return rsp;
   }
 
-  static async updateAlertList() {
+  static async updateAlertList(stationId, type) {
     var params = {};
-    params.stationAlt = store.getters["user/userInfo"].station;
+    if (stationId != null) params.stationId = stationId;
+    if (type != null) params.type = type;
     params.page = store.getters["alert/alertPage"];
     const rsp = await basicService.getRequest("/alert/list", params);
     store.dispatch("alert/updateAlertList", rsp.alertList);
@@ -25,7 +27,6 @@ class alertService {
 
   static async restoreAlertList() {
     await store.dispatch("alert/restoreAlertList");
-    await this.getALertList();
   }
 
   static async getAlertDetail(alertId) {

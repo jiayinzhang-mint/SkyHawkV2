@@ -3,23 +3,26 @@
     <v-flex xs12 class="grey-back">
       <v-toolbar color="grey darken-3" flat>
         <v-toolbar-title style="font-size:17px">企业列表</v-toolbar-title>
+
+        <v-select
+          v-if="userInfo.role<=1"
+          class="ml-4"
+          :items="stationList"
+          v-model="selectedStation"
+          item-text="name"
+          return-object
+          solo
+          label="请选择街道"
+        ></v-select>
+
         <v-spacer></v-spacer>
         <v-pagination v-model="pagination.page" :total-visible="7" :length="pages"></v-pagination>
-        <v-scroll-x-transition>
-          <v-chip v-if="filted && userInfo.role<=1" close @input="reFill">{{selectedStation.name}}</v-chip>
-        </v-scroll-x-transition>
-        <v-toolbar-items>
-          <v-menu bottom left v-if="userInfo.role<=1">
-            <v-btn slot="activator" icon>
-              <v-icon>sort</v-icon>
-            </v-btn>
-            <v-list style="height:375px ;overflow :auto">
-              <v-list-tile v-for="(item, i) in stationList" :key="i" @click="filter(item.id)">
-                <v-list-tile-title>{{ item.name }}</v-list-tile-title>
-              </v-list-tile>
-            </v-list>
-          </v-menu>
-        </v-toolbar-items>
+        <v-tooltip bottom>
+          <span>清除筛选</span>
+          <v-btn slot="activator" icon @click="selectedStation={}">
+            <v-icon>clear</v-icon>
+          </v-btn>
+        </v-tooltip>
       </v-toolbar>
       <v-divider></v-divider>
       <v-data-table
@@ -51,32 +54,31 @@ export default {
   data: () => ({
     companyListShow: [],
     filted: false,
-    selectedStation: [],
+    selectedStation: {},
     rating: 5,
     pagination: {
       rowsPerPage: 25
     }
   }),
   methods: {
-    filter(id) {
-      this.filted = true;
-      this.selectedStation = this.stationList.find(element => {
-        return element.id === id;
-      });
+    filter() {
       this.companyListShow = [];
-      this.companyList.forEach(element => {
-        if (element.station == id) {
-          this.companyListShow.push(element);
-        }
-      });
-    },
-    reFill() {
-      this.companyListShow = this.companyList;
-      this.filted = false;
+      if (this.selectedStation.id) {
+        this.companyList.forEach(element => {
+          if (element.station == this.selectedStation.id) {
+            this.companyListShow.push(element);
+          }
+        });
+      } else {
+        this.companyListShow = this.companyList;
+      }
     },
     showCompanyDetail(id) {
       this.$router.push({ path: "/company/" + id + "/info" });
     }
+  },
+  watch: {
+    selectedStation: "filter"
   },
   computed: {
     ...mapGetters({

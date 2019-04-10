@@ -6,7 +6,33 @@ const state = {
   alertDetail: {},
   alertStatistic: {
     unprocessedAlertCount: ""
-  }
+  },
+  alertTypeArr: [
+    {
+      type: 0,
+      name: "帽子未带"
+    },
+    {
+      type: 1,
+      name: "口罩未带"
+    },
+    {
+      type: 2,
+      name: "鼠患"
+    },
+    {
+      type: 3,
+      name: "定时抓图"
+    },
+    {
+      type: 4,
+      name: "异常人员"
+    },
+    {
+      type: 5,
+      name: "服装不规范"
+    }
+  ]
 };
 
 const getters = {
@@ -24,6 +50,9 @@ const getters = {
   },
   alertPageFront: state => {
     return state.alertPageFront;
+  },
+  alertTypeArr: state => {
+    return state.alertTypeArr;
   }
 };
 

@@ -85,7 +85,7 @@ export default {
             this.userInfo.station
           );
           await companyService.getCompanyList();
-          alertService.getALertList();
+          alertService.getALertList(this.userInfo.station);
           this.$router.push({ path: "/today" });
         }
       }

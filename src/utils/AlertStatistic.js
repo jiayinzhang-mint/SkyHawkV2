@@ -2,7 +2,7 @@ class alertStatistic {
   static getAlertCount(e) {
     var alertCount = 0;
     // alert type won't include err & unprocessed alert
-    var alertTypeArr = JSON.parse(e.alertType);
+    var alertTypeArr = e.alertType;
     for (let i = 0; i < alertTypeArr.length; i++) {
       alertCount += alertTypeArr[i];
     }
@@ -13,10 +13,10 @@ class alertStatistic {
     var certainAlertCount = 0;
     var alertCount = 0;
 
-    var alertStateArr = JSON.parse(e.alertState);
+    var alertStateArr = e.alertState;
     certainAlertCount = alertStateArr[type];
 
-    var alertTypeArr = JSON.parse(e.alertType);
+    var alertTypeArr = e.alertType;
     for (let i = 0; i < alertTypeArr.length; i++) {
       alertCount += alertTypeArr[i];
     }
@@ -33,9 +33,7 @@ class alertStatistic {
           100 * this.getAlertRate(organizationStatistic[i], type)
         );
       } else {
-        alertTrendArr.unshift(
-          this.getAlertCount(organizationStatistic[i])
-        );
+        alertTrendArr.unshift(this.getAlertCount(organizationStatistic[i]));
       }
     }
     return alertTrendArr;

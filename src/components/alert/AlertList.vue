@@ -3,8 +3,26 @@
     <v-flex xs12 class="grey-back">
       <v-toolbar flat color="transparent">
         <v-scroll-x-transition>
-          <v-toolbar-title style="font-size:17px" v-if="!filted">告警流转</v-toolbar-title>
+          <v-toolbar-title style="font-size:17px">告警流转</v-toolbar-title>
         </v-scroll-x-transition>
+        <v-select
+          v-model="selectedStation"
+          class="ml-3"
+          :items="stationList"
+          item-text="name"
+          solo
+          label="请选择街道"
+          return-object
+        ></v-select>
+        <v-select
+          v-model="selectedType"
+          class="ml-3"
+          :items="alertTypeArr"
+          item-text="name"
+          solo
+          label="请选择类型"
+          return-object
+        ></v-select>
         <v-spacer></v-spacer>
         <v-toolbar-title class="body-2 mr-3">{{alertRange}}</v-toolbar-title>
         <v-btn :disabled="alertPage==1" icon @click="changeAlertPage(-1)">
@@ -13,14 +31,17 @@
         <v-btn :disabled="noMore" icon @click="changeAlertPage(1)">
           <v-icon>keyboard_arrow_right</v-icon>
         </v-btn>
-        <v-scroll-x-transition>
-          <v-chip v-if="filted && userInfo.role<=1" close @input="reFill">{{selectedStation.name}}</v-chip>
-        </v-scroll-x-transition>
         <v-tooltip bottom>
           <v-btn slot="activator" icon @click="refreshAlertList">
             <v-icon>refresh</v-icon>
           </v-btn>
           <span>刷新</span>
+        </v-tooltip>
+        <v-tooltip bottom>
+          <v-btn slot="activator" icon @click="reFill">
+            <v-icon>clear</v-icon>
+          </v-btn>
+          <span>清除筛选</span>
         </v-tooltip>
       </v-toolbar>
       <v-divider></v-divider>
@@ -94,7 +115,8 @@ export default {
   data: () => ({
     alertListShow: [],
     filted: false,
-    selectedStation: [],
+    selectedStation: {},
+    selectedType: {},
     loadAlert: false,
     pagination: {
       rowsPerPage: 25
@@ -106,45 +128,27 @@ export default {
   methods: {
     async refreshAlertList() {
       await alertService.restoreAlertList();
+      await alertService.getALertList(this.userInfo.station);
       this.updateAlertList();
-      console.log(this.alertListShow.length);
     },
-    filter(id) {
+    async filtAlertList() {
       this.filted = true;
-      this.selectedStation = this.stationList.find(element => {
-        return element.id === id;
-      });
-      // console.log(this.selectedStation.id);
-      this.alertListShow = [];
-      this.alertList.forEach(element => {
-        if (element.brand.station == id && element.state != 9) {
-          this.alertListShow.push(element);
-        }
-      });
-      // console.log(this.alertListShow);
+      await alertService.getALertList(
+        this.selectedStation.id,
+        this.selectedType.type
+      );
+      this.updateAlertList();
     },
     updateAlertList() {
-      if (!this.filted) {
-        this.alertListShow = this.alertList;
-      } else {
-        this.alertListShow = [];
-
-        this.alertList.forEach(element => {
-          if (
-            element.brand.station == this.selectedStation.id &&
-            element.state != 9
-          ) {
-            this.alertListShow.push(element);
-          }
-        });
-      }
+      this.alertListShow = this.alertList;
     },
     showAlertDetail(id) {
       this.$router.push({ path: "/alert/" + id });
     },
     reFill() {
+      this.selectedStation = {};
+      this.selectedType = {};
       this.alertListShow = this.alertList;
-      this.filted = false;
     },
     async getMoreAlert() {
       const rsp = await alertService.updateAlertList();
@@ -157,7 +161,7 @@ export default {
         });
       }
       if (this.filted || (this.userInfo.role > 1 && this.userInfo.role <= 3)) {
-        this.filter(this.selectedStation.id);
+        this.filtAlertList(this.selectedStation.id);
       }
       return rsp;
     },
@@ -170,11 +174,16 @@ export default {
       }
     }
   },
+  watch: {
+    selectedStation: "filtAlertList",
+    selectedType: "filtAlertList"
+  },
   computed: {
     ...mapGetters({
       companyList: "company/companyList",
       alertList: "alert/alertList",
       alertPage: "alert/alertPage",
+      alertTypeArr: "alert/alertTypeArr",
       stationList: "organization/stationList",
       userInfo: "user/userInfo"
     }),
@@ -200,10 +209,4 @@ export default {
 </script>
 
 <style>
-.clickable-tr {
-  cursor: pointer;
-}
-td {
-  font-size: 14px !important;
-}
 </style>

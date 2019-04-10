@@ -5,7 +5,7 @@
         <v-list>
           <template v-for="(item, i) in menuManage">
             <v-layout v-if="item.heading" :key="i" row align-center>
-              <v-subheader v-if="item.heading">{{ item.heading }}</v-subheader>
+              <v-subheader v-if="item.heading && userInfo.role<item.role">{{ item.heading }}</v-subheader>
             </v-layout>
             <v-divider v-else-if="item.divider" :key="i" dark class="my-3"></v-divider>
             <v-list-tile v-else-if="userInfo.role<=item.role" :key="i" :to="item.route" ripple>
@@ -132,7 +132,7 @@ export default {
         }
       ],
       menuManage: [
-        { heading: "管理" },
+        { heading: "管理", role: "0" },
         {
           icon: "business",
           text: "企业管理",
@@ -153,7 +153,7 @@ export default {
         }
       ],
       menuCommon: [
-        { heading: "通用" },
+        { heading: "通用", role: 4 },
         {
           icon: "dashboard",
           text: "今日概览",
@@ -194,7 +194,7 @@ export default {
             }
           ]
         },
-        { heading: "数据监测" },
+        { heading: "数据监测", role: 2 },
         {
           icon: "data_usage",
           text: "告警统计",
@@ -207,7 +207,7 @@ export default {
           role: 2,
           route: "/dashboard/perdict"
         },
-        { heading: "其他" },
+        { heading: "其他", role: 4 },
         {
           icon: "help_outline",
           text: "用户手册",
