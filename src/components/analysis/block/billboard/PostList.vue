@@ -8,7 +8,7 @@
     <v-list style="max-height:205px;overflow:auto">
       <div v-for="(item,i) in postList" :key="i">
         <v-list-tile @click="showPost(item);postDialog=true" ripple>
-          <v-list-tile-title class="body-2">{{item.title}}</v-list-tile-title>
+          <v-list-tile-title class="body-1 font-weight-bold text-uppercase">{{item.title}}</v-list-tile-title>
         </v-list-tile>
         <v-divider></v-divider>
       </div>

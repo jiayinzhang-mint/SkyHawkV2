@@ -5,7 +5,7 @@
       <v-layout column align-start>
         <div class="subheading font-weight-bold mb-1">
           告警来源
-          <span class="grey--text">| 本周</span>
+          <span class="grey--text">| 昨日</span>
         </div>
       </v-layout>
     </v-card-title>

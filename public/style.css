@@ -75,3 +75,17 @@ td {
 .v-input__slot {
   margin-bottom: 0 !important;
 }
+
+.theme--dark.v-text-field--solo-inverted.v-text-field--solo.v-input--is-focused
+  > .v-input__control
+  > .v-input__slot {
+  background-color: rgba(255, 255, 255, 0.199) !important;
+}
+.theme--dark.v-text-field--solo > .v-input__control > .v-input__slot {
+  border-radius: 5px !important;
+}
+
+.theme--dark.v-select.v-text-field--solo-inverted.v-input--is-focused
+  .v-select__selections {
+  color: #fff !important;
+}

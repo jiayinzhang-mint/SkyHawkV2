@@ -1,25 +1,15 @@
 class alertStatistic {
   static getAlertCount(e) {
-    var alertCount = 0;
-    // alert type won't include err & unprocessed alert
-    var alertTypeArr = e.alertType;
-    for (let i = 0; i < alertTypeArr.length; i++) {
-      alertCount += alertTypeArr[i];
-    }
-    return alertCount;
+    return e.alertState[0];
   }
 
   static getAlertRate(e, type) {
     var certainAlertCount = 0;
-    var alertCount = 0;
+    var alertCount = e.alertState[0];
 
     var alertStateArr = e.alertState;
     certainAlertCount = alertStateArr[type];
 
-    var alertTypeArr = e.alertType;
-    for (let i = 0; i < alertTypeArr.length; i++) {
-      alertCount += alertTypeArr[i];
-    }
     return (certainAlertCount / (alertCount + 1)).toFixed(2);
   }
 

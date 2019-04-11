@@ -5,24 +5,7 @@
         <v-scroll-x-transition>
           <v-toolbar-title style="font-size:17px">告警流转</v-toolbar-title>
         </v-scroll-x-transition>
-        <v-select
-          v-model="selectedStation"
-          class="ml-3"
-          :items="stationList"
-          item-text="name"
-          solo
-          label="请选择街道"
-          return-object
-        ></v-select>
-        <v-select
-          v-model="selectedType"
-          class="ml-3"
-          :items="alertTypeArr"
-          item-text="name"
-          solo
-          label="请选择类型"
-          return-object
-        ></v-select>
+
         <v-spacer></v-spacer>
         <v-toolbar-title class="body-2 mr-3">{{alertRange}}</v-toolbar-title>
         <v-btn :disabled="alertPage==1" icon @click="changeAlertPage(-1)">
@@ -37,12 +20,43 @@
           </v-btn>
           <span>刷新</span>
         </v-tooltip>
-        <v-tooltip bottom>
-          <v-btn slot="activator" icon @click="reFill">
-            <v-icon>clear</v-icon>
-          </v-btn>
-          <span>清除筛选</span>
-        </v-tooltip>
+      </v-toolbar>
+      <v-toolbar flat class="transparent">
+        <v-layout row wrap>
+          <v-select
+            v-model="filter.selectedStation"
+            :items="stationList"
+            item-text="name"
+            solo-inverted
+            label="请选择街道"
+            return-object
+          ></v-select>
+          <v-select
+            v-model="filter.selectedType"
+            class="ml-2"
+            :items="alertTypeArr"
+            item-text="name"
+            solo-inverted
+            label="请选择类型"
+            return-object
+          ></v-select>
+          <v-select
+            v-model="filter.selectedType"
+            class="ml-2"
+            :items="alertTypeArr"
+            item-text="name"
+            solo-inverted
+            label="请选择状态"
+            return-object
+          ></v-select>
+
+          <v-tooltip bottom>
+            <v-btn slot="activator" icon @click="reFill">
+              <v-icon>clear</v-icon>
+            </v-btn>
+            <span>清除筛选</span>
+          </v-tooltip>
+        </v-layout>
       </v-toolbar>
       <v-divider></v-divider>
       <v-data-table
@@ -50,7 +64,8 @@
         hide-actions
         :items="alertListShow"
         item-key="name"
-        style="height:calc(100vh - 129px);overflow :auto"
+        no-data-text="暂无数据"
+        style="height:calc(100vh - 129px - 64px);overflow :auto"
       >
         <template v-slot:items="props">
           <tr class="clickable-tr" ripple>
@@ -115,8 +130,11 @@ export default {
   data: () => ({
     alertListShow: [],
     filted: false,
-    selectedStation: {},
-    selectedType: {},
+    filter: {
+      selectedStation: {},
+      selectedType: {}
+    },
+
     loadAlert: false,
     pagination: {
       rowsPerPage: 25
@@ -134,8 +152,8 @@ export default {
     async filtAlertList() {
       this.filted = true;
       await alertService.getALertList(
-        this.selectedStation.id,
-        this.selectedType.type
+        this.filter.selectedStation.id,
+        this.filter.selectedType.type
       );
       this.updateAlertList();
     },
@@ -146,22 +164,22 @@ export default {
       this.$router.push({ path: "/alert/" + id });
     },
     reFill() {
-      this.selectedStation = {};
-      this.selectedType = {};
+      this.filter.selectedStation = {};
+      this.filter.selectedType = {};
       this.alertListShow = this.alertList;
     },
     async getMoreAlert() {
       const rsp = await alertService.updateAlertList();
       this.updateAlertList();
       if (this.userInfo.role <= 1 && this.filted) {
-        this.selectedStation = this.selectedStation;
+        this.filter.selectedStation = this.filter.selectedStation;
       } else if (this.userInfo.role >= 1 && this.userInfo.role <= 3) {
-        this.selectedStation = this.stationList.find(element => {
+        this.filter.selectedStation = this.filter.stationList.find(element => {
           return element.id === this.userInfo.station;
         });
       }
       if (this.filted || (this.userInfo.role > 1 && this.userInfo.role <= 3)) {
-        this.filtAlertList(this.selectedStation.id);
+        this.filtAlertList(this.filter.selectedStation.id);
       }
       return rsp;
     },
@@ -175,8 +193,12 @@ export default {
     }
   },
   watch: {
-    selectedStation: "filtAlertList",
-    selectedType: "filtAlertList"
+    filter: {
+      handler() {
+        this.filtAlertList();
+      },
+      deep: true
+    }
   },
   computed: {
     ...mapGetters({

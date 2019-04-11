@@ -63,7 +63,7 @@
                 @click="glanceCompany(item.id);selectCompany = item.brand"
               >
                 <v-list-tile-content>
-                  <v-list-tile-title v-html="item.brand"></v-list-tile-title>
+                  <v-list-tile-title class="text-uppercase" v-html="item.brand"></v-list-tile-title>
                 </v-list-tile-content>
               </v-list-tile>
             </v-list-group>
@@ -90,7 +90,7 @@
                 <v-icon color="primary">assignment_ind</v-icon>
               </v-list-tile-action>
               <v-list-tile-content>
-                <v-list-tile-title>{{companyInfo.brand}}</v-list-tile-title>
+                <v-list-tile-title class="text-uppercase">{{companyInfo.brand}}</v-list-tile-title>
               </v-list-tile-content>
             </v-list-tile>
             <v-list-tile>
@@ -98,7 +98,7 @@
                 <v-icon color="primary">location_on</v-icon>
               </v-list-tile-action>
               <v-list-tile-content>
-                <v-list-tile-title>{{companyInfo.address}}</v-list-tile-title>
+                <v-list-tile-title class="text-uppercase">{{companyInfo.address}}</v-list-tile-title>
               </v-list-tile-content>
             </v-list-tile>
             <v-list-tile>

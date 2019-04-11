@@ -32,7 +32,8 @@ const state = {
       type: 5,
       name: "服装不规范"
     }
-  ]
+  ],
+  alertStateArr: []
 };
 
 const getters = {

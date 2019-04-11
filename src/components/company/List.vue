@@ -3,20 +3,29 @@
     <v-flex xs12 class="grey-back">
       <v-toolbar color="grey darken-3" flat>
         <v-toolbar-title style="font-size:17px">企业列表</v-toolbar-title>
-
+        <v-spacer></v-spacer>
+        <v-pagination v-model="pagination.page" :total-visible="7" :length="pages"></v-pagination>
+      </v-toolbar>
+      <v-toolbar flat color="transparent">
         <v-select
           v-if="userInfo.role<=1"
-          class="ml-4"
           :items="stationList"
           v-model="selectedStation"
           item-text="name"
           return-object
-          solo
+          solo-inverted
           label="请选择街道"
         ></v-select>
-
-        <v-spacer></v-spacer>
-        <v-pagination v-model="pagination.page" :total-visible="7" :length="pages"></v-pagination>
+        <v-select
+          v-if="userInfo.role<=1"
+          :items="stationList"
+          class="ml-2"
+          v-model="selectedStation"
+          item-text="name"
+          return-object
+          solo-inverted
+          label="请选择评分"
+        ></v-select>
         <v-tooltip bottom>
           <span>清除筛选</span>
           <v-btn slot="activator" icon @click="selectedStation={}">
@@ -31,7 +40,7 @@
         :items="companyListShow"
         :pagination.sync="pagination"
         item-key="name"
-        style="height:calc(100vh - 129px);overflow :auto"
+        style="height:calc(100vh - 129px - 64px);overflow :auto"
       >
         <template v-slot:items="props">
           <tr class="clickable-tr" ripple @click="showCompanyDetail(props.item.id)">
