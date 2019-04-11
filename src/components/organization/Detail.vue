@@ -21,7 +21,7 @@
     </v-card>
     <v-dialog v-model="userInfoDialog" max-width="250">
       <v-card>
-        <v-toolbar>
+        <v-toolbar flat class="transparent">
           <v-toolbar-title>{{currentUser.name}}</v-toolbar-title>
           <v-spacer></v-spacer>
           <v-btn icon @click="userInfoDialog=false">
@@ -62,7 +62,7 @@
 <script>
 import { mapGetters } from "vuex";
 import organizationService from "../../service/OrganizationService";
-import userService from '../../service/UserService';
+import userService from "../../service/UserService";
 export default {
   data: () => ({
     organizeInfo: [],

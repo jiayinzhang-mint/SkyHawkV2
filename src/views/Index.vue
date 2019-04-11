@@ -77,6 +77,10 @@
         <v-icon>search</v-icon>
       </v-btn>
 
+      <v-btn icon @click="userSetting=true">
+        <v-icon>settings</v-icon>
+      </v-btn>
+
       <v-menu offset-y>
         <v-btn icon slot="activator">
           <v-avatar color="primary" size="32px">{{getFirstLetter(userInfo.name)}}</v-avatar>
@@ -104,6 +108,18 @@
       <search-view ref="searchView"></search-view>
     </v-navigation-drawer>
 
+    <v-dialog v-model="userSetting" width="500">
+      <v-card>
+        <v-card-title class="subheading font-weight-bold">
+          用户设置
+          <v-spacer></v-spacer>
+          <v-btn icon @click="userSetting=false">
+            <v-icon>clear</v-icon>
+          </v-btn>
+        </v-card-title>
+      </v-card>
+    </v-dialog>
+
     <v-content>
       <router-view></router-view>
     </v-content>
@@ -121,7 +137,7 @@ export default {
     return {
       mini: false,
       value2: false,
-      userHelp: false,
+      userSetting: false,
       drawer: true,
       searchDrawer: false,
       menuUser: [

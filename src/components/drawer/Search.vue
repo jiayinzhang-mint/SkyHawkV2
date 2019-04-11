@@ -3,12 +3,12 @@
     <v-container>
       <v-text-field prepend-inner-icon="search" label="键入以搜索" box v-model="search" ref="searchBox"></v-text-field>
     </v-container>
-    <v-container v-if="companyQuery.length>=1">
-      <h3>企业</h3>
-    </v-container>
+    <v-toolbar class="transparent" flat v-if="companyQuery.length>=1">
+      <v-toolbar-title class="font-weight-bold">企业</v-toolbar-title>
+    </v-toolbar>
     <v-list two-line>
       <div v-for="(item,i) in companyQuery" :key="i">
-        <v-list-tile>
+        <v-list-tile ripple :to="'/company/'+item.id+'/info'">
           <v-list-tile-content>
             <v-list-tile-title class="text-uppercase">{{item.brand}}</v-list-tile-title>
             <v-list-tile-sub-title class="font-weight-bold">{{item.name}}</v-list-tile-sub-title>
