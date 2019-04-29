@@ -13,15 +13,15 @@
     "js-cookie": "^2.2.0",
     "v-viewer": "^1.4.0",
     "vue": "^2.6.10",
-    "vue-router": "^3.0.6",
-    "vuetify": "^1.5.13",
+    "vue-router": "^3.0.3",
+    "vuetify": "^1.5.11",
     "vuex": "^3.0.1",
     "vuex-persist": "^2.0.0"
   },
   "devDependencies": {
-    "@vue/cli-plugin-babel": "^3.7.0",
-    "@vue/cli-plugin-eslint": "^3.7.0",
-    "@vue/cli-service": "^3.7.0",
+    "@vue/cli-plugin-babel": "^3.5.5",
+    "@vue/cli-plugin-eslint": "^3.5.1",
+    "@vue/cli-service": "^3.5.3",
     "babel-eslint": "^10.0.1",
     "compression-webpack-plugin": "^2.0.0",
     "css-loader": "^2.1.1",
@@ -32,7 +32,7 @@
     "stylus-loader": "^3.0.2",
     "vue-cli-plugin-vuetify": "^0.4.6",
     "vue-template-compiler": "^2.6.10",
-    "vuetify-loader": "^1.2.2"
+    "vuetify-loader": "^1.0.5"
   },
   "eslintConfig": {
     "root": true,
