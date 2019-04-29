@@ -23,7 +23,7 @@ module.exports = {
   devServer: {
     proxy: {
       "/": {
-        target: "http://demo.chassstep.com/",
+        target: "https://skyhawkapi.insdim.com/api/",
         ws: false
       }
     }
