@@ -42,9 +42,7 @@ axios.defaults.baseURL = 'https://skyhawkapi.insdim.com/api';
 axios.interceptors.request.use(config => {
   try {
     config.headers['AUTH'] = store.getters['user/userInfo'].token;
-  } catch (err) {
-    return err;
-  }
+  } catch (err) {}
   return config;
 });
 
