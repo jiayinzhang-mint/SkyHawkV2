@@ -19,8 +19,8 @@
 export default {
   name: "ConfirmDialog",
   props: {
-    title: ,
-    text: 
+    title: "",
+    text: ""
   },
   data: () => ({
     dialog: false
