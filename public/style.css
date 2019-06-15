@@ -89,3 +89,20 @@ td {
   .v-select__selections {
   color: #fff !important;
 }
+
+.neon {
+  -webkit-animation: neon 1.5s ease-in-out infinite alternate;
+  -moz-animation: neon 1.5s ease-in-out infinite alternate;
+  animation: neon 1.5s ease-in-out infinite alternate;
+}
+
+@-webkit-keyframes neon {
+  from {
+    text-shadow: 0 0 5px #fff, 0 0 10px #fff, 0 0 15px rgb(202, 65, 214),
+      0 0 30px rgb(202, 65, 214);
+  }
+  to {
+    text-shadow: 0 0 1px #fff, 0 0 2px #fff, 0 0 3px rgb(202, 65, 214),
+      0 0 7px rgb(202, 65, 214);
+  }
+}

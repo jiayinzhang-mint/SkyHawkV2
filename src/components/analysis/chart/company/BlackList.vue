@@ -3,7 +3,7 @@
     <v-card-title>
       <!-- <v-icon class="mr-4" size="64">alarm</v-icon> -->
       <v-layout column align-start>
-        <div class="subheading font-weight-bold mb-1">
+        <div class="subheading font-weight-bold mb-1 neon">
           企业黑名单
           <span class="grey--text">| 本周</span>
         </div>

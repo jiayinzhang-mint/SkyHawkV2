@@ -3,7 +3,7 @@
     <v-card-title>
       <!-- <v-icon class="mr-4" size="64">alarm</v-icon> -->
       <v-layout column align-start>
-        <div class="subheading font-weight-bold mb-1">
+        <div class="subheading font-weight-bold mb-1 neon">
           告警类型
           <span class="grey--text">| 本周</span>
         </div>
@@ -27,7 +27,9 @@ export default {
       // console.log(document.getElementById("humiture"));
       myChart.setOption({
         textStyle: {
-          color: "rgba(255,255,255,0.7)"
+          color: "rgba(255,255,255,0.7)",
+          textShadowColor: "#bf00ff",
+          textShadowBlur: 7
         },
         grid: {
           top: "5%",

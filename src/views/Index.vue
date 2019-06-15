@@ -153,18 +153,18 @@ export default {
           icon: "business",
           text: "企业管理",
           route: "/admin/company",
-          role: "0"
+          role: 0
         },
         {
           icon: "people",
           text: "组织管理",
           route: "/admin/organization",
-          role: "0"
+          role: 0
         },
         {
           icon: "public",
           text: "公告板",
-          role: "1",
+          role: 4,
           route: "/billboard"
         }
       ],

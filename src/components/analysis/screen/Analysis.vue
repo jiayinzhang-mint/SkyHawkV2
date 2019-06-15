@@ -1,7 +1,7 @@
 <template>
   <v-app dark class="dashboard">
     <v-toolbar dark flat tabs color="rgb(47,50,58)">
-      <v-toolbar-title class="ml-2 font-weight-bold" style="font-size:20px !important">SkyHawk</v-toolbar-title>
+      <v-toolbar-title class="ml-2 font-weight-bold neon" style="font-size:20px !important">SkyHawk</v-toolbar-title>
       <v-toolbar-title class="title-des ml-2">数据仪表板</v-toolbar-title>
       <v-spacer></v-spacer>
       <v-btn icon @click="getInstantData()">
