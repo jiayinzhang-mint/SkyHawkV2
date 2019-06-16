@@ -6,7 +6,7 @@
         <div class="body-1 font-weight-bold mb-1 neon">系统负载</div>
       </v-layout>
     </v-card-title>
-    <div id="systemstatus" style="min-height:150px;height:100%" class="chart" ref="echarts"></div>
+    <div id="systemstatus" style="min-height:120px;height:100%" class="chart" ref="echarts"></div>
   </div>
 </template>
 

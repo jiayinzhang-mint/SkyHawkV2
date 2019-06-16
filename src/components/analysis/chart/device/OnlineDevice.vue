@@ -6,7 +6,7 @@
         <div class="body-1 font-weight-bold mb-1 neon">在线设备</div>
       </v-layout>
     </v-card-title>
-    <div id="onlinedevice" style="min-height:150px;height:100%" class="chart" ref="echarts"></div>
+    <div id="onlinedevice" style="min-height:120px;height:100%" class="chart" ref="echarts"></div>
   </div>
 </template>
 

@@ -9,7 +9,7 @@
         </div>
       </v-layout>
     </v-card-title>
-    <div id="alertcounttrend" style="min-height:300px;height:90%"></div>
+    <div id="alertcounttrend" style="min-height:250px;height:90%"></div>
   </div>
 </template>
 

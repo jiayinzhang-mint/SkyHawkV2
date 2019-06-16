@@ -11,7 +11,7 @@
     </v-card-title>
     <div
       id="alerttypedistribution"
-      style="min-height:300px;height:100%"
+      style="min-height:240px;height:100%"
       class="chart"
       ref="echarts"
     ></div>

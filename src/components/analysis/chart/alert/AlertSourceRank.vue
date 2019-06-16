@@ -9,7 +9,7 @@
         </div>
       </v-layout>
     </v-card-title>
-    <div class="chart" id="alertsourcerank" style="min-height:300px;height:100%"></div>
+    <div class="chart" id="alertsourcerank" style="min-height:220px;height:100%"></div>
   </div>
 </template>
 
@@ -82,7 +82,7 @@ export default {
                 color: "#909fec"
               }
             },
-            barWidth: 20
+            barWidth: 12
           }
         ]
       });

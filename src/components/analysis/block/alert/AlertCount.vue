@@ -10,10 +10,10 @@
         </div>
       </v-layout>
       <v-layout v-else column align-center>
-        <div class="body-2 font-weight-bold mb-1">告警数</div>
+        <div class="body-2 font-weight-bold mb-1 neon">告警数</div>
         <div>
-          <span class="display-3 font-weight-light">{{alertCount}}</span>
-          <strong>&nbsp;&nbsp;次</strong>
+          <span class="display-3 font-weight-light neon">{{alertCount}}</span>
+          <strong class="neon">&nbsp;&nbsp;次</strong>
         </div>
       </v-layout>
     </v-card-title>

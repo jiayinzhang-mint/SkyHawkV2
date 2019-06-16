@@ -6,7 +6,7 @@
         <div class="body-1 font-weight-bold mb-1 neon">在线用户</div>
       </v-layout>
     </v-card-title>
-    <div id="onlineuser" style="min-height:150px;height:100%" class="chart" ref="echarts"></div>
+    <div id="onlineuser" style="min-height:120px;height:100%" class="chart" ref="echarts"></div>
   </div>
 </template>
 

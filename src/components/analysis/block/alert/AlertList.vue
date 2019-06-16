@@ -1,9 +1,9 @@
 <template>
   <div>
     <v-layout column align-center>
-      <div class="body-2 font-weight-bold mb-1">近期告警</div>
+      <div class="body-2 font-weight-bold mb-1 neon">近期告警</div>
     </v-layout>
-    <v-list dense style="max-height:500px;overflow:auto">
+    <v-list dense style="max-height:420px;overflow:auto">
       <div v-for="(item,i) in alertList" :key="i">
         <v-list-tile>
           <v-list-tile-title class="body-2">{{item.title}}</v-list-tile-title>

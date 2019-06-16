@@ -9,7 +9,7 @@
         </div>
       </v-layout>
     </v-card-title>
-    <div class="chart" id="blacklist" style="min-height:300px;height:100%"></div>
+    <div class="chart" id="blacklist" style="min-height:220px;height:100%"></div>
   </div>
 </template>
 
@@ -27,7 +27,9 @@ export default {
 
       myChart.setOption({
         textStyle: {
-          color: "rgba(255,255,255,0.7)"
+          color: "rgba(255,255,255,0.7)",
+          textShadowColor: "#bf00ff",
+          textShadowBlur: 7
         },
         dataset: {
           source: [
@@ -82,7 +84,7 @@ export default {
                 color: "#5bb0e7"
               }
             },
-            barWidth: 20
+            barWidth: 12
           }
         ]
       });

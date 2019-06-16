@@ -24,6 +24,11 @@ export default {
       var myChart = echarts.init(document.getElementById("sectionscore"));
 
       myChart.setOption({
+        textStyle: {
+          color: "rgba(255,255,255,0.7)",
+          textShadowColor: "#bf00ff",
+          textShadowBlur: 7
+        },
         title: {
           text: "基础雷达图"
         },

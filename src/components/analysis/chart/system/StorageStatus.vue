@@ -6,7 +6,7 @@
         <div class="body-1 font-weight-bold mb-1 neon">系统存储</div>
       </v-layout>
     </v-card-title>
-    <div id="storagestatus" style="min-height:150px;height:100%" class="chart" ref="echarts"></div>
+    <div id="storagestatus" style="min-height:120px;height:100%" class="chart" ref="echarts"></div>
   </div>
 </template>
 
@@ -28,6 +28,11 @@ export default {
       // 绘制图表
 
       myChart.setOption({
+        textStyle: {
+          color: "rgba(255,255,255,0.7)",
+          textShadowColor: "#bf00ff",
+          textShadowBlur: 7
+        },
         color: ["#5bb0e7", "#405460"],
         tooltip: {
           textStyle: {

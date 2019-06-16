@@ -1,8 +1,8 @@
 <template>
   <v-app dark class="dashboard">
-    <v-toolbar dark flat tabs color="rgb(47,50,58)">
+    <v-toolbar dark flat tabs class="transparent">
       <v-toolbar-title class="ml-2 font-weight-bold neon" style="font-size:20px !important">SkyHawk</v-toolbar-title>
-      <v-toolbar-title class="title-des ml-2">数据仪表板</v-toolbar-title>
+      <v-toolbar-title class="title-des ml-2 neon">数据仪表板</v-toolbar-title>
       <v-spacer></v-spacer>
       <v-btn icon @click="getInstantData()">
         <v-icon>refresh</v-icon>
@@ -14,6 +14,7 @@
             v-for="(item,i) in stationListShow"
             :key="i"
             :href="`#tab-${i}`"
+            class="neon"
           >{{item.name}}</v-tab>
         </v-tabs>
       </template>
