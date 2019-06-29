@@ -1,12 +1,25 @@
 <template>
   <v-layout row>
-    <v-flex xs12 class="grey-back">
-      <v-toolbar color="grey darken-3" flat>
+    <v-flex
+      xs12
+      class="grey-back"
+    >
+      <v-toolbar
+        color="grey darken-3"
+        flat
+      >
         <v-toolbar-title style="font-size:17px">企业列表</v-toolbar-title>
         <v-spacer></v-spacer>
-        <v-pagination v-model="pagination.page" :total-visible="7" :length="pages"></v-pagination>
+        <v-pagination
+          v-model="pagination.page"
+          :total-visible="7"
+          :length="pages"
+        ></v-pagination>
       </v-toolbar>
-      <v-toolbar flat color="transparent">
+      <v-toolbar
+        flat
+        color="transparent"
+      >
         <v-select
           v-if="userInfo.role<=1"
           :items="stationList"
@@ -16,19 +29,13 @@
           solo-inverted
           label="请选择街道"
         ></v-select>
-        <v-select
-          v-if="userInfo.role<=1"
-          :items="stationList"
-          class="ml-2"
-          v-model="selectedStation"
-          item-text="name"
-          return-object
-          solo-inverted
-          label="请选择评分"
-        ></v-select>
         <v-tooltip bottom>
           <span>清除筛选</span>
-          <v-btn slot="activator" icon @click="selectedStation={}">
+          <v-btn
+            slot="activator"
+            icon
+            @click="selectedStation={}"
+          >
             <v-icon>clear</v-icon>
           </v-btn>
         </v-tooltip>
@@ -43,11 +50,26 @@
         style="height:calc(100vh - 129px - 64px);overflow :auto"
       >
         <template v-slot:items="props">
-          <tr class="clickable-tr" ripple @click="showCompanyDetail(props.item.id)">
-            <td class="text-uppercase" style="width:300px">{{props.item.brand}}</td>
-            <td class="text-uppercase" style="max-width:300px">{{props.item.name}}</td>
+          <tr
+            class="clickable-tr"
+            ripple
+            @click="showCompanyDetail(props.item.id)"
+          >
+            <td
+              class="text-uppercase"
+              style="width:300px"
+            >{{props.item.brand}}</td>
+            <td
+              class="text-uppercase"
+              style="max-width:300px"
+            >{{props.item.name}}</td>
             <td>
-              <v-rating dense small v-model="rating" readonly></v-rating>
+              <v-rating
+                dense
+                small
+                v-model="rating"
+                readonly
+              ></v-rating>
             </td>
           </tr>
         </template>

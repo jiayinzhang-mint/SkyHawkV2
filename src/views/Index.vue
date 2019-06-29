@@ -196,11 +196,15 @@
 
     <v-dialog
       v-model="userSetting"
+      persistent
       width="500"
     >
       <v-card>
-        <v-card-title class="subheading font-weight-bold">
-          用户设置
+        <v-toolbar
+          class="transparent"
+          flat
+        >
+          <v-toolbar-title>用户设置</v-toolbar-title>
           <v-spacer></v-spacer>
           <v-btn
             icon
@@ -208,7 +212,24 @@
           >
             <v-icon>clear</v-icon>
           </v-btn>
-        </v-card-title>
+        </v-toolbar>
+        <v-container>
+          <h4 class="mb-2 grey--text">修改密码</h4>
+          <v-divider></v-divider>
+          <v-form ref="changePasswordForm">
+            <v-text-field
+              class="mt-2"
+              type="password"
+              label="当前密码"
+            ></v-text-field>
+            <v-text-field
+              class="mt-2"
+              type="password"
+              label="新密码"
+            ></v-text-field>
+          </v-form>
+          <v-btn class="mt-3" @click="changePassword" round block depressed>确认</v-btn>
+        </v-container>
       </v-card>
     </v-dialog>
 
@@ -295,15 +316,15 @@ export default {
         { heading: "数据监测", role: 2 },
         {
           icon: "data_usage",
-          text: "告警统计",
+          text: "数据统计",
           role: 2,
           route: "/dashboard/analysis"
         },
         {
           icon: "trending_up",
-          text: "告警预测",
+          text: "数据地图",
           role: 2,
-          route: "/dashboard/perdict"
+          route: "/dashboard/map"
         },
         { heading: "其他", role: 4 },
         {
@@ -323,6 +344,9 @@ export default {
     getFirstLetter: getFirstLetter,
     goBack() {
       this.$router.go(-1);
+    },
+    changePassword(){
+      
     }
   },
   computed: {

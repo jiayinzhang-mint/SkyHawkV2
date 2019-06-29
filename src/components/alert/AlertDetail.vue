@@ -1,11 +1,21 @@
 <template>
-  <v-container fluid grid-list-lg>
+  <v-container
+    fluid
+    grid-list-lg
+  >
     <v-layout>
       <v-flex xs8>
         <v-card>
-          <v-toolbar flat color="transparent">
+          <v-toolbar
+            flat
+            color="transparent"
+          >
             <v-tooltip bottom>
-              <v-btn icon slot="activator" :to="'/alert'">
+              <v-btn
+                icon
+                slot="activator"
+                :to="'/alert'"
+              >
                 <v-icon>arrow_back</v-icon>
               </v-btn>
               <span>返回</span>
@@ -16,15 +26,27 @@
             <div v-if="alertDetail.state==1">
               <div v-if="alertDetail.auto==1">
                 <div v-if="userInfo.role==1">
-                  <v-btn flat round @click.stop="uncertainAlert">
+                  <v-btn
+                    flat
+                    round
+                    @click.stop="uncertainAlert"
+                  >
                     <v-icon class="mr-1">flag</v-icon>标记
                   </v-btn>
 
-                  <v-btn flat round @click.stop="errorAlert">
+                  <v-btn
+                    flat
+                    round
+                    @click.stop="errorAlert"
+                  >
                     <v-icon class="mr-1">delete</v-icon>误报
                   </v-btn>
 
-                  <v-btn flat round @click.stop="repostAlert">
+                  <v-btn
+                    flat
+                    round
+                    @click.stop="repostAlert"
+                  >
                     <v-icon class="mr-1">redo</v-icon>下发
                   </v-btn>
                 </div>
@@ -41,15 +63,28 @@
               >我已整改</v-btn>
             </div>
             <div v-else-if="alertDetail.state==3">
-              <v-btn depressed round color="primary" v-if="userInfo.role==2" @click="finishAlert">完成</v-btn>
+              <v-btn
+                depressed
+                round
+                color="primary"
+                v-if="userInfo.role==2"
+                @click="finishAlert"
+              >完成</v-btn>
             </div>
             <div v-if="userInfo.role==0">
-              <v-btn round flat @click="deleteAlert()">
+              <v-btn
+                round
+                flat
+                @click="deleteAlert()"
+              >
                 <v-icon class="mr-1">delete</v-icon>删除
               </v-btn>
             </div>
           </v-toolbar>
-          <v-tabs v-model="tab" centered>
+          <v-tabs
+            v-model="tab"
+            centered
+          >
             <v-tabs-slider></v-tabs-slider>
             <v-tab key="1">基本信息</v-tab>
             <v-tab key="2">流转历史</v-tab>
@@ -69,9 +104,15 @@
           </v-tabs-items>
         </v-card>
       </v-flex>
-      <v-flex xs4 d-flex>
+      <v-flex
+        xs4
+        d-flex
+      >
         <v-card>
-          <v-toolbar flat class="transparent">
+          <v-toolbar
+            flat
+            class="transparent"
+          >
             <v-toolbar-title>{{company.brand}}</v-toolbar-title>
           </v-toolbar>
           <v-container>
@@ -89,7 +130,12 @@
             <v-divider></v-divider>
             <v-layout>
               <v-flex xs12>
-                <v-btn flat block round :to="'/company/'+company.id+'/info'">
+                <v-btn
+                  flat
+                  block
+                  round
+                  :to="'/company/'+company.id+'/info'"
+                >
                   前往企业信息
                   <v-icon>arrow_right</v-icon>
                 </v-btn>
@@ -138,7 +184,7 @@ export default {
         await alertService.uncertainAlert(this.$route.params.alertId);
         this.$router.push({ path: "/alert" });
       } catch (err) {
-        return;
+        return err;
       }
     },
     async errorAlert() {
@@ -147,7 +193,7 @@ export default {
         await alertService.errorAlert(this.$route.params.alertId);
         this.$router.push({ path: "/alert" });
       } catch (err) {
-        return;
+        return err;
       }
     },
     async repostAlert() {
@@ -156,7 +202,7 @@ export default {
         await alertService.repostAlert(this.$route.params.alertId);
         this.$router.push({ path: "/alert" });
       } catch (err) {
-        return;
+        return err;
       }
     },
     async rectifyAlert() {},
@@ -166,7 +212,7 @@ export default {
         await alertService.finishAlert(this.$route.params.alertId);
         this.$router.push({ path: "/alert" });
       } catch (err) {
-        return;
+        return err;
       }
     },
     async deleteAlert() {
@@ -175,7 +221,7 @@ export default {
         await alertService.deleteAlert(this.$route.params.alertId);
         this.$router.push({ path: "/alert" });
       } catch (err) {
-        return;
+        return err;
       }
     }
   },
