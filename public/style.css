@@ -99,7 +99,7 @@ td {
   color: #fff !important;
 }
 
-.neon {
+/* .neon {
   -webkit-transform: translateZ(0);
   -moz-transform: translateZ(0);
   -ms-transform: translateZ(0);
@@ -108,7 +108,8 @@ td {
   -webkit-animation: neon 1.5s ease-in-out infinite alternate;
   -moz-animation: neon 1.5s ease-in-out infinite alternate;
   animation: neon 1.5s ease-in-out infinite alternate;
-}
+  text-shadow: 0 0 1px #fff, 0 0 2px #fff, 0 0 5px #d400ff;
+} */
 
 /* @-webkit-keyframes neon {
   from {
