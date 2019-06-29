@@ -9,7 +9,7 @@
         </div>
       </v-layout>
     </v-card-title>
-    <div class="chart" id="alertsourcerank" style="min-height:220px;height:100%"></div>
+    <div class="chart" id="alertsourcerank" style="min-height:240px;height:100%"></div>
   </div>
 </template>
 

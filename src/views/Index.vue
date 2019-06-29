@@ -1,14 +1,37 @@
 <template>
-  <v-app id="inspire" dark>
-    <v-navigation-drawer fixed app v-model="drawer" clipped>
+  <v-app
+    id="inspire"
+    dark
+  >
+    <v-navigation-drawer
+      fixed
+      app
+      v-model="drawer"
+      clipped
+    >
       <v-list>
         <v-list>
           <template v-for="(item, i) in menuManage">
-            <v-layout v-if="item.heading" :key="i" row align-center>
+            <v-layout
+              v-if="item.heading"
+              :key="i"
+              row
+              align-center
+            >
               <v-subheader v-if="item.heading && userInfo.role<item.role">{{ item.heading }}</v-subheader>
             </v-layout>
-            <v-divider v-else-if="item.divider" :key="i" dark class="my-3"></v-divider>
-            <v-list-tile v-else-if="userInfo.role<=item.role" :key="i" :to="item.route" ripple>
+            <v-divider
+              v-else-if="item.divider"
+              :key="i"
+              dark
+              class="my-3"
+            ></v-divider>
+            <v-list-tile
+              v-else-if="userInfo.role<=item.role"
+              :key="i"
+              :to="item.route"
+              ripple
+            >
               <v-list-tile-action>
                 <v-icon>{{ item.icon }}</v-icon>
               </v-list-tile-action>
@@ -20,10 +43,19 @@
         </v-list>
         <v-list>
           <template v-for="(item, i) in menuCommon">
-            <v-layout v-if="item.heading" :key="i" row align-center>
+            <v-layout
+              v-if="item.heading"
+              :key="i"
+              row
+              align-center
+            >
               <v-subheader v-if="item.heading">{{ item.heading }}</v-subheader>
             </v-layout>
-            <v-list-group v-else-if="item.children" :key="item.text" v-model="item.model">
+            <v-list-group
+              v-else-if="item.children"
+              :key="item.text"
+              v-model="item.model"
+            >
               <template v-slot:activator>
                 <v-list-tile>
                   <v-list-tile-action v-if="item.icon">
@@ -34,7 +66,11 @@
                   </v-list-tile-content>
                 </v-list-tile>
               </template>
-              <v-list-tile v-for="(child, i) in item.children" :key="i" :to="child.route">
+              <v-list-tile
+                v-for="(child, i) in item.children"
+                :key="i"
+                :to="child.route"
+              >
                 <v-list-tile-action v-if="child.icon">
                   <v-icon>{{ child.icon }}</v-icon>
                 </v-list-tile-action>
@@ -43,8 +79,18 @@
                 </v-list-tile-content>
               </v-list-tile>
             </v-list-group>
-            <v-divider v-else-if="item.divider" :key="i" dark class="my-3"></v-divider>
-            <v-list-tile v-else-if="userInfo.role<=item.role" :key="i" :to="item.route" ripple>
+            <v-divider
+              v-else-if="item.divider"
+              :key="i"
+              dark
+              class="my-3"
+            ></v-divider>
+            <v-list-tile
+              v-else-if="userInfo.role<=item.role"
+              :key="i"
+              :to="item.route"
+              ripple
+            >
               <v-list-tile-action>
                 <v-icon>{{ item.icon }}</v-icon>
               </v-list-tile-action>
@@ -57,8 +103,18 @@
       </v-list>
     </v-navigation-drawer>
 
-    <v-toolbar clipped-left flat app fixed color="grey darken-4">
-      <v-btn icon @click="goBack" class="hidden-md-and-down">
+    <v-toolbar
+      clipped-left
+      flat
+      app
+      fixed
+      color="grey darken-4"
+    >
+      <v-btn
+        icon
+        @click="goBack"
+        class="hidden-md-and-down"
+      >
         <v-icon>arrow_back</v-icon>
       </v-btn>
       <v-toolbar-side-icon
@@ -73,20 +129,36 @@
 
       <v-spacer></v-spacer>
 
-      <v-btn icon @click.stop="searchDrawer=true;$refs.searchView.focus()">
+      <v-btn
+        icon
+        @click.stop="searchDrawer=true;$refs.searchView.focus()"
+      >
         <v-icon>search</v-icon>
       </v-btn>
 
-      <v-btn icon @click="userSetting=true">
+      <v-btn
+        icon
+        @click="userSetting=true"
+      >
         <v-icon>settings</v-icon>
       </v-btn>
 
       <v-menu offset-y>
-        <v-btn icon slot="activator">
-          <v-avatar color="primary" size="32px">{{getFirstLetter(userInfo.name)}}</v-avatar>
+        <v-btn
+          icon
+          slot="activator"
+        >
+          <v-avatar
+            color="primary"
+            size="32px"
+          >{{getFirstLetter(userInfo.name)}}</v-avatar>
         </v-btn>
         <v-list>
-          <v-list-tile v-for="(item, index) in menuUser" :key="index" :to="item.route">
+          <v-list-tile
+            v-for="(item, index) in menuUser"
+            :key="index"
+            :to="item.route"
+          >
             <v-list-tile-avatar>
               <v-icon>{{item.icon}}</v-icon>
             </v-list-tile-avatar>
@@ -96,11 +168,25 @@
       </v-menu>
     </v-toolbar>
 
-    <v-navigation-drawer width="500" right v-model="searchDrawer" absolute clipped temporary>
-      <v-toolbar class="transparent" flat>
+    <v-navigation-drawer
+      width="500"
+      right
+      v-model="searchDrawer"
+      absolute
+      clipped
+      temporary
+    >
+      <v-toolbar
+        class="transparent"
+        flat
+      >
         <v-toolbar-title>搜索</v-toolbar-title>
         <v-spacer></v-spacer>
-        <v-btn icon small @click="searchDrawer=false">
+        <v-btn
+          icon
+          small
+          @click="searchDrawer=false"
+        >
           <v-icon>close</v-icon>
         </v-btn>
       </v-toolbar>
@@ -108,12 +194,18 @@
       <search-view ref="searchView"></search-view>
     </v-navigation-drawer>
 
-    <v-dialog v-model="userSetting" width="500">
+    <v-dialog
+      v-model="userSetting"
+      width="500"
+    >
       <v-card>
         <v-card-title class="subheading font-weight-bold">
           用户设置
           <v-spacer></v-spacer>
-          <v-btn icon @click="userSetting=false">
+          <v-btn
+            icon
+            @click="userSetting=false"
+          >
             <v-icon>clear</v-icon>
           </v-btn>
         </v-card-title>
@@ -196,19 +288,9 @@ export default {
         },
         {
           icon: "business",
-          text: "企业信息",
           role: 3,
-          children: [
-            {
-              icon: "list",
-              text: "企业列表",
-              route: "/company"
-            },
-            {
-              icon: "report_problem",
-              text: "黑名单"
-            }
-          ]
+          text: "企业列表",
+          route: "/company"
         },
         { heading: "数据监测", role: 2 },
         {
@@ -252,5 +334,3 @@ export default {
 };
 </script>
 
-<style scoped>
-</style>
