@@ -1,59 +1,57 @@
 <template>
   <v-app id="inspire" dark>
-    <v-navigation-drawer fixed app v-model="drawer" clipped>
-      <v-list>
-        <v-list>
-          <template v-for="(item, i) in menuManage">
-            <v-layout v-if="item.heading" :key="i" row align-center>
-              <v-subheader v-if="item.heading && userInfo.role<item.role">{{ item.heading }}</v-subheader>
-            </v-layout>
-            <v-divider v-else-if="item.divider" :key="i" dark class="my-3"></v-divider>
-            <v-list-item v-else-if="userInfo.role<=item.role" :key="i" :to="item.route" ripple>
-              <v-list-item-action>
-                <v-icon>{{ item.icon }}</v-icon>
-              </v-list-item-action>
-              <v-list-item-content>
-                <v-list-item-title>{{ item.text }}</v-list-item-title>
-              </v-list-item-content>
-            </v-list-item>
-          </template>
-        </v-list>
-        <v-list>
-          <template v-for="(item, i) in menuCommon">
-            <v-layout v-if="item.heading" :key="i" row align-center>
-              <v-subheader v-if="item.heading">{{ item.heading }}</v-subheader>
-            </v-layout>
-            <v-list-group v-else-if="item.children" :key="item.text" v-model="item.model">
-              <template v-slot:activator>
-                <v-list-item>
-                  <v-list-item-action v-if="item.icon">
-                    <v-icon>{{ item.icon }}</v-icon>
-                  </v-list-item-action>
-                  <v-list-item-content>
-                    <v-list-item-title>{{ item.text }}</v-list-item-title>
-                  </v-list-item-content>
-                </v-list-item>
-              </template>
-              <v-list-item v-for="(child, i) in item.children" :key="i" :to="child.route">
-                <v-list-item-action v-if="child.icon">
-                  <v-icon>{{ child.icon }}</v-icon>
+    <v-navigation-drawer fixed app v-model="drawer" clipped class="transparent">
+      <v-list shaped>
+        <template v-for="(item, i) in menuManage">
+          <v-layout v-if="item.heading" :key="i" row align-center>
+            <v-subheader v-if="item.heading && userInfo.role<item.role">{{ item.heading }}</v-subheader>
+          </v-layout>
+          <v-divider v-else-if="item.divider" :key="i" dark class="my-3"></v-divider>
+          <v-list-item v-else-if="userInfo.role<=item.role" :key="i" :to="item.route" ripple>
+            <v-list-item-action>
+              <v-icon>{{ item.icon }}</v-icon>
+            </v-list-item-action>
+            <v-list-item-content>
+              <v-list-item-title class="body-2">{{ item.text }}</v-list-item-title>
+            </v-list-item-content>
+          </v-list-item>
+        </template>
+      </v-list>
+      <v-list shaped>
+        <template v-for="(item, i) in menuCommon">
+          <v-layout v-if="item.heading" :key="i" row align-center>
+            <v-subheader v-if="item.heading">{{ item.heading }}</v-subheader>
+          </v-layout>
+          <v-list-group v-else-if="item.children" :key="item.text" v-model="item.model">
+            <template v-slot:activator>
+              <v-list-item>
+                <v-list-item-action v-if="item.icon">
+                  <v-icon>{{ item.icon }}</v-icon>
                 </v-list-item-action>
                 <v-list-item-content>
-                  <v-list-item-title>{{ child.text }}</v-list-item-title>
+                  <v-list-item-title class="body-2">{{ item.text }}</v-list-item-title>
                 </v-list-item-content>
               </v-list-item>
-            </v-list-group>
-            <v-divider v-else-if="item.divider" :key="i" dark class="my-3"></v-divider>
-            <v-list-item v-else-if="userInfo.role<=item.role" :key="i" :to="item.route" ripple>
-              <v-list-item-action>
-                <v-icon>{{ item.icon }}</v-icon>
+            </template>
+            <v-list-item v-for="(child, i) in item.children" :key="i" :to="child.route">
+              <v-list-item-action v-if="child.icon">
+                <v-icon>{{ child.icon }}</v-icon>
               </v-list-item-action>
               <v-list-item-content>
-                <v-list-item-title>{{ item.text }}</v-list-item-title>
+                <v-list-item-title class="body-2">{{ child.text }}</v-list-item-title>
               </v-list-item-content>
             </v-list-item>
-          </template>
-        </v-list>
+          </v-list-group>
+          <v-divider v-else-if="item.divider" :key="i" dark class="my-3"></v-divider>
+          <v-list-item v-else-if="userInfo.role<=item.role" :key="i" :to="item.route" ripple>
+            <v-list-item-action>
+              <v-icon>{{ item.icon }}</v-icon>
+            </v-list-item-action>
+            <v-list-item-content>
+              <v-list-item-title class="body-2">{{ item.text }}</v-list-item-title>
+            </v-list-item-content>
+          </v-list-item>
+        </template>
       </v-list>
     </v-navigation-drawer>
 

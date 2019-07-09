@@ -15,16 +15,16 @@
                 <v-subheader v-if="item.heading" class="grey--text">{{ item.heading }}</v-subheader>
               </v-layout>
               <v-divider v-else-if="item.divider" :key="i" dark class="my-2"></v-divider>
-              <v-list-tile
+              <v-list-item
                 v-else
                 :key="i"
                 :to="'/admin/company/'+currentCompany.id + '/' +item.route"
                 ripple
               >
-                <v-list-tile-content>
-                  <v-list-tile-title class="body-2">{{ item.text }}</v-list-tile-title>
-                </v-list-tile-content>
-              </v-list-tile>
+                <v-list-item-content>
+                  <v-list-item-title class="body-2">{{ item.text }}</v-list-item-title>
+                </v-list-item-content>
+              </v-list-item>
             </template>
           </v-list>
         </v-flex>

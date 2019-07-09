@@ -3,7 +3,7 @@
     <v-flex sm3>
       <v-toolbar color="grey darken-3" flat>
         <v-scroll-x-transition>
-          <v-toolbar-title  v-if="!filted || userInfo.role>1 ">企业列表</v-toolbar-title>
+          <v-toolbar-title v-if="!filted || userInfo.role>1 ">企业列表</v-toolbar-title>
         </v-scroll-x-transition>
         <v-spacer></v-spacer>
         <v-scroll-x-transition>
@@ -15,9 +15,9 @@
               <v-icon>sort</v-icon>
             </v-btn>
             <v-list style="height:375px ;overflow :auto">
-              <v-list-tile v-for="(item, i) in stationList" :key="i" @click="filter(item.id)">
-                <v-list-tile-title>{{ item.name }}</v-list-tile-title>
-              </v-list-tile>
+              <v-list-item v-for="(item, i) in stationList" :key="i" @click="filter(item.id)">
+                <v-list-item-title>{{ item.name }}</v-list-item-title>
+              </v-list-item>
             </v-list>
           </v-menu>
         </v-toolbar-items>
@@ -27,21 +27,21 @@
         <v-scroll-x-transition group>
           <template v-for="(item,index) in companyListShow">
             <div :key="index">
-              <v-list-tile v-if="item.id==$route.params.companyId" ripple class="grey darken-2">
-                <v-list-tile-content>
-                  <v-list-tile-title class="text-uppercase" style="color:white" v-html="item.brand"></v-list-tile-title>
-                </v-list-tile-content>
-              </v-list-tile>
-              <v-list-tile
+              <v-list-item v-if="item.id==$route.params.companyId" ripple class="grey darken-2">
+                <v-list-item-content>
+                  <v-list-item-title class="text-uppercase" style="color:white" v-html="item.brand"></v-list-item-title>
+                </v-list-item-content>
+              </v-list-item>
+              <v-list-item
                 v-else
                 :to="'/admin/company/' +item.id+'/info'"
                 ripple
                 active-class="grey darken-2"
               >
-                <v-list-tile-content>
-                  <v-list-tile-title class="text-uppercase" style="color:white" v-html="item.brand"></v-list-tile-title>
-                </v-list-tile-content>
-              </v-list-tile>
+                <v-list-item-content>
+                  <v-list-item-title class="text-uppercase" style="color:white" v-html="item.brand"></v-list-item-title>
+                </v-list-item-content>
+              </v-list-item>
 
               <v-divider></v-divider>
             </div>
