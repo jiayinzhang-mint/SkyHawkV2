@@ -1,29 +1,37 @@
 import Vue from "vue";
-import "../../public/style.css";
 import Vuetify from "vuetify/lib";
-import "vuetify/src/stylus/app.styl";
-import colors from "vuetify/es5/util/colors";
 import zhHans from "vuetify/es5/locale/zh-Hans";
+import colors from "vuetify/es5/util/colors";
 
 import "./confirm-dialog/index";
 import "./snackbar/index";
 import "./loading/index";
 import "./upload/index";
 
-Vue.use(Vuetify, {
+Vue.use(Vuetify);
+
+export default new Vuetify({
   theme: {
-    primary: colors.blue.lighten2,
-    secondary: "#424242",
-    accent: "#82B1FF",
-    error: "#FF5252",
-    info: "#2196F3",
-    success: "#4CAF50",
-    warning: "#FFC107"
+    options: {
+      customProperties: true
+    },
+    themes: {
+      light: {
+        primary: colors.blue.lighten2,
+        secondary: "#424242",
+        accent: "#82B1FF",
+        error: "#FF5252",
+        info: "#2196F3",
+        success: "#4CAF50",
+        warning: "#FFC107"
+      }
+    }
   },
-  customProperties: true,
-  iconfont: "md",
   lang: {
     locales: { zhHans },
     current: "zh-Hans"
+  },
+  icons: {
+    iconfont: "md"
   }
 });

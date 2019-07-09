@@ -98,26 +98,3 @@ td {
   .v-select__selections {
   color: #fff !important;
 }
-
-/* .neon {
-  -webkit-transform: translateZ(0);
-  -moz-transform: translateZ(0);
-  -ms-transform: translateZ(0);
-  -o-transform: translateZ(0);
-  transform: translateZ(0);
-  -webkit-animation: neon 1.5s ease-in-out infinite alternate;
-  -moz-animation: neon 1.5s ease-in-out infinite alternate;
-  animation: neon 1.5s ease-in-out infinite alternate;
-  text-shadow: 0 0 1px #fff, 0 0 2px #fff, 0 0 5px #d400ff;
-} */
-
-/* @-webkit-keyframes neon {
-  from {
-    text-shadow: 0 0 2px #fff, 0 0 5px #fff, 0 0 7px rgb(202, 65, 214),
-      0 0 10px rgb(202, 65, 214);
-  }
-  to {
-    text-shadow: 0 0 1px #fff, 0 0 2px #fff, 0 0 3px rgb(202, 65, 214),
-      0 0 5px rgb(202, 65, 214);
-  }
-} */
