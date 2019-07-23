@@ -1,7 +1,7 @@
 <template>
   <div>
     <v-toolbar flat color="transparent">
-      <v-toolbar-title>监管人员</v-toolbar-title>
+      <v-toolbar-title class="subtitle-1 font-weight-black">监管人员</v-toolbar-title>
 
       <v-spacer></v-spacer>
       <v-btn text rounded @click="newSupervisorDialog=true">
@@ -10,7 +10,7 @@
     </v-toolbar>
     <v-container grid-list-md>
       <v-layout wrap>
-        <v-flex v-for="(item,i) in supervisorList" :key="i" xs6 md3>
+        <v-flex v-for="(item,i) in supervisorList" :key="i" xs4 md3>
           <v-card>
             <v-img contain :src="item.avatar" lazy-src="/static/assets/lazy.jpg">
               <v-layout slot="placeholder" fill-height align-center justify-center ma-0>
@@ -19,9 +19,9 @@
             </v-img>
 
             <v-card-actions>
-              <h4>{{item.name}}</h4>
+              <div class="subtitle-2">{{item.name}}</div>
               <v-spacer></v-spacer>
-              <v-btn icon @click="deleteSupervisor(item.id)">
+              <v-btn x-small icon @click="deleteSupervisor(item.id)">
                 <v-icon>clear</v-icon>
               </v-btn>
             </v-card-actions>

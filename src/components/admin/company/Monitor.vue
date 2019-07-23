@@ -1,30 +1,30 @@
 <template>
   <div>
     <v-toolbar flat color="transparent">
-      <v-toolbar-title>监控点</v-toolbar-title>
+      <v-toolbar-title class="subtitle-1 font-weight-black">监控点</v-toolbar-title>
       <v-spacer></v-spacer>
       <v-btn text rounded @click="createMonitorDialog=true">
         <v-icon>add</v-icon>&nbsp;新建
       </v-btn>
     </v-toolbar>
-    <v-data-table :headers="headers" :items="monitorList" hide-actions no-data-text="暂无数据">
+    <v-data-table :headers="headers" :items="monitorList" hide-default-footer no-data-text="暂无数据">
       <template slot="items" slot-scope="props">
         <td class="text-xs-center">{{ props.item.name }}</td>
         <td class="text-xs-center">{{ props.item.index }}</td>
         <td class="text-xs-center">{{ props.item.channel }}</td>
-        <td class="text-xs-center">
-          <v-btn color="primary" icon flat @click="updateMonitorDialog=true;monitorInfo=props.item">
-            <v-icon>edit</v-icon>
-          </v-btn>
-          <v-btn color="error" icon flat @click="deleteMonitor(props.item.id)">
-            <v-icon>delete</v-icon>
-          </v-btn>
-        </td>
+      </template>
+      <template v-slot:item.action="{ item }">
+        <v-btn color="primary" icon text @click="updateMonitorDialog=true;monitorInfo=item">
+          <v-icon>edit</v-icon>
+        </v-btn>
+        <v-btn color="error" icon text @click="deleteMonitor(item.id)">
+          <v-icon>delete</v-icon>
+        </v-btn>
       </template>
     </v-data-table>
     <v-dialog v-model="createMonitorDialog" width="400">
       <v-card>
-        <v-card-title class="subtitle-1" primary-title>监控点</v-card-title>
+        <v-card-title class="subtitle-1 font-weight-black" primary-title>新建监控点</v-card-title>
         <v-container>
           <v-form ref="createMonitorForm">
             <v-text-field
@@ -52,7 +52,7 @@
             <v-btn
               color="primary"
               rounded
-              flat
+              depressed
               @click="createMonitorDialog = false; createMonitor()"
             >保存</v-btn>
           </v-layout>
@@ -61,7 +61,7 @@
     </v-dialog>
     <v-dialog v-model="updateMonitorDialog" width="400">
       <v-card>
-        <v-card-title class="subtitle-1" primary-title>监控点</v-card-title>
+        <v-card-title class="subtitle-1 font-weight-black" primary-title>编辑监控点</v-card-title>
         <v-container>
           <v-form ref="updateUserForm">
             <v-text-field
@@ -89,7 +89,7 @@
             <v-btn
               color="primary"
               rounded
-              flat
+              depressed
               @click="updateMonitorDialog = false; updateMonitor()"
             >保存</v-btn>
           </v-layout>
@@ -112,21 +112,25 @@ export default {
         {
           text: "名称",
           align: "center",
+          value: "name",
           sortable: false
         },
         {
           text: "编号",
           align: "center",
+          value: "index",
           sortable: false
         },
         {
           text: "通道",
           align: "center",
+          value: "channel",
           sortable: false
         },
         {
           text: "操作",
           align: "center",
+          value: "action",
           sortable: false
         }
       ]
@@ -134,12 +138,10 @@ export default {
   },
   methods: {
     async getMonitorList() {
-
       const rsp = await deviceService.getMonitorList({
         company: this.$route.params.companyId
       });
       this.monitorList = rsp.monitorList;
-
     },
     async createMonitor() {
       if (this.$refs.createMonitorForm.validate()) {

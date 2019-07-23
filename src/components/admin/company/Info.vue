@@ -1,7 +1,7 @@
 <template>
   <div>
     <v-toolbar flat class="transparent">
-      <v-toolbar-title>基本信息</v-toolbar-title>
+      <v-toolbar-title class="subtitle-1 font-weight-black">基本信息</v-toolbar-title>
       <v-spacer></v-spacer>
       <v-btn rounded text @click="updateCompanyInfo">
         <v-icon>save</v-icon>&nbsp;保存
@@ -22,6 +22,7 @@
             <v-text-field v-model="companyInfo.license" label="证照号码" required></v-text-field>
             <v-select
               v-model="companyInfo.station"
+              dense
               :items="stationList"
               @change="cascadeGroup"
               item-value="id"
@@ -55,8 +56,9 @@
                 landscape
               ></v-date-picker>
             </v-menu>
-            
+
             <v-select
+              dense
               v-model="companyInfo.besupervised"
               :items="groupList"
               item-value="id"
@@ -83,7 +85,6 @@ export default {
   },
   methods: {
     async getCompanyInfo() {
-
       const rsp = await companyService.getCompanyDetail(
         this.$route.params.companyId
       );
@@ -94,7 +95,6 @@ export default {
       this.group = this.station.children.find(element => {
         return (element.id = this.companyInfo.besupervised);
       });
-
     },
     async updateCompanyInfo() {
       console.log(this.companyInfo);

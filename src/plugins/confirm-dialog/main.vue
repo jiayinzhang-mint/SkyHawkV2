@@ -2,12 +2,14 @@
   <v-layout row justify-center>
     <v-dialog dark v-model="dialog" persistent max-width="300">
       <v-card>
-        <v-card-title class="subtitle-1">{{title}}</v-card-title>
-        <v-card-text>{{text}}</v-card-text>
+        <v-container>
+          <v-card-title class="subtitle-1">{{title}}</v-card-title>
+          <v-card-text>{{text}}</v-card-text>
+        </v-container>
         <v-card-actions>
-          <v-layout xs12 align-center>
-            <v-btn rounded block color="error" flat @click="cancel">取消</v-btn>
-            <v-btn rounded block color="primary" flat @click="confirm">确认</v-btn>
+          <v-layout xs12 justify-center>
+            <v-btn rounded color="primary" depressed @click="confirm">确认</v-btn>
+            <v-btn rounded text @click="cancel">取消</v-btn>
           </v-layout>
         </v-card-actions>
       </v-card>

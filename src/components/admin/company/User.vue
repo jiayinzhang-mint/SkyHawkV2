@@ -1,34 +1,37 @@
 <template>
   <div>
     <v-toolbar flat color="transparent">
-      <v-toolbar-title>企业用户</v-toolbar-title>
+      <v-toolbar-title class="subtitle-1 font-weight-black">企业用户</v-toolbar-title>
       <v-spacer></v-spacer>
       <v-btn text rounded @click="createUserDialog=true;userInfo=[]">
         <v-icon>add</v-icon>&nbsp;新建
       </v-btn>
     </v-toolbar>
-    <v-data-table :headers="headers" :items="userList" hide-actions no-data-text="暂无数据">
+    <v-data-table :headers="headers" :items="userList" hide-default-footer no-data-text="暂无数据">
       <template slot="items" slot-scope="props">
         <td class="text-xs-center">{{ props.item.username }}</td>
         <td class="text-xs-center">{{ props.item.name }}</td>
         <td class="text-xs-center">{{ props.item.phone }}</td>
         <td class="text-xs-center">
-          <v-chip v-if="props.item.wechat" small text-color="white" color="green">在线</v-chip>
-          <v-chip v-else small text-color="white" color="red darken-3">离线</v-chip>
+          <v-chip small text-color="white" color="green">在线</v-chip>
         </td>
-        <td class="text-xs-center">
-          <v-btn color="primary" icon flat @click="updateUserDialog=true;userInfo=props.item">
-            <v-icon>edit</v-icon>
-          </v-btn>
-          <v-btn color="error" icon flat @click="deleteUser(props.item.id)">
-            <v-icon>delete</v-icon>
-          </v-btn>
-        </td>
+      </template>
+      <template v-slot:item.wechat="{ item }">
+        <v-chip v-if="item.wechat" small text-color="white" color="green">在线</v-chip>
+        <v-chip v-else small text-color="white" color="red darken-1">离线</v-chip>
+      </template>
+      <template v-slot:item.action="{ item }">
+        <v-btn color="primary" icon text @click="updateUserDialog=true;userInfo=item">
+          <v-icon>edit</v-icon>
+        </v-btn>
+        <v-btn color="error" icon text @click="deleteUser(item.id)">
+          <v-icon>delete</v-icon>
+        </v-btn>
       </template>
     </v-data-table>
     <v-dialog v-model="createUserDialog" width="400">
       <v-card>
-        <v-card-title class="subtitle-1" primary-title>新建用户</v-card-title>
+        <v-card-title class="subtitle-1 font-weight-black" primary-title>新建用户</v-card-title>
         <v-container>
           <v-form ref="createUserForm">
             <v-text-field
@@ -48,14 +51,19 @@
         </v-container>
         <v-card-actions>
           <v-layout justify-center>
-            <v-btn color="primary" rounded flat @click="createUserDialog = false; createUser()">保存</v-btn>
+            <v-btn
+              color="primary"
+              rounded
+              depressed
+              @click="createUserDialog = false; createUser()"
+            >保存</v-btn>
           </v-layout>
         </v-card-actions>
       </v-card>
     </v-dialog>
     <v-dialog v-model="updateUserDialog" width="400">
       <v-card>
-        <v-card-title class="subtitle-1" primary-title>更新用户</v-card-title>
+        <v-card-title class="subtitle-1 font-weight-black" primary-title>更新用户</v-card-title>
         <v-container>
           <v-form ref="updateUserForm">
             <v-text-field
@@ -75,7 +83,12 @@
         </v-container>
         <v-card-actions>
           <v-layout justify-center>
-            <v-btn color="primary" rounded flat @click="updateUserDialog = false; updateUser()">保存</v-btn>
+            <v-btn
+              color="primary"
+              rounded
+              depressed
+              @click="updateUserDialog = false; updateUser()"
+            >保存</v-btn>
           </v-layout>
         </v-card-actions>
       </v-card>
@@ -113,13 +126,14 @@ export default {
         },
         {
           text: "微信",
-          value: "wechat",
           align: "center",
+          value: "wechat",
           sortable: false
         },
         {
           text: "操作",
           align: "center",
+          value: "action",
           sortable: false
         }
       ]
@@ -135,12 +149,10 @@ export default {
       }
     },
     async getUserList() {
-
       const rsp = await userService.getUserList({
         company: this.$route.params.companyId
       });
       this.userList = rsp.companyUser;
-
     },
     async updateUser() {
       if (this.$refs.updateUserForm.validate()) {
@@ -160,8 +172,7 @@ export default {
       }
     }
   },
-  computed: {
-  },
+  computed: {},
   mounted() {
     this.getUserList();
   }
