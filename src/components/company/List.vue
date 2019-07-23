@@ -1,79 +1,54 @@
 <template>
-  <v-layout row>
-    <v-flex
-      xs12
-      class="grey-back"
-    >
-      <v-toolbar
-        color="grey darken-3"
-        flat
-      >
-        <v-toolbar-title style="font-size:17px">企业列表</v-toolbar-title>
+  <v-layout>
+    <v-flex xs12 class="grey-back">
+      <v-toolbar color="grey darken-3" flat>
+        <v-toolbar-title class="subtitle-1 font-weight-black">企业列表</v-toolbar-title>
         <v-spacer></v-spacer>
-        <v-pagination
-          v-model="pagination.page"
-          :total-visible="7"
-          :length="pages"
-        ></v-pagination>
       </v-toolbar>
-      <v-toolbar
-        flat
-        color="transparent"
-      >
-        <v-select
-          v-if="userInfo.role<=1"
-          :items="stationList"
-          v-model="selectedStation"
-          item-text="name"
-          return-object
-          solo-inverted
-          label="请选择街道"
-        ></v-select>
-        <v-tooltip bottom>
-          <span>清除筛选</span>
-          <v-btn
-            slot="activator"
-            icon
-            @click="selectedStation={}"
-          >
-            <v-icon>clear</v-icon>
-          </v-btn>
-        </v-tooltip>
+      <v-toolbar flat color="transparent">
+        <v-layout>
+          <v-select
+            v-if="userInfo.role<=1"
+            :items="stationList"
+            v-model="selectedStation"
+            item-text="name"
+            return-object
+            dense
+            label="请选择街道"
+          ></v-select>
+          <v-tooltip bottom>
+            <template v-slot:activator="{on}">
+              <v-btn v-on="on" icon @click="selectedStation={}">
+                <v-icon>clear</v-icon>
+              </v-btn>
+            </template>
+            <span>清除筛选</span>
+          </v-tooltip>
+        </v-layout>
       </v-toolbar>
       <v-divider></v-divider>
-      <v-data-table
-        hide-actions
-        hide-headers
+      <v-simple-table
         :items="companyListShow"
         :pagination.sync="pagination"
         item-key="name"
         style="height:calc(100vh - 129px - 64px);overflow :auto"
       >
-        <template v-slot:items="props">
+        <tbody>
           <tr
             class="clickable-tr"
+            v-for="(item,i) in companyListShow"
+            :key="`company-${i}`"
             ripple
-            @click="showCompanyDetail(props.item.id)"
+            @click="showCompanyDetail(item.id)"
           >
-            <td
-              class="text-uppercase"
-              style="width:300px"
-            >{{props.item.brand}}</td>
-            <td
-              class="text-uppercase"
-              style="max-width:300px"
-            >{{props.item.name}}</td>
+            <td class="text-uppercase" style="width:300px">{{item.brand}}</td>
+            <td class="text-uppercase" style="max-width:300px">{{item.name}}</td>
             <td>
-              <v-rating
-                dense
-                small
-                v-model="rating"
-                readonly
-              ></v-rating>
+              <v-rating dense small v-model="rating" readonly></v-rating>
             </td>
           </tr>
-        </template>
-      </v-data-table>
+        </tbody>
+      </v-simple-table>
     </v-flex>
   </v-layout>
 </template>

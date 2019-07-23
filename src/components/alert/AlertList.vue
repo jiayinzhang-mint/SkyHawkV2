@@ -15,9 +15,12 @@
           <v-icon>keyboard_arrow_right</v-icon>
         </v-btn>
 
-        <v-btn slot="activator" icon @click="refreshAlertList">
-          <v-icon>refresh</v-icon>
-        </v-btn>
+        <v-tooltip bottom>
+          <v-btn v-slot:activator="on" icon @click="refreshAlertList">
+            <v-icon v-on="on">refresh</v-icon>
+          </v-btn>
+          <span>刷新</span>
+        </v-tooltip>
       </v-toolbar>
       <v-toolbar flat class="transparent">
         <v-layout>
@@ -54,9 +57,14 @@
             return-object
           ></v-select>
 
-          <v-btn class="ml-2" icon @click="reFill">
-            <v-icon>clear</v-icon>
-          </v-btn>
+          <v-tooltip bottom>
+            <template v-slot:activator="{on}">
+              <v-btn v-on="on" class="ml-2" icon @click="reFill">
+                <v-icon>clear</v-icon>
+              </v-btn>
+            </template>
+            <span>清除筛选</span>
+          </v-tooltip>
         </v-layout>
       </v-toolbar>
       <v-divider></v-divider>
