@@ -1,23 +1,23 @@
 <template>
-  <v-layout row>
+  <v-layout>
     <v-flex sm3>
       <v-toolbar color="grey darken-3" flat>
-        <v-toolbar-title style="font-size:17px">公告列表</v-toolbar-title>
+        <v-toolbar-title class="subtitle-1 font-weight-black">公告列表</v-toolbar-title>
         <v-spacer></v-spacer>
         <v-btn icon @click="createPostDialog=true">
           <v-icon>add</v-icon>
         </v-btn>
       </v-toolbar>
       <v-divider></v-divider>
-      <v-list style="height:calc(100vh - 129px);overflow :auto">
+      <v-list dense style="height:calc(100vh - 129px);overflow :auto">
         <v-scroll-x-transition group>
           <template v-for="(item,index) in postList">
             <div :key="index">
-              <v-list-tile :to=" '/billboard/' +item.id" ripple active-class="grey darken-2">
-                <v-list-tile-content>
-                  <v-list-tile-title class="text-uppercase" style="color:white" v-html="item.title"></v-list-tile-title>
-                </v-list-tile-content>
-              </v-list-tile>
+              <v-list-item :to=" '/billboard/' +item.id" ripple active-class="grey darken-2">
+                <v-list-item-content>
+                  <v-list-item-title class="text-uppercase" style="color:white" v-html="item.title"></v-list-item-title>
+                </v-list-item-content>
+              </v-list-item>
 
               <v-divider></v-divider>
             </div>
@@ -36,7 +36,7 @@
     <v-dialog v-model="createPostDialog" width="500" persistent scrollable>
       <v-card>
         <v-toolbar class="transparent" flat>
-          <v-toolbar-title>创建公告</v-toolbar-title>
+          <v-toolbar-title class="subtitle-1 font-weight-black">创建公告</v-toolbar-title>
           <v-spacer></v-spacer>
           <v-btn icon @click="createPostDialog=false">
             <v-icon>clear</v-icon>
@@ -51,6 +51,7 @@
               required
             ></v-text-field>
             <v-select
+            dense
               :items="postType"
               :rules="[v => !!v || '请选择类型']"
               v-model="newPost.type"
@@ -60,7 +61,7 @@
           </v-form>
         </v-container>
         <v-card-actions>
-          <v-btn block rounded @click="createPost">发布</v-btn>
+          <v-btn block depressed rounded color="primary" @click="createPost">发布</v-btn>
         </v-card-actions>
       </v-card>
     </v-dialog>

@@ -2,13 +2,14 @@
   <v-container>
     <v-card>
       <v-toolbar flat class="transparent">
-        <v-toolbar-title>公告详情</v-toolbar-title>
+        <v-toolbar-title class="subtitle-1 font-weight-black">公告详情</v-toolbar-title>
         <v-spacer></v-spacer>
-        <v-btn rounded flat @click="updatePost">
-          <v-icon>save</v-icon>&nbsp;&nbsp;保存
+
+        <v-btn rounded text @click="deletePost">
+          <v-icon>delete</v-icon>&nbsp;删除
         </v-btn>
-        <v-btn rounded flat @click="deletePost">
-          <v-icon>delete</v-icon>&nbsp;&nbsp;删除
+        <v-btn rounded text @click="updatePost">
+          <v-icon>save</v-icon>&nbsp;保存
         </v-btn>
       </v-toolbar>
       <v-container>
