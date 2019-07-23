@@ -14,7 +14,7 @@ export default new Vuetify({
   theme: {
     dark: true,
     themes: {
-      light: {
+      dark: {
         primary: colors.blue.lighten2,
         secondary: "#424242",
         accent: "#82B1FF",

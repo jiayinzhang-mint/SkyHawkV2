@@ -54,7 +54,7 @@ export default new Router({
           children: [
             {
               path: "/admin/company/:companyId",
-              component: () => import("./components/admin/company/Config"),
+              component: () => import("./components/admin/company/Detail"),
               children: [
                 {
                   path: "/admin/company/:companyId/info",
@@ -87,7 +87,7 @@ export default new Router({
           children: [
             {
               path: "/admin/organization/:organizationId",
-              component: () => import("./components/admin/organization/Config"),
+              component: () => import("./components/admin/organization/Detail"),
               children: [
                 {
                   path: "/admin/organization/:organizationId/info",

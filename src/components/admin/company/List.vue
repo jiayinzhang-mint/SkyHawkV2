@@ -3,18 +3,23 @@
     <v-flex sm3>
       <v-toolbar color="grey darken-3" flat>
         <v-scroll-x-transition>
-          <v-toolbar-title class="subtitle-1 font-weight-black" v-if="!filted || userInfo.role>1">企业列表</v-toolbar-title>
+          <v-toolbar-title
+            class="subtitle-1 font-weight-black"
+            v-if="!filted || userInfo.role>1"
+          >企业列表</v-toolbar-title>
         </v-scroll-x-transition>
         <v-spacer></v-spacer>
         <v-scroll-x-transition>
-          <v-chip v-if="filted && userInfo.role<=1" close @input="reFill">{{selectedStation.name}}</v-chip>
+          <v-chip v-if="filted && userInfo.role<=1" close @click:close="reFill">{{selectedStation.name}}</v-chip>
         </v-scroll-x-transition>
         <v-toolbar-items>
           <v-menu bottom left v-if="userInfo.role<=1">
-            <v-btn slot="activator" icon>
-              <v-icon>sort</v-icon>
-            </v-btn>
-            <v-list style="height:375px ;overflow :auto">
+            <template v-slot:activator="{on}">
+              <v-btn icon v-on="on">
+                <v-icon>sort</v-icon>
+              </v-btn>
+            </template>
+            <v-list dense style="height:375px; overflow :auto">
               <v-list-item v-for="(item, i) in stationList" :key="i" @click="filter(item.id)">
                 <v-list-item-title>{{ item.name }}</v-list-item-title>
               </v-list-item>

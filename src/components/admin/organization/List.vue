@@ -1,5 +1,5 @@
 <template>
-  <v-layout row fill-height>
+  <v-layout>
     <v-flex xs12 sm3 style="height:calc(100vh - 64px);overflow :auto" class="grey-back">
       <v-toolbar flat color="grey darken-3">
         <v-toolbar-title style="font-size:17px">组织信息</v-toolbar-title>
@@ -13,6 +13,7 @@
       <v-treeview
         activatable
         hoverable
+        dense
         :active.sync="active"
         return-object
         :items="organizationList"

@@ -1,9 +1,9 @@
 <template>
   <div>
     <v-toolbar flat class="transparent">
-      <v-toolbar-title>基本信息</v-toolbar-title>
+      <v-toolbar-title class="subtitle-1 font-weight-black">基本信息</v-toolbar-title>
       <v-spacer></v-spacer>
-      <v-btn rounded flat @click="updateOrganizationDetail">
+      <v-btn rounded text @click="updateOrganizationDetail">
         <v-icon>save</v-icon>&nbsp;保存
       </v-btn>
     </v-toolbar>

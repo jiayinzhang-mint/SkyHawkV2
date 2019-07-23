@@ -59,11 +59,11 @@
       <v-btn icon @click="goBack" class="hidden-md-and-down">
         <v-icon>arrow_back</v-icon>
       </v-btn>
-      <v-toolbar-side-icon
+      <v-app-bar-nav-icon
         class="hidden-lg-and-up"
         style="margin-left:-10px"
         @click.stop="drawer = !drawer"
-      ></v-toolbar-side-icon>
+      ></v-app-bar-nav-icon>
       <v-toolbar-title
         class="ml-2 font-weight-bold"
         style="width:232px; font-size:20px !important"
@@ -80,10 +80,12 @@
       </v-btn>
 
       <v-menu offset-y>
-        <v-btn icon slot="activator">
-          <v-avatar color="primary" size="32px">{{getFirstLetter(userInfo.name)}}</v-avatar>
-        </v-btn>
-        <v-list>
+        <template v-slot:activator="{on}">
+          <v-btn icon v-on="on">
+            <v-avatar color="primary" size="32px">{{getFirstLetter(userInfo.name)}}</v-avatar>
+          </v-btn>
+        </template>
+        <v-list dense>
           <v-list-item v-for="(item, index) in menuUser" :key="index" :to="item.route">
             <v-list-item-avatar>
               <v-icon>{{item.icon}}</v-icon>

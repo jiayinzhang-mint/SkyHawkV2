@@ -1,32 +1,32 @@
 <template>
   <div>
     <v-toolbar flat color="transparent">
-      <v-toolbar-title>{{organizationInfo.name}}</v-toolbar-title>
+      <v-toolbar-title class="subtitle-1 font-weight-black">{{organizationInfo.name}}</v-toolbar-title>
       <v-spacer></v-spacer>
       <v-btn text rounded @click="createUserDialog=true;userInfo=[]">
-        <v-icon>add</v-icon>&nbsp;&nbsp;新建
+        <v-icon>add</v-icon>&nbsp;新建
       </v-btn>
     </v-toolbar>
-    <v-data-table :headers="headers" :items="userList" hide-actions no-data-text="暂无数据">
+    <v-data-table :headers="headers" :items="userList" hide-default-footer no-data-text="暂无数据">
       <template slot="items" slot-scope="props">
         <td class="text-xs-center">{{ props.item.name }}</td>
         <td class="text-xs-center">{{ props.item.index }}</td>
         <td class="text-xs-center">{{ props.item.phone }}</td>
-        <td class="text-xs-center">
-          <v-chip v-if="props.item.wechat" small text-color="white" color="green">在线</v-chip>
-          <v-chip v-else small text-color="white" color="red darken-3">离线</v-chip>
-        </td>
-        <td class="text-xs-center">
-          <v-btn color="primary" icon flat small @click="updateUserDialog=true;userInfo=props.item">
-            <v-icon>edit</v-icon>
-          </v-btn>
-          <v-btn icon flat small @click="uploadPictureDialog=true;userInfo=props.item">
-            <v-icon>photo</v-icon>
-          </v-btn>
-          <v-btn color="error" icon flat small @click="deleteUser(props.item.id)">
-            <v-icon>delete</v-icon>
-          </v-btn>
-        </td>
+      </template>
+      <template v-slot:item.wechat="{ item }">
+        <v-chip v-if="item.wechat" small text-color="white" color="green">在线</v-chip>
+        <v-chip v-else small text-color="white" color="red darken-2">离线</v-chip>
+      </template>
+      <template v-slot:item.action="{item}">
+        <v-btn color="primary" icon text small @click="updateUserDialog=true;userInfo=item">
+          <v-icon>edit</v-icon>
+        </v-btn>
+        <v-btn icon text small @click="uploadPictureDialog=true;userInfo=item">
+          <v-icon>photo</v-icon>
+        </v-btn>
+        <v-btn color="error" icon text small @click="deleteUser(item.id)">
+          <v-icon>delete</v-icon>
+        </v-btn>
       </template>
     </v-data-table>
     <v-dialog v-model="createUserDialog" width="400">
@@ -57,7 +57,12 @@
         </v-container>
         <v-card-actions>
           <v-layout justify-center>
-            <v-btn color="primary" rounded flat @click="createUserDialog = false; createUser()">保存</v-btn>
+            <v-btn
+              color="primary"
+              rounded
+              depressed
+              @click="createUserDialog = false; createUser()"
+            >保存</v-btn>
           </v-layout>
         </v-card-actions>
       </v-card>
@@ -90,7 +95,12 @@
         </v-container>
         <v-card-actions>
           <v-layout justify-center>
-            <v-btn color="primary" rounded flat @click="updateUserDialog = false; updateUser()">保存</v-btn>
+            <v-btn
+              color="primary"
+              rounded
+              depressed
+              @click="updateUserDialog = false; updateUser()"
+            >保存</v-btn>
           </v-layout>
         </v-card-actions>
       </v-card>
@@ -104,12 +114,18 @@
           </v-layout>
         </v-img>
         <v-container>
-          <dim-upload v-model="file" type="jpg"></dim-upload>
+          <v-file-input
+            v-model="file"
+            accept="image/png, image/jpeg, image/bmp"
+            placeholder="Pick an avatar"
+            prepend-icon="mdi-camera"
+            label="Avatar"
+          ></v-file-input>
           <small class="text-xs-center">仅支持.jpg</small>
         </v-container>
         <v-card-actions>
           <v-layout align-center justify-center>
-            <v-btn rounded color="primary" flat @click="uploadPicture">上传</v-btn>
+            <v-btn rounded color="primary" depressed @click="uploadPicture">上传</v-btn>
           </v-layout>
         </v-card-actions>
       </v-card>
@@ -129,6 +145,7 @@ export default {
     uploadPictureDialog: false,
     userInfo: {},
     file: null,
+
     headers: [
       {
         text: "姓名",
@@ -151,11 +168,13 @@ export default {
       {
         text: "微信",
         align: "center",
+        value: "wechat",
         sortable: false
       },
       {
         text: "操作",
         align: "center",
+        value: "action",
         sortable: false
       }
     ]

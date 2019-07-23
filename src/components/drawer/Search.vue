@@ -1,7 +1,7 @@
 <template>
   <div>
     <v-container>
-      <v-text-field prepend-inner-icon="search" label="键入以搜索" box v-model="search" ref="searchBox"></v-text-field>
+      <v-text-field prepend-inner-icon="search" label="键入以搜索" filled v-model="search" ref="searchBox"></v-text-field>
     </v-container>
     <v-toolbar class="transparent" flat v-if="companyQuery.length>=1">
       <v-toolbar-title class="font-weight-bold">企业</v-toolbar-title>
