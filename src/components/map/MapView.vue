@@ -1,13 +1,13 @@
 <template>
-  <div class="row">
-    <div class="mapview" id="markermap" style="height:calc(100vh - 64px);overflow :auto">
+  <div>
+    <div class="mapview" id="markermap" style="height:calc(100vh - 64px);overflow :auto;width:100%">
       <v-card
         v-if="userInfo.role==1"
-        class="d-inline-block elevation-12 ml-5 mt-5 aero"
+        class="d-inline-block elevation-12 ml-5 mt-5"
         width="300px"
         style="z-index:1"
       >
-        <v-toolbar flat class="aero">
+        <v-toolbar flat>
           <v-btn icon @click="initTool" v-if="select">
             <v-icon>arrow_back</v-icon>
           </v-btn>
@@ -15,100 +15,104 @@
           <v-toolbar-title v-html="select" class="subtitle-1" v-else></v-toolbar-title>
         </v-toolbar>
         <v-divider></v-divider>
-        <v-navigation-drawer floating permanent stateless value="true" v-if="!select">
+        <v-navigation-drawer
+          class="sub-nav"
+          floating
+          permanent
+          stateless
+          value="true"
+          v-if="!select"
+        >
           <v-list dense style="max-height:400px" class="pt-0 pb-0">
             <v-list-group>
-              <v-list-tile slot="activator">
-                <v-list-tile-title>查看全部</v-list-tile-title>
-              </v-list-tile>
+              <template v-slot:activator>
+                <v-list-item-title>查看全部</v-list-item-title>
+              </template>
 
-              <v-list-tile v-for="(item,i) in stationList" :key="i" @click="selectStation(item.id)">
-                <v-list-tile-title v-text="item.name"></v-list-tile-title>
-              </v-list-tile>
+              <v-list-item v-for="(item,i) in stationList" :key="i" @click="selectStation(item.id)">
+                <v-list-item-title v-text="item.name"></v-list-item-title>
+              </v-list-item>
             </v-list-group>
           </v-list>
         </v-navigation-drawer>
       </v-card>
-      <v-card
-        v-else
-        class="d-inline-block elevation-12 ml-5 mt-5 aero"
-        width="300px"
-        style="z-index:1"
-      >
+      <v-card v-else class="d-inline-block elevation-12 ml-5 mt-5" width="300px" style="z-index:1">
         <v-toolbar flat>
           <v-toolbar-title class="subtitle-1">请选择企业</v-toolbar-title>
         </v-toolbar>
       </v-card>
       <v-card
-        class="elevation-12 ml-5 mt-2 aero"
+        class="elevation-12 ml-5 mt-2"
         width="300px"
         style="z-index:1"
         v-if="select && !selectCompany"
       >
-        <v-toolbar flat class="aero">
+        <v-toolbar flat>
           <v-toolbar-title class="subtitle-1" v-html="highlightCompany">请选择企业</v-toolbar-title>
         </v-toolbar>
         <v-divider></v-divider>
-        <v-navigation-drawer floating permanent stateless value="true" v-if="!selectCompany">
-          <v-list style="max-height:400px" class="pt-0 pb-0">
+        <v-navigation-drawer
+          class="sub-nav"
+          floating
+          permanent
+          stateless
+          value="true"
+          v-if="!selectCompany"
+        >
+          <v-list dense style="max-height:400px" class="pt-0 pb-0">
             <v-list-group>
-              <v-list-tile slot="activator">
-                <v-list-tile-title>查看全部</v-list-tile-title>
-              </v-list-tile>
+              <template v-slot:activator>
+                <v-list-item-title>查看全部</v-list-item-title>
+              </template>
 
-              <v-list-tile
+              <v-list-item
                 v-for="(item,i) in companyListShow"
                 :key="i"
                 ripple
                 @click="glanceCompany(item.id);selectCompany = item.brand"
               >
-                <v-list-tile-content>
-                  <v-list-tile-title class="text-uppercase" v-html="item.brand"></v-list-tile-title>
-                </v-list-tile-content>
-              </v-list-tile>
+                <v-list-item-content>
+                  <v-list-item-title class="text-uppercase" v-html="item.brand"></v-list-item-title>
+                </v-list-item-content>
+              </v-list-item>
             </v-list-group>
           </v-list>
         </v-navigation-drawer>
       </v-card>
       <v-scroll-y-transition>
-        <v-card
-          class="elevation-12 ml-5 mt-2 aero"
-          width="300px"
-          style="z-index:1"
-          v-if="selectCompany"
-        >
-          <v-toolbar class="aero" flat>
-            <v-toolbar-title style="margin-left:-8px" class="subtitle-1" v-html="selectCompany"></v-toolbar-title>
+        <v-card class="elevation-12 ml-5 mt-2" width="300px" style="z-index:1" v-if="selectCompany">
+          <v-toolbar flat>
+            <v-toolbar-title class="subtitle-1 font-weight-black" v-html="selectCompany"></v-toolbar-title>
             <v-spacer></v-spacer>
             <v-btn icon @click="backTool">
               <v-icon>clear</v-icon>
             </v-btn>
           </v-toolbar>
-          <v-list>
-            <v-list-tile>
-              <v-list-tile-action>
+          <v-list dense>
+            <v-list-item>
+              <v-list-item-action>
                 <v-icon color="primary">assignment_ind</v-icon>
-              </v-list-tile-action>
-              <v-list-tile-content>
-                <v-list-tile-title class="text-uppercase">{{companyInfo.brand}}</v-list-tile-title>
-              </v-list-tile-content>
-            </v-list-tile>
-            <v-list-tile>
-              <v-list-tile-action>
+              </v-list-item-action>
+              <v-list-item-content>
+                <v-list-item-title class="text-uppercase">{{companyInfo.brand}}</v-list-item-title>
+              </v-list-item-content>
+            </v-list-item>
+            <v-list-item>
+              <v-list-item-action>
                 <v-icon color="primary">location_on</v-icon>
-              </v-list-tile-action>
-              <v-list-tile-content>
-                <v-list-tile-title class="text-uppercase">{{companyInfo.address}}</v-list-tile-title>
-              </v-list-tile-content>
-            </v-list-tile>
-            <v-list-tile>
-              <v-list-tile-action>
+              </v-list-item-action>
+              <v-list-item-content>
+                <v-list-item-title class="text-uppercase">{{companyInfo.address}}</v-list-item-title>
+              </v-list-item-content>
+            </v-list-item>
+            <v-list-item>
+              <v-list-item-action>
                 <v-icon color="info">person</v-icon>
-              </v-list-tile-action>
-              <v-list-tile-content>
-                <v-list-tile-title class="subtitle-1" v-html="companyInfo.legalperson"></v-list-tile-title>
-              </v-list-tile-content>
-            </v-list-tile>
+              </v-list-item-action>
+              <v-list-item-content>
+                <v-list-item-title class="subtitle-1" v-html="companyInfo.legalperson"></v-list-item-title>
+              </v-list-item-content>
+            </v-list-item>
           </v-list>
           <v-btn block color="primary" dark @click="redirect(companyInfo.id)">详细信息</v-btn>
         </v-card>
