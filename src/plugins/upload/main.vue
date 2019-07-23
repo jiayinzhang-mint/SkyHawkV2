@@ -9,7 +9,7 @@
         ref="inputer"
       >
       <label for="upload_file"></label>
-      <v-btn block round depressed color="primary darken-1">{{file?fileName:"选择文件"}}</v-btn>
+      <v-btn block rounded depressed color="primary darken-1">{{file?fileName:"选择文件"}}</v-btn>
     </div>
   </div>
 </template>

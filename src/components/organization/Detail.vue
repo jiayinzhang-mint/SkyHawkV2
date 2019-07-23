@@ -14,7 +14,7 @@
             <v-chip v-else small text-color="white" color="red darken-3">离线</v-chip>
           </td>
           <td class="text-xs-center">
-            <v-btn color="primary" round flat @click="currentUser=props.item;userInfoDialog=true">信息</v-btn>
+            <v-btn color="primary" rounded flat @click="currentUser=props.item;userInfoDialog=true">信息</v-btn>
           </td>
         </template>
       </v-data-table>

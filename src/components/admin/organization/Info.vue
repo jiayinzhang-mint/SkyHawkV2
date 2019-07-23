@@ -3,7 +3,7 @@
     <v-toolbar flat class="transparent">
       <v-toolbar-title>基本信息</v-toolbar-title>
       <v-spacer></v-spacer>
-      <v-btn round flat @click="updateOrganizationDetail">
+      <v-btn rounded flat @click="updateOrganizationDetail">
         <v-icon>save</v-icon>&nbsp;保存
       </v-btn>
     </v-toolbar>

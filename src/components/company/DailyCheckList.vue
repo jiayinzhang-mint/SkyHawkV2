@@ -4,7 +4,7 @@
       <template slot="items" slot-scope="props">
         <td class="text-xs-center">{{ props.item.create_time | timeFormat }}</td>
         <td class="text-xs-center">
-          <v-btn flat round color="primary" @click="getCheckInfo(props.item)">详情</v-btn>
+          <v-btn text rounded color="primary" @click="getCheckInfo(props.item)">详情</v-btn>
         </td>
       </template>
     </v-data-table>

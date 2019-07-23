@@ -25,7 +25,7 @@
         color="white"
         :value="processedAlertArr"
         auto-draw
-        stroke-linecap="round"
+        stroke-linecap="rounded"
       ></v-sparkline>
     </v-sheet>
   </div>

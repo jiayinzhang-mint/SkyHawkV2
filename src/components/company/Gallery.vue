@@ -59,7 +59,7 @@
       <v-layout class="mt-2">
         <v-btn
           block
-          round
+          rounded
           depressed
           @click="updateGalleryList"
         >加载更多</v-btn>

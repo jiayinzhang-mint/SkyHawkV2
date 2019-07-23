@@ -4,8 +4,8 @@
       <v-toolbar-title>监管人员</v-toolbar-title>
 
       <v-spacer></v-spacer>
-      <v-btn flat round @click="newSupervisorDialog=true">
-        <v-icon>add</v-icon>&nbsp;&nbsp;新建
+      <v-btn text rounded @click="newSupervisorDialog=true">
+        <v-icon>add</v-icon>&nbsp;新建
       </v-btn>
     </v-toolbar>
     <v-container grid-list-md>
@@ -50,7 +50,7 @@
           <v-layout justify-center>
             <v-btn
               color="primary"
-              round
+              rounded
               flat
               @click="newSupervisorDialog = false; updateSupervisor()"
             >保存</v-btn>

@@ -60,7 +60,7 @@
           </v-form>
         </v-container>
         <v-card-actions>
-          <v-btn block round @click="createPost">发布</v-btn>
+          <v-btn block rounded @click="createPost">发布</v-btn>
         </v-card-actions>
       </v-card>
     </v-dialog>

@@ -10,13 +10,13 @@
         <td class="text-xs-center" v-else-if="props.item.state == 4">已完成</td>
         <td class="text-xs-center" v-else-if="props.item.state == 9">告警错误</td>
         <td class="text-xs-center">
-          <v-btn flat round color="primary" @click="showAlertDetail(props.item.id)">详情</v-btn>
+          <v-btn text rounded color="primary" @click="showAlertDetail(props.item.id)">详情</v-btn>
         </td>
       </template>
     </v-data-table>
     <v-layout>
       <v-container>
-        <v-btn block depressed round @click.native="getMoreAlert">加载更多</v-btn>
+        <v-btn block depressed rounded @click.native="getMoreAlert">加载更多</v-btn>
       </v-container>
     </v-layout>
   </div>

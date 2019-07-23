@@ -46,7 +46,7 @@
           <v-layout justify-center>
             <v-btn
               color="primary"
-              round
+              rounded
               flat
               @click="createOrganizationDialog = false; createOrganzation()"
             >保存</v-btn>

@@ -4,10 +4,10 @@
       <v-toolbar flat class="transparent">
         <v-toolbar-title>公告详情</v-toolbar-title>
         <v-spacer></v-spacer>
-        <v-btn round flat @click="updatePost">
+        <v-btn rounded flat @click="updatePost">
           <v-icon>save</v-icon>&nbsp;&nbsp;保存
         </v-btn>
-        <v-btn round flat @click="deletePost">
+        <v-btn rounded flat @click="deletePost">
           <v-icon>delete</v-icon>&nbsp;&nbsp;删除
         </v-btn>
       </v-toolbar>

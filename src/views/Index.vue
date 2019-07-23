@@ -122,7 +122,7 @@
             <v-text-field class="mt-2" type="password" label="当前密码"></v-text-field>
             <v-text-field class="mt-2" type="password" label="新密码"></v-text-field>
           </v-form>
-          <v-btn class="mt-3" @click="changePassword" round block depressed>确认</v-btn>
+          <v-btn class="mt-3" @click="changePassword" rounded block depressed>确认</v-btn>
         </v-container>
       </v-card>
     </v-dialog>

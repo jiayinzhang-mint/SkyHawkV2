@@ -28,7 +28,7 @@
                 <div v-if="userInfo.role==1">
                   <v-btn
                     flat
-                    round
+                    rounded
                     @click.stop="uncertainAlert"
                   >
                     <v-icon class="mr-1">flag</v-icon>标记
@@ -36,7 +36,7 @@
 
                   <v-btn
                     flat
-                    round
+                    rounded
                     @click.stop="errorAlert"
                   >
                     <v-icon class="mr-1">delete</v-icon>误报
@@ -44,7 +44,7 @@
 
                   <v-btn
                     flat
-                    round
+                    rounded
                     @click.stop="repostAlert"
                   >
                     <v-icon class="mr-1">redo</v-icon>下发
@@ -56,7 +56,7 @@
             <div v-else-if="alertDetail.state==2">
               <v-btn
                 depressed
-                round
+                rounded
                 v-if="userInfo.role==4"
                 color="primary"
                 @click="rectifyAlert"
@@ -65,7 +65,7 @@
             <div v-else-if="alertDetail.state==3">
               <v-btn
                 depressed
-                round
+                rounded
                 color="primary"
                 v-if="userInfo.role==2"
                 @click="finishAlert"
@@ -73,7 +73,7 @@
             </div>
             <div v-if="userInfo.role==0">
               <v-btn
-                round
+                rounded
                 flat
                 @click="deleteAlert()"
               >
@@ -133,7 +133,7 @@
                 <v-btn
                   flat
                   block
-                  round
+                  rounded
                   :to="'/company/'+company.id+'/info'"
                 >
                   前往企业信息

@@ -3,7 +3,7 @@
     <v-toolbar flat color="transparent">
       <v-toolbar-title>{{organizationInfo.name}}</v-toolbar-title>
       <v-spacer></v-spacer>
-      <v-btn flat round @click="createUserDialog=true;userInfo=[]">
+      <v-btn text rounded @click="createUserDialog=true;userInfo=[]">
         <v-icon>add</v-icon>&nbsp;&nbsp;新建
       </v-btn>
     </v-toolbar>
@@ -57,7 +57,7 @@
         </v-container>
         <v-card-actions>
           <v-layout justify-center>
-            <v-btn color="primary" round flat @click="createUserDialog = false; createUser()">保存</v-btn>
+            <v-btn color="primary" rounded flat @click="createUserDialog = false; createUser()">保存</v-btn>
           </v-layout>
         </v-card-actions>
       </v-card>
@@ -90,7 +90,7 @@
         </v-container>
         <v-card-actions>
           <v-layout justify-center>
-            <v-btn color="primary" round flat @click="updateUserDialog = false; updateUser()">保存</v-btn>
+            <v-btn color="primary" rounded flat @click="updateUserDialog = false; updateUser()">保存</v-btn>
           </v-layout>
         </v-card-actions>
       </v-card>
@@ -109,7 +109,7 @@
         </v-container>
         <v-card-actions>
           <v-layout align-center justify-center>
-            <v-btn round color="primary" flat @click="uploadPicture">上传</v-btn>
+            <v-btn rounded color="primary" flat @click="uploadPicture">上传</v-btn>
           </v-layout>
         </v-card-actions>
       </v-card>

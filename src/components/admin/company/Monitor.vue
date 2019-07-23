@@ -3,8 +3,8 @@
     <v-toolbar flat color="transparent">
       <v-toolbar-title>监控点</v-toolbar-title>
       <v-spacer></v-spacer>
-      <v-btn flat round @click="createMonitorDialog=true">
-        <v-icon>add</v-icon>&nbsp;&nbsp;新建
+      <v-btn text rounded @click="createMonitorDialog=true">
+        <v-icon>add</v-icon>&nbsp;新建
       </v-btn>
     </v-toolbar>
     <v-data-table :headers="headers" :items="monitorList" hide-actions no-data-text="暂无数据">
@@ -51,7 +51,7 @@
           <v-layout justify-center>
             <v-btn
               color="primary"
-              round
+              rounded
               flat
               @click="createMonitorDialog = false; createMonitor()"
             >保存</v-btn>
@@ -88,7 +88,7 @@
           <v-layout justify-center>
             <v-btn
               color="primary"
-              round
+              rounded
               flat
               @click="updateMonitorDialog = false; updateMonitor()"
             >保存</v-btn>

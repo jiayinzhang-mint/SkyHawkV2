@@ -87,11 +87,11 @@ export default {
           {
             data: [
               {
-                value: Math.round(this.userStatistic.onlineRate),
+                value: Math.rounded(this.userStatistic.onlineRate),
                 name: "在线"
               },
               {
-                value: Math.round(100 - this.userStatistic.onlineRate),
+                value: Math.rounded(100 - this.userStatistic.onlineRate),
                 name: "离线"
               }
             ]
@@ -99,7 +99,7 @@ export default {
         ],
         graphic: {
           style: {
-            text: Math.round(this.userStatistic.onlineRate) + " %"
+            text: Math.rounded(this.userStatistic.onlineRate) + " %"
           }
         }
       });

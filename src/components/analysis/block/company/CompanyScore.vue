@@ -18,7 +18,7 @@
         color="white"
         :value="heartbeats"
         auto-draw
-        stroke-linecap="round"
+        stroke-linecap="rounded"
       ></v-sparkline>
     </v-sheet>
   </div>

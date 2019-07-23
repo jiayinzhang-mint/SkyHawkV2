@@ -25,7 +25,7 @@
         color="white"
         :value="alertCountTrendArr"
         auto-draw
-        stroke-linecap="round"
+        stroke-linecap="rounded"
       ></v-sparkline>
     </v-sheet>
   </div>

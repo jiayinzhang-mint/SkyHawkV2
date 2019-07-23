@@ -23,7 +23,7 @@
               <v-divider class="mb-4"></v-divider>
             </div>
             <v-layout justify-center>
-              <v-btn round color="primary darken-1" @click="goNext">下一步</v-btn>
+              <v-btn rounded color="primary darken-1" @click="goNext">下一步</v-btn>
             </v-layout>
           </v-container>
         </v-stepper-content>
@@ -37,7 +37,7 @@
               <v-divider class="mb-4"></v-divider>
             </div>
             <v-layout justify-center>
-              <v-btn round color="primary darken-1" @click="goNext">下一步</v-btn>
+              <v-btn rounded color="primary darken-1" @click="goNext">下一步</v-btn>
             </v-layout>
           </v-container>
         </v-stepper-content>
@@ -51,7 +51,7 @@
               <v-divider class="mb-4"></v-divider>
             </div>
             <v-layout justify-center>
-              <v-btn round color="primary darken-1" @click="submit">提交</v-btn>
+              <v-btn rounded color="primary darken-1" @click="submit">提交</v-btn>
             </v-layout>
           </v-container>
         </v-stepper-content>
