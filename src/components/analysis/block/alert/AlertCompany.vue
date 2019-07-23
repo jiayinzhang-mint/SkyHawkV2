@@ -10,10 +10,10 @@
         </div>
       </v-layout>
       <v-layout v-else column align-center>
-        <div class="body-2 font-weight-bold mb-1 neon">涉及企业</div>
+        <div class="body-2 font-weight-bold mb-1 ">涉及企业</div>
         <div>
-          <span class="display-3 font-weight-light neon">98</span>
-                    <strong class="neon">&nbsp;&nbsp;家</strong>
+          <span class="display-3 font-weight-light ">98</span>
+                    <strong class="">&nbsp;&nbsp;家</strong>
 
         </div>
       </v-layout>

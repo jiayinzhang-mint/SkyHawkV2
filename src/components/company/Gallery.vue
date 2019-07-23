@@ -1,36 +1,12 @@
 <template>
-  <v-layout row>
-    <v-container
-      fluid
-      grid-list-lg
-    >
-      <v-layout
-        row
-        wrap
-      >
-        <v-flex
-          xs6
-          v-for="(item,i) in galleryList"
-          :key="i"
-        >
+  <v-layout>
+    <v-container fluid grid-list-lg>
+      <v-layout row wrap>
+        <v-flex xs6 v-for="(item,i) in galleryList" :key="i">
           <v-card>
-            <v-img
-              contain
-              :src="item.src"
-              lazy-src="/img/lazy.jpg"
-            >
-              <v-layout
-                slot="placeholder"
-                fill-height
-                align-center
-                justify-center
-                ma-0
-              >
-                <v-progress-circular
-                  indeterminate
-                  color="primary"
-                  :width="1"
-                ></v-progress-circular>
+            <v-img contain :src="item.src" lazy-src="/img/lazy.jpg">
+              <v-layout slot="placeholder" fill-height align-center justify-center ma-0>
+                <v-progress-circular indeterminate color="primary" :width="1"></v-progress-circular>
               </v-layout>
             </v-img>
             <div
@@ -38,18 +14,12 @@
               v-viewer="{url: 'data-large', navbar: false, movable: false}"
               style="display:none"
             >
-              <img :data-large="item.src">
+              <img :data-large="item.src" />
             </div>
             <v-card-actions ref="picture2">
               <span>{{item.time| timeFormat}}</span>
               <v-spacer></v-spacer>
-              <v-btn
-                flat
-                icon
-                slot="activator"
-                class="mr-2"
-                @click="show"
-              >
+              <v-btn flat icon slot="activator" class="mr-2" @click="show">
                 <v-icon>search</v-icon>
               </v-btn>
             </v-card-actions>
@@ -57,12 +27,7 @@
         </v-flex>
       </v-layout>
       <v-layout class="mt-2">
-        <v-btn
-          block
-          rounded
-          depressed
-          @click="updateGalleryList"
-        >加载更多</v-btn>
+        <v-btn block rounded depressed @click="updateGalleryList">加载更多</v-btn>
       </v-layout>
     </v-container>
   </v-layout>

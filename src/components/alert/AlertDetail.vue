@@ -4,11 +4,11 @@
       <v-flex xs8>
         <v-card>
           <v-toolbar flat color="transparent">
-            <v-btn icon :to="'/alert'">
+            <v-btn icon @click="goBack">
               <v-icon>arrow_back</v-icon>
             </v-btn>
 
-            <v-toolbar-title class="subtitle-1 font-weight-black">{{alertDetail.title}}</v-toolbar-title>
+            <v-toolbar-title class="subtitle-1 font-weight-black" style="margin-left:-20px">{{alertDetail.title}}</v-toolbar-title>
             <v-spacer></v-spacer>
             <div v-if="alertDetail.state==1">
               <div v-if="alertDetail.auto==1">
@@ -129,6 +129,9 @@ export default {
   methods: {
     redirect() {
       this.$router.push({ path: "/company/" + this.company.id });
+    },
+    goBack() {
+      this.$router.push({ path: "/alert" });
     },
     async getCompanyInfo() {
       this.company = this.companyList.find(element => {

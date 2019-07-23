@@ -3,71 +3,71 @@
     <div id="markermap" style="width: 100%;height: 400px;z-index:1!important;"></div>
     <v-list class="transparent">
       <v-subheader>企业信息</v-subheader>
-      <v-list-tile>
-        <v-list-tile-action>
+      <v-list-item>
+        <v-list-item-action>
           <v-icon color="primary">assignment_ind</v-icon>
-        </v-list-tile-action>
-        <v-list-tile-content>
-          <v-list-tile-title>{{companyInfo.name}}</v-list-tile-title>
-        </v-list-tile-content>
-      </v-list-tile>
+        </v-list-item-action>
+        <v-list-item-content>
+          <v-list-item-title>{{companyInfo.name}}</v-list-item-title>
+        </v-list-item-content>
+      </v-list-item>
       <v-divider inset></v-divider>
-      <v-list-tile>
-        <v-list-tile-action>
+      <v-list-item>
+        <v-list-item-action>
           <v-icon color="primary">location_on</v-icon>
-        </v-list-tile-action>
-        <v-list-tile-content>
-          <v-list-tile-title>{{companyInfo.address}}</v-list-tile-title>
-        </v-list-tile-content>
-      </v-list-tile>
+        </v-list-item-action>
+        <v-list-item-content>
+          <v-list-item-title>{{companyInfo.address}}</v-list-item-title>
+        </v-list-item-content>
+      </v-list-item>
       <v-divider inset></v-divider>
-      <v-list-tile>
-        <v-list-tile-action>
+      <v-list-item>
+        <v-list-item-action>
           <v-icon color="primary">person</v-icon>
-        </v-list-tile-action>
-        <v-list-tile-content>
-          <v-list-tile-title>{{companyInfo.legal_person}}</v-list-tile-title>
-        </v-list-tile-content>
-      </v-list-tile>
+        </v-list-item-action>
+        <v-list-item-content>
+          <v-list-item-title>{{companyInfo.legal_person}}</v-list-item-title>
+        </v-list-item-content>
+      </v-list-item>
       <v-divider inset></v-divider>
-      <v-list-tile>
-        <v-list-tile-action>
+      <v-list-item>
+        <v-list-item-action>
           <v-icon color="primary">group</v-icon>
-        </v-list-tile-action>
-        <v-list-tile-content>
-          <v-list-tile-title>{{station.name}} - {{group.name}}</v-list-tile-title>
-        </v-list-tile-content>
-      </v-list-tile>
+        </v-list-item-action>
+        <v-list-item-content>
+          <v-list-item-title>{{station.name}} - {{group.name}}</v-list-item-title>
+        </v-list-item-content>
+      </v-list-item>
       <v-divider inset></v-divider>
       <v-subheader>安全等级</v-subheader>
-      <v-list-tile>
-        <v-list-tile-action>
+      <v-list-item>
+        <v-list-item-action>
           <v-icon color="primary">stars</v-icon>
-        </v-list-tile-action>
-        <v-list-tile-content>
+        </v-list-item-action>
+        <v-list-item-content>
           <v-icon v-if="companyInfo.level==3" color="green lighten-2">sentiment_very_satisfied</v-icon>
           <v-icon v-if="companyInfo.level==2" color="yellow lighten-2">sentiment_satisfied</v-icon>
           <v-icon v-if="companyInfo.level==1" color="red lighten-2">sentiment_dissatisfied</v-icon>
-        </v-list-tile-content>
-      </v-list-tile>
+        </v-list-item-content>
+      </v-list-item>
       <v-subheader>营业执照</v-subheader>
-      <v-list-tile>
-        <v-list-tile-action>
+      <v-list-item>
+        <v-list-item-action>
           <v-icon color="primary">assignment</v-icon>
-        </v-list-tile-action>
-        <v-list-tile-content>
-          <v-list-tile-title>{{companyInfo.license}}</v-list-tile-title>
-        </v-list-tile-content>
-      </v-list-tile>
+        </v-list-item-action>
+        <v-list-item-content>
+          <v-list-item-title>{{companyInfo.license}}</v-list-item-title>
+        </v-list-item-content>
+      </v-list-item>
       <v-subheader>证照到期时间</v-subheader>
-      <v-list-tile>
-        <v-list-tile-action>
+      <v-list-item>
+        <v-list-item-action>
           <v-icon color="primary">av_timer</v-icon>
-        </v-list-tile-action>
-        <v-list-tile-content>
-          <v-list-tile-title>{{companyInfo.license_validity| timeFormat}}</v-list-tile-title>
-        </v-list-tile-content>
-      </v-list-tile>
+        </v-list-item-action>
+        <v-list-item-content>
+          <v-list-item-title>{{companyInfo.license_validity| timeFormat}}</v-list-item-title>
+        </v-list-item-content>
+      </v-list-item>
     </v-list>
   </div>
 </template>

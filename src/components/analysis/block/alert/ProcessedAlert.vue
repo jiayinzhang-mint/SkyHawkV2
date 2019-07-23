@@ -10,10 +10,10 @@
         </div>
       </v-layout>
       <v-layout v-else column align-center>
-        <div class="body-2 font-weight-bold mb-1 neon">处理率</div>
+        <div class="body-2 font-weight-bold mb-1 ">处理率</div>
         <div>
-          <span class="display-3 font-weight-light neon">{{processedAlert}}</span>
-          <strong class="neon">&nbsp;&nbsp;%</strong>
+          <span class="display-3 font-weight-light ">{{processedAlert}}</span>
+          <strong class="">&nbsp;&nbsp;%</strong>
         </div>
       </v-layout>
     </v-card-title>

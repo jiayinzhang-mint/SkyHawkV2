@@ -1,88 +1,43 @@
 <template>
   <div>
+    <v-toolbar class="transparent">
+      <v-toolbar-title class="subtitle-1 font-weight-black">近期监测数据</v-toolbar-title>
+      <v-spacer></v-spacer>
+      <div class="subtitle-1 font-weight-black">监控点</div>
+      <v-toolbar-items class="ml-2">
+        <v-menu open-on-hover bottom offset-y>
+          <template v-slot:activator="{on}">
+            <v-btn v-on="on" text>
+              {{indexList[selectedIndex]}}
+              <v-icon>expand_more</v-icon>
+            </v-btn>
+          </template>
+          <v-list dense>
+            <v-list-item v-for="(item, index) in indexList" :key="index" @click="filter(index)">
+              <v-list-item-title>{{ item }}</v-list-item-title>
+            </v-list-item>
+          </v-list>
+        </v-menu>
+      </v-toolbar-items>
+    </v-toolbar>
+
+    <v-tabs v-model="tab" centered icons-and-text>
+      <v-tabs-slider></v-tabs-slider>
+      <v-tab key="1" @click="alterChart('temperature')">
+        温度
+        <v-icon>whatshot</v-icon>
+      </v-tab>
+      <v-tab key="2" @click="alterChart('humidity')">
+        湿度
+        <v-icon>bubble_chart</v-icon>
+      </v-tab>
+    </v-tabs>
+    <v-divider></v-divider>
     <v-card flat color="transparent">
       <v-container>
         <div id="humiture" style="min-height:400px;height:100%"></div>
       </v-container>
     </v-card>
-    <v-tabs v-model="tab" centered icons-and-text color="transparent">
-      <v-tabs-slider></v-tabs-slider>
-      <v-tab key="1" @click="alterChart('temperature')">温度
-        <v-icon>whatshot</v-icon>
-      </v-tab>
-      <v-tab key="2" @click="alterChart('humidity')">湿度
-        <v-icon>bubble_chart</v-icon>
-      </v-tab>
-    </v-tabs>
-    <v-divider></v-divider>
-    <v-tabs-items v-model="tab">
-      <v-tab-item key="1">
-        <v-toolbar dense class="transparent">
-          <v-toolbar-title>近期监测数据</v-toolbar-title>
-          <v-spacer></v-spacer>监控点
-          <v-toolbar-items class="ml-2">
-            <v-menu open-on-hover bottom offset-y>
-              <v-btn slot="activator" flat>
-                {{indexList[selectedIndex]}}
-                <v-icon>expand_more</v-icon>
-              </v-btn>
-              <v-list dense>
-                <v-list-tile v-for="(item, index) in indexList" :key="index" @click="filter(index)">
-                  <v-list-tile-title>{{ item }}</v-list-tile-title>
-                </v-list-tile>
-              </v-list>
-            </v-menu>
-          </v-toolbar-items>
-        </v-toolbar>
-        <v-data-table
-          :headers="headers"
-          :items="humitureShow"
-          hide-actions
-          no-data-text="暂无数据"
-          style="height:calc(100vh - 647px);overflow :auto"
-          color="transparent"
-        >
-          <template slot="items" slot-scope="props">
-            <td class="text-xs-center">{{ props.item.index }}</td>
-            <td class="text-xs-center">{{ props.item.temperature }} °C</td>
-            <td class="text-xs-center">{{ props.item.time}}</td>
-          </template>
-        </v-data-table>
-      </v-tab-item>
-      <v-tab-item key="2">
-        <v-toolbar dense class="transparent">
-          <v-toolbar-title>近期监测数据</v-toolbar-title>
-          <v-spacer></v-spacer>监控点
-          <v-toolbar-items class="ml-2">
-            <v-menu open-on-hover bottom offset-y>
-              <v-btn slot="activator" flat>
-                {{indexList[selectedIndex]}}
-                <v-icon>expand_more</v-icon>
-              </v-btn>
-              <v-list dense>
-                <v-list-tile v-for="(item, index) in indexList" :key="index" @click="filter(index)">
-                  <v-list-tile-title>{{ item }}</v-list-tile-title>
-                </v-list-tile>
-              </v-list>
-            </v-menu>
-          </v-toolbar-items>
-        </v-toolbar>
-        <v-data-table
-          :headers="headers"
-          :items="humitureShow"
-          hide-actions
-          no-data-text="暂无数据"
-          style="height:calc(100vh - 647px);overflow :auto"
-          color="transparent"
-        >
-          <template slot="items" slot-scope="props">
-            <td class="text-xs-center">{{ props.item.index }}</td>
-            <td class="text-xs-center">{{ props.item.humidity }} %</td>
-            <td class="text-xs-center">{{ props.item.time}}</td>
-          </template>
-        </v-data-table>
-      </v-tab-item>
-    </v-tabs-items>
   </div>
 </template>
 
@@ -98,24 +53,7 @@ export default {
       humitureShow: [],
       humitureClassified: [],
       indexList: [],
-      selectedIndex: null,
-      headers: [
-        {
-          text: "监控点",
-          align: "center",
-          sortable: false
-        },
-        {
-          text: "温度",
-          align: "center",
-          sortable: false
-        },
-        {
-          text: "时间",
-          align: "center",
-          sortable: false
-        }
-      ]
+      selectedIndex: null
     };
   },
   methods: {

@@ -8,42 +8,6 @@
   background-color: #424242;
 }
 
-.v-treeview {
-  padding: 8px;
-}
-
-.container {
-  padding: 15px !important;
-}
-
-.theme--dark.v-table,
-.v-datatable__actions {
-  background: transparent !important;
-}
-
-.v-treeview-node__label {
-  user-select: none;
-  -webkit-user-select: none;
-}
-
-.v-toolbar__title {
-  font-size: 17px !important;
-  margin-left: 5px !important;
-}
-
-.v-toolbar__content {
-  padding: 0 15px !important;
-}
-
-.v-card,
-.flex {
-  border-radius: 5px !important;
-}
-
-.v-pagination {
-  user-select: none;
-}
-
 .v-stepper__content {
   padding: 0 !important;
 }
@@ -56,15 +20,6 @@
   color: #ffffff81;
 }
 
-.dashboard {
-  background: linear-gradient(
-    180deg,
-    rgb(23, 0, 36) 0%,
-    rgb(71, 9, 121) 35%,
-    rgb(105, 18, 163) 100%
-  ) !important;
-}
-
 .dashboard::-webkit-scrollbar {
   display: none;
 }
@@ -75,8 +30,4 @@
 
 td {
   font-size: 14px !important;
-}
-
-.v-input__slot {
-  margin-bottom: 0 !important;
 }

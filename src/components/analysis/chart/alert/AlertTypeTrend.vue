@@ -3,7 +3,7 @@
     <v-card-title>
       <!-- <v-icon class="mr-4" size="64">alarm</v-icon> -->
       <v-layout column align-start>
-        <div class="subtitle-1 font-weight-bold mb-1 neon">
+        <div class="subtitle-1 font-weight-bold mb-1 ">
           告警类型
           <span class="grey--text">| 本周</span>
         </div>

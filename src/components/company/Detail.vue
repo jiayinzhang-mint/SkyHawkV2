@@ -1,36 +1,38 @@
 <template>
   <v-container fluid>
     <v-card>
-      <v-layout row>
+      <v-layout>
         <v-flex xs3>
-          <v-toolbar color="transparent" flat>
-            <v-btn icon @click="goBack">
-              <v-icon>arrow_back</v-icon>
-            </v-btn>
-            <v-toolbar-title
-              class="subtitle-1 font-weight-medium text-uppercase"
-            >{{currentCompany.brand}}</v-toolbar-title>
-          </v-toolbar>
-          <v-list class="transparent">
-            <template v-for="(item, i) in menuCompany">
-              <v-layout v-if="item.heading" :key="i" row align-center>
-                <v-subheader v-if="item.heading" class="grey--text">{{ item.heading }}</v-subheader>
-              </v-layout>
-              <v-divider v-else-if="item.divider" :key="i" dark class="my-2"></v-divider>
-              <v-list-tile
-                v-else
-                :key="i"
-                :to="'/company/'+currentCompany.id + '/' +item.route"
-                ripple
-              >
-                <v-list-tile-content>
-                  <v-list-tile-title class="body-2">{{ item.text }}</v-list-tile-title>
-                </v-list-tile-content>
-              </v-list-tile>
-            </template>
-          </v-list>
+          <v-navigation-drawer permanent class="sub-nav">
+            <v-toolbar color="transparent" flat>
+              <v-btn icon @click="goBack">
+                <v-icon>arrow_back</v-icon>
+              </v-btn>
+              <v-toolbar-title
+                class="subtitle-1 font-weight-black text-uppercase"
+                style="margin-left:-20px"
+              >{{currentCompany.brand}}</v-toolbar-title>
+            </v-toolbar>
+            <v-list dense class="transparent">
+              <template v-for="(item, i) in menuCompany">
+                <v-layout v-if="item.heading" :key="i">
+                  <v-subheader v-if="item.heading" class="grey--text mt-5">{{ item.heading }}</v-subheader>
+                </v-layout>
+                <v-list-item
+                  v-else
+                  :key="i"
+                  :to="'/company/'+currentCompany.id + '/' +item.route"
+                  ripple
+                >
+                  <v-list-item-content>
+                    <v-list-item-title class="body-2">{{ item.text }}</v-list-item-title>
+                  </v-list-item-content>
+                </v-list-item>
+              </template>
+            </v-list>
+          </v-navigation-drawer>
         </v-flex>
-        <v-flex xs9 style="height:calc(100vh - 95px);overflow :auto;background:#3a3a3a">
+        <v-flex xs9 style="height:calc(100vh - 90px);overflow :auto">
           <router-view></router-view>
         </v-flex>
       </v-layout>
@@ -60,10 +62,6 @@ export default {
       {
         text: "每日晨检",
         route: "dailychecklist"
-      },
-
-      {
-        divider: true
       },
       { heading: "数据监测" },
       {

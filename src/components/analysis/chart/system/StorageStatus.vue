@@ -3,7 +3,7 @@
     <v-card-title>
       <!-- <v-icon class="mr-4" size="64">alarm</v-icon> -->
       <v-layout column align-center>
-        <div class="body-1 font-weight-bold mb-1 neon">系统存储</div>
+        <div class="body-1 font-weight-bold mb-1 ">系统存储</div>
       </v-layout>
     </v-card-title>
     <div id="storagestatus" style="min-height:120px;height:100%" class="chart" ref="echarts"></div>

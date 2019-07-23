@@ -1,17 +1,25 @@
 <template>
   <div>
-    <v-data-table :headers="headers" :items="checkList" no-data-text="暂无数据" hide-actions>
-      <template slot="items" slot-scope="props">
-        <td class="text-xs-center">{{ props.item.create_time | timeFormat }}</td>
-        <td class="text-xs-center">
-          <v-btn text rounded color="primary" @click="getCheckInfo(props.item)">详情</v-btn>
-        </td>
-      </template>
-    </v-data-table>
+    <v-simple-table>
+      <thead>
+        <tr>
+          <th class="text-center">创建时间</th>
+          <th class="text-center">操作</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr v-for="(item,i) in checkList" :key="`check-${i}`">
+          <td class="text-center">{{ item.create_time | timeFormat }}</td>
+          <td class="text-center">
+            <v-btn text rounded color="primary" @click="getCheckInfo(item)">详情</v-btn>
+          </td>
+        </tr>
+      </tbody>
+    </v-simple-table>
     <v-dialog v-model="checkInfoDialog" width="400" scrollable>
       <v-card>
         <v-toolbar flat class="transparent">
-          <v-toolbar-title>填表人：{{currentCheck.check_person_parsed.name}}</v-toolbar-title>
+          <v-toolbar-title class="subtitle-1 font-weight-black">填表人：{{checkPersonName}}</v-toolbar-title>
           <v-spacer></v-spacer>
           <v-btn icon @click="checkInfoDialog=false">
             <v-icon>clear</v-icon>
@@ -20,17 +28,17 @@
         <v-card-text>
           <div v-for="(item,i) in allAreaForm" :key="item.text">
             <small>{{item.text}}</small>
-            <p>{{currentCheck.all_area_parsed[i]}}</p>
+            <p class="white--text">{{currentCheck.all_area_parsed[i]}}</p>
             <v-divider class="mb-4"></v-divider>
           </div>
           <div v-for="(item,i) in cookingAreaForm" :key="item.text">
             <small>{{item.text}}</small>
-            <p>{{currentCheck.cooking_area_parsed[i]}}</p>
+            <p class="white--text">{{currentCheck.cooking_area_parsed[i]}}</p>
             <v-divider class="mb-4"></v-divider>
           </div>
           <div v-for="(item,i) in specialAreaForm" :key="item.text">
             <small>{{item.text}}</small>
-            <p>{{currentCheck.special_area_parsed[i]}}</p>
+            <p class="white--text">{{currentCheck.special_area_parsed[i]}}</p>
             <v-divider class="mb-4"></v-divider>
           </div>
         </v-card-text>
@@ -48,6 +56,7 @@ import { setTimeout } from "timers";
 export default {
   data: () => ({
     checkList: [],
+    checkPersonName: "",
     currentCheck: {
       check_person_parsed: {
         name: ""
@@ -134,7 +143,7 @@ export default {
     async getCheckInfo(e) {
       this.currentCheck = e;
       const rsp = await userService.getUserInfo(e.check_person);
-      this.currentCheck.check_person_parsed = rsp.userInfo;
+      this.checkPersonName = rsp.userInfo.name;
       this.currentCheck.all_area_parsed = JSON.parse(
         this.currentCheck.all_area
       );
@@ -144,11 +153,7 @@ export default {
       this.currentCheck.special_area_parsed = JSON.parse(
         this.currentCheck.special_area
       );
-      setTimeout(() => {
-        this.checkInfoDialog = true;
-      }, 100);
-
-      console.log(this.currentCheck);
+      this.checkInfoDialog = true;
     }
   },
 

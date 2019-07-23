@@ -1,17 +1,26 @@
 <template>
   <div>
-    <v-data-table :headers="headers" :items="nvrList" hide-actions no-data-text="暂无数据">
-      <template slot="items" slot-scope="props">
-        <td class="text-xs-center">{{ props.item.name }}</td>
-        <td class="text-xs-center">{{ props.item.index }}</td>
-        <td class="text-xs-center" v-if="props.item.status == 1">
-          <v-chip small text-color="white" color="green">在线</v-chip>
-        </td>
-        <td class="text-xs-center" v-else>
-          <v-chip small text-color="white" color="red darken-3">离线</v-chip>
-        </td>
-      </template>
-    </v-data-table>
+    <v-simple-table>
+      <thead>
+        <tr>
+          <th class="text-center">名称</th>
+          <th class="text-center">编号</th>
+          <th class="text-center">状态</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr v-for="(item,i) in nvrList" :key="`nvr-${i}`">
+          <td class="text-center">{{ item.name }}</td>
+          <td class="text-center">{{ item.index }}</td>
+          <td class="text-center" v-if="item.status == 1">
+            <v-chip small text-color="white" color="green">在线</v-chip>
+          </td>
+          <td class="text-center" v-else>
+            <v-chip small text-color="white" color="red darken-3">离线</v-chip>
+          </td>
+        </tr>
+      </tbody>
+    </v-simple-table>
   </div>
 </template>
 
@@ -43,10 +52,10 @@ export default {
   }),
   methods: {
     async getDeviceList() {
-
-      const rsp = await companyService.getCompanyDevice(this.$route.params.companyId);
+      const rsp = await companyService.getCompanyDevice(
+        this.$route.params.companyId
+      );
       this.nvrList = rsp.nvrList;
-
     }
   },
   computed: {
