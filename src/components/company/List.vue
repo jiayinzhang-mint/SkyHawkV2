@@ -27,12 +27,7 @@
         </v-layout>
       </v-toolbar>
       <v-divider></v-divider>
-      <v-simple-table
-        :items="companyListShow"
-        :pagination.sync="pagination"
-        item-key="name"
-        style="height:calc(100vh - 129px - 64px);overflow :auto"
-      >
+      <v-simple-table style="height:calc(100vh - 129px - 64px);overflow :auto">
         <tbody>
           <tr
             class="clickable-tr"
@@ -41,8 +36,8 @@
             ripple
             @click="showCompanyDetail(item.id)"
           >
-            <td class="text-uppercase" style="width:300px">{{item.brand}}</td>
-            <td class="text-uppercase" style="max-width:300px">{{item.name}}</td>
+            <td class="text-uppercase" style="width:350px">{{item.brand}}</td>
+            <td class="text-uppercase" style="max-width:350px">{{item.name}}</td>
             <td>
               <v-rating dense small v-model="rating" readonly></v-rating>
             </td>
