@@ -1,20 +1,20 @@
 <template>
   <v-app dark class="dashboard">
     <v-toolbar dark flat tabs class="transparent">
-      <v-toolbar-title class="ml-2 font-weight-bold " style="font-size:20px !important">SkyHawk</v-toolbar-title>
-      <v-toolbar-title class="title-des ml-2 ">数据地图</v-toolbar-title>
+      <v-toolbar-title class="ml-2 font-weight-bold" style="font-size:20px !important">SkyHawk</v-toolbar-title>
+      <v-toolbar-title class="title-des ml-2">数据地图</v-toolbar-title>
       <v-spacer></v-spacer>
       <v-btn icon @click="getInstantData()">
         <v-icon>refresh</v-icon>
       </v-btn>
       <template v-slot:extension>
-        <v-tabs v-model="model" left color="transparent" slider-color="primary" show-arrows>
+        <v-tabs v-model="model" left slider-color="primary" show-arrows>
           <v-tab
             @click="alterTab(item)"
             v-for="(item,i) in stationListShow"
             :key="i"
             :href="`#tab-${i}`"
-            class=""
+            class
           >{{item.name}}</v-tab>
         </v-tabs>
       </template>
@@ -27,8 +27,7 @@
       </v-tab-item>
     </v-tabs-items>
     <v-container fluid grid-list-md>
-      <v-layout row wrap fill-height>
-      </v-layout>
+      <v-layout row wrap fill-height></v-layout>
     </v-container>
   </v-app>
 </template>
@@ -37,8 +36,7 @@
 import { mapGetters } from "vuex";
 
 export default {
-  components: {
-  },
+  components: {},
   data() {
     return {
       model: "tab-0",
