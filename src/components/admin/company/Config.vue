@@ -1,17 +1,17 @@
 <template>
   <v-container>
     <v-card>
-      <v-layout row>
+      <v-layout>
         <v-flex xs3>
           <v-toolbar color="transparent" flat>
             <v-toolbar-title
-              class="subheading font-weight-medium text-uppercase"
+              class="subtitle-1 font-weight-medium text-uppercase"
               style="margin-left:-7px"
             >{{currentCompany.brand}}</v-toolbar-title>
           </v-toolbar>
-          <v-list class="transparent">
+          <v-list dense class="transparent">
             <template v-for="(item, i) in menuCompany">
-              <v-layout v-if="item.heading" :key="i" row align-center>
+              <v-layout v-if="item.heading" :key="i">
                 <v-subheader v-if="item.heading" class="grey--text">{{ item.heading }}</v-subheader>
               </v-layout>
               <v-divider v-else-if="item.divider" :key="i" dark class="my-2"></v-divider>

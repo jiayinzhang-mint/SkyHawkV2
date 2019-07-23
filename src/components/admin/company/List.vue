@@ -1,9 +1,9 @@
 <template>
-  <v-layout row>
+  <v-layout>
     <v-flex sm3>
       <v-toolbar color="grey darken-3" flat>
         <v-scroll-x-transition>
-          <v-toolbar-title v-if="!filted || userInfo.role>1 ">企业列表</v-toolbar-title>
+          <v-toolbar-title class="subtitle-1" v-if="!filted || userInfo.role>1">企业列表</v-toolbar-title>
         </v-scroll-x-transition>
         <v-spacer></v-spacer>
         <v-scroll-x-transition>
@@ -23,7 +23,7 @@
         </v-toolbar-items>
       </v-toolbar>
       <v-divider></v-divider>
-      <v-list style="height:calc(100vh - 129px);overflow :auto">
+      <v-list dense style="height:calc(100vh - 129px);overflow :auto">
         <v-scroll-x-transition group>
           <template v-for="(item,index) in companyListShow">
             <div :key="index">

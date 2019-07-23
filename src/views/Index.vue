@@ -1,7 +1,7 @@
 <template>
-  <v-app id="inspire" dark>
-    <v-navigation-drawer fixed app v-model="drawer" clipped class="transparent">
-      <v-list shaped>
+  <v-app>
+    <v-navigation-drawer app v-model="drawer" clipped>
+      <v-list dense shaped>
         <template v-for="(item, i) in menuManage">
           <v-layout v-if="item.heading" :key="i" row align-center>
             <v-subheader v-if="item.heading && userInfo.role<item.role">{{ item.heading }}</v-subheader>
@@ -17,9 +17,9 @@
           </v-list-item>
         </template>
       </v-list>
-      <v-list shaped>
+      <v-list dense shaped>
         <template v-for="(item, i) in menuCommon">
-          <v-layout v-if="item.heading" :key="i" row align-center>
+          <v-layout v-if="item.heading" :key="i">
             <v-subheader v-if="item.heading">{{ item.heading }}</v-subheader>
           </v-layout>
           <v-list-group v-else-if="item.children" :key="item.text" v-model="item.model">

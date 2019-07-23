@@ -23,19 +23,19 @@
     <v-layout class="text-xs-center pt-3">
       <v-flex xs3>
         <small class="font-weight-bold">天气</small>
-        <div class="subheading mt-3">{{weather.weather}}</div>
+        <div class="subtitle-1 mt-3">{{weather.weather}}</div>
       </v-flex>
       <v-flex xs3>
         <small class="font-weight-bold">湿度</small>
-        <div class="subheading mt-3">{{weather.humidity}} %</div>
+        <div class="subtitle-1 mt-3">{{weather.humidity}} %</div>
       </v-flex>
       <v-flex xs3>
         <small class="font-weight-bold">风向</small>
-        <div class="subheading mt-3">{{weather.winddirection}}</div>
+        <div class="subtitle-1 mt-3">{{weather.winddirection}}</div>
       </v-flex>
       <v-flex xs3>
         <small class="font-weight-bold">风速</small>
-        <div class="subheading mt-3">{{weather.windpower}} 级</div>
+        <div class="subtitle-1 mt-3">{{weather.windpower}} 级</div>
       </v-flex>
     </v-layout>
   </v-container>

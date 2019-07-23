@@ -8,7 +8,7 @@
               <v-icon>arrow_back</v-icon>
             </v-btn>
             <v-toolbar-title
-              class="subheading font-weight-medium text-uppercase"
+              class="subtitle-1 font-weight-medium text-uppercase"
             >{{currentCompany.brand}}</v-toolbar-title>
           </v-toolbar>
           <v-list class="transparent">

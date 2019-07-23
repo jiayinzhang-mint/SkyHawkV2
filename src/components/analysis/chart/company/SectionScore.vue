@@ -2,7 +2,7 @@
   <div>
     <v-card-title>
       <v-layout column align-start>
-        <div class="subheading font-weight-bold mb-1 neon">详细评分</div>
+        <div class="subtitle-1 font-weight-bold mb-1 neon">详细评分</div>
       </v-layout>
     </v-card-title>
     <v-container>

@@ -24,7 +24,7 @@
     </v-data-table>
     <v-dialog v-model="createMonitorDialog" width="400">
       <v-card>
-        <v-card-title class="subheading" primary-title>监控点</v-card-title>
+        <v-card-title class="subtitle-1" primary-title>监控点</v-card-title>
         <v-container>
           <v-form ref="createMonitorForm">
             <v-text-field
@@ -61,7 +61,7 @@
     </v-dialog>
     <v-dialog v-model="updateMonitorDialog" width="400">
       <v-card>
-        <v-card-title class="subheading" primary-title>监控点</v-card-title>
+        <v-card-title class="subtitle-1" primary-title>监控点</v-card-title>
         <v-container>
           <v-form ref="updateUserForm">
             <v-text-field

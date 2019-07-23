@@ -3,7 +3,7 @@
     <v-card-title>
       <!-- <v-icon class="mr-4" size="64">alarm</v-icon> -->
       <v-layout column align-start>
-        <div class="subheading font-weight-bold mb-1">评分趋势</div>
+        <div class="subtitle-1 font-weight-bold mb-1">评分趋势</div>
         <div>
           <span class="display-3 font-weight-bold">4.7</span>
           <strong>&nbsp;&nbsp;/5</strong>

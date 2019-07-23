@@ -31,7 +31,7 @@
     </v-data-table>
     <v-dialog v-model="createUserDialog" width="400">
       <v-card>
-        <v-card-title class="subheading" primary-title>新建用户</v-card-title>
+        <v-card-title class="subtitle-1" primary-title>新建用户</v-card-title>
         <v-container>
           <v-form ref="createUserForm">
             <v-text-field
@@ -64,7 +64,7 @@
     </v-dialog>
     <v-dialog v-model="updateUserDialog" width="400">
       <v-card>
-        <v-card-title class="subheading" primary-title>更新用户</v-card-title>
+        <v-card-title class="subtitle-1" primary-title>更新用户</v-card-title>
         <v-container>
           <v-form ref="updateUserForm">
             <v-text-field
@@ -97,7 +97,7 @@
     </v-dialog>
     <v-dialog v-model="uploadPictureDialog" max-width="250">
       <v-card>
-        <v-card-title class="subheading">上传肖像</v-card-title>
+        <v-card-title class="subtitle-1">上传肖像</v-card-title>
         <v-img contain :src="userInfo.avatar" v-if="userInfo.avatar" lazy-src="/img/lazy.jpg">
           <v-layout slot="placeholder" fill-height align-center justify-center ma-0>
             <v-progress-circular indeterminate color="grey lighten-5"></v-progress-circular>

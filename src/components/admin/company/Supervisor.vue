@@ -32,7 +32,7 @@
 
     <v-dialog v-model="newSupervisorDialog" width="500">
       <v-card>
-        <v-card-title class="subheading" primary-title>监管人员</v-card-title>
+        <v-card-title class="subtitle-1" primary-title>监管人员</v-card-title>
         <v-container>
           <v-form ref="supervisorForm">
             <v-select

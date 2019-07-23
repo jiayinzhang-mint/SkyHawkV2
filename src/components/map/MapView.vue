@@ -11,8 +11,8 @@
           <v-btn icon @click="initTool" v-if="select">
             <v-icon>arrow_back</v-icon>
           </v-btn>
-          <v-toolbar-title v-html="highlight" v-if="!select" class="subheading">请选择辖区</v-toolbar-title>
-          <v-toolbar-title v-html="select" class="subheading" v-else></v-toolbar-title>
+          <v-toolbar-title v-html="highlight" v-if="!select" class="subtitle-1">请选择辖区</v-toolbar-title>
+          <v-toolbar-title v-html="select" class="subtitle-1" v-else></v-toolbar-title>
         </v-toolbar>
         <v-divider></v-divider>
         <v-navigation-drawer floating permanent stateless value="true" v-if="!select">
@@ -36,7 +36,7 @@
         style="z-index:1"
       >
         <v-toolbar flat>
-          <v-toolbar-title class="subheading">请选择企业</v-toolbar-title>
+          <v-toolbar-title class="subtitle-1">请选择企业</v-toolbar-title>
         </v-toolbar>
       </v-card>
       <v-card
@@ -46,7 +46,7 @@
         v-if="select && !selectCompany"
       >
         <v-toolbar flat class="aero">
-          <v-toolbar-title class="subheading" v-html="highlightCompany">请选择企业</v-toolbar-title>
+          <v-toolbar-title class="subtitle-1" v-html="highlightCompany">请选择企业</v-toolbar-title>
         </v-toolbar>
         <v-divider></v-divider>
         <v-navigation-drawer floating permanent stateless value="true" v-if="!selectCompany">
@@ -78,7 +78,7 @@
           v-if="selectCompany"
         >
           <v-toolbar class="aero" flat>
-            <v-toolbar-title style="margin-left:-8px" class="subheading" v-html="selectCompany"></v-toolbar-title>
+            <v-toolbar-title style="margin-left:-8px" class="subtitle-1" v-html="selectCompany"></v-toolbar-title>
             <v-spacer></v-spacer>
             <v-btn icon @click="backTool">
               <v-icon>clear</v-icon>
@@ -106,7 +106,7 @@
                 <v-icon color="info">person</v-icon>
               </v-list-tile-action>
               <v-list-tile-content>
-                <v-list-tile-title class="subheading" v-html="companyInfo.legalperson"></v-list-tile-title>
+                <v-list-tile-title class="subtitle-1" v-html="companyInfo.legalperson"></v-list-tile-title>
               </v-list-tile-content>
             </v-list-tile>
           </v-list>

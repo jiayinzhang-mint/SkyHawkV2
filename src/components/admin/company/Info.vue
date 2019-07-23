@@ -3,12 +3,12 @@
     <v-toolbar flat class="transparent">
       <v-toolbar-title>基本信息</v-toolbar-title>
       <v-spacer></v-spacer>
-      <v-btn round flat @click="updateCompanyInfo">
+      <v-btn rounded text @click="updateCompanyInfo">
         <v-icon>save</v-icon>&nbsp;保存
       </v-btn>
     </v-toolbar>
     <v-form ref="companyInfoForm">
-      <v-container>
+      <v-container fluid grid-list-md>
         <v-layout>
           <v-flex xs12>
             <v-text-field v-model="companyInfo.brand" label="店名" required></v-text-field>
@@ -43,6 +43,7 @@
                   v-model="companyInfo.license_validity"
                   label="证照到期时间"
                   readonly
+                  hide-details
                   v-on="on"
                 ></v-text-field>
               </template>
@@ -54,6 +55,7 @@
                 landscape
               ></v-date-picker>
             </v-menu>
+            
             <v-select
               v-model="companyInfo.besupervised"
               :items="groupList"
