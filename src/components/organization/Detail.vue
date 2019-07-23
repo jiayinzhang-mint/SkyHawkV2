@@ -2,27 +2,27 @@
   <v-container style="height:calc(100vh - 64px);overflow :auto">
     <v-card>
       <v-toolbar flat color="transparent">
-        <v-toolbar-title style="font-size:17px">{{organizeInfo.name}}</v-toolbar-title>
+        <v-toolbar-title class="subtitle-1 font-weight-black">{{organizeInfo.name}}</v-toolbar-title>
       </v-toolbar>
-      <v-data-table :headers="headers" :items="userList" hide-actions no-data-text="暂无数据">
+      <v-data-table :headers="headers" :items="userList" hide-default-footer no-data-text="暂无数据">
         <template slot="items" slot-scope="props">
           <td class="text-xs-center">{{ props.item.name }}</td>
           <td class="text-xs-center">{{ props.item.index }}</td>
           <td class="text-xs-center">{{ props.item.phone }}</td>
-          <td class="text-xs-center">
-            <v-chip v-if="props.item.wechat" small text-color="white" color="green">在线</v-chip>
-            <v-chip v-else small text-color="white" color="red darken-3">离线</v-chip>
-          </td>
-          <td class="text-xs-center">
-            <v-btn color="primary" rounded flat @click="currentUser=props.item;userInfoDialog=true">信息</v-btn>
-          </td>
+        </template>
+        <template v-slot:item.wechat="{item}">
+          <v-chip v-if="item.wechat" small text-color="white" color="green">在线</v-chip>
+          <v-chip v-else small text-color="white" color="red darken-3">离线</v-chip>
+        </template>
+        <template v-slot:item.action="{item}">
+          <v-btn color="primary" rounded text @click="currentUser=item;userInfoDialog=true">信息</v-btn>
         </template>
       </v-data-table>
     </v-card>
     <v-dialog v-model="userInfoDialog" max-width="250">
       <v-card>
         <v-toolbar flat class="transparent">
-          <v-toolbar-title>{{currentUser.name}}</v-toolbar-title>
+          <v-toolbar-title class="subtitle-1 font-weight-black">{{currentUser.name}}</v-toolbar-title>
           <v-spacer></v-spacer>
           <v-btn icon @click="userInfoDialog=false">
             <v-icon>clear</v-icon>
@@ -34,25 +34,25 @@
           </v-layout>
         </v-img>
         <v-list two-line>
-          <v-list-tile>
-            <v-list-tile-action>
+          <v-list-item>
+            <v-list-item-action>
               <v-icon color="primary">book</v-icon>
-            </v-list-tile-action>
-            <v-list-tile-content>
-              <v-list-tile-title>{{currentUser.index}}</v-list-tile-title>
-              <v-list-tile-sub-title>工号</v-list-tile-sub-title>
-            </v-list-tile-content>
-          </v-list-tile>
+            </v-list-item-action>
+            <v-list-item-content>
+              <v-list-item-title>{{currentUser.index}}</v-list-item-title>
+              <v-list-item-subtitle>工号</v-list-item-subtitle>
+            </v-list-item-content>
+          </v-list-item>
           <v-divider></v-divider>
-          <v-list-tile>
-            <v-list-tile-action>
+          <v-list-item>
+            <v-list-item-action>
               <v-icon color="primary">phone</v-icon>
-            </v-list-tile-action>
-            <v-list-tile-content>
-              <v-list-tile-title>{{currentUser.phone}}</v-list-tile-title>
-              <v-list-tile-sub-title>移动电话</v-list-tile-sub-title>
-            </v-list-tile-content>
-          </v-list-tile>
+            </v-list-item-action>
+            <v-list-item-content>
+              <v-list-item-title>{{currentUser.phone}}</v-list-item-title>
+              <v-list-item-subtitle>移动电话</v-list-item-subtitle>
+            </v-list-item-content>
+          </v-list-item>
         </v-list>
       </v-card>
     </v-dialog>
@@ -91,11 +91,13 @@ export default {
       {
         text: "微信",
         align: "center",
+        value: "wechat",
         sortable: false
       },
       {
         text: "操作",
         align: "center",
+        value: "action",
         sortable: false
       }
     ]

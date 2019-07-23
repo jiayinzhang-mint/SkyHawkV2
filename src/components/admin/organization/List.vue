@@ -2,7 +2,7 @@
   <v-layout>
     <v-flex xs12 sm3 style="height:calc(100vh - 64px);overflow :auto" class="grey-back">
       <v-toolbar flat color="grey darken-3">
-        <v-toolbar-title style="font-size:17px">组织信息</v-toolbar-title>
+        <v-toolbar-title class="subtitle-1 font-weight-black">组织信息</v-toolbar-title>
         <v-spacer></v-spacer>
         <v-btn icon v-if="active.length>=1" @click="createOrganizationDialog=true">
           <v-icon>add</v-icon>
