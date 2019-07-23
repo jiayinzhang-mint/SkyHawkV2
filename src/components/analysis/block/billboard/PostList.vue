@@ -2,13 +2,13 @@
   <div>
     <!-- <v-icon class="mr-4" size="64">alarm</v-icon> -->
     <v-toolbar class="transparent" flat column align-start dense>
-      <div class="body-2 font-weight-bold mb-1">公告板</div>
+      <div class="subtitle-1 font-weight-bold">公告板</div>
     </v-toolbar>
     <v-divider></v-divider>
-    <v-list style="max-height:205px;overflow:auto">
+    <v-list dense style="max-height:174px;overflow:auto" color="transparent">
       <div v-for="(item,i) in postList" :key="i">
         <v-list-item @click="showPost(item);postDialog=true" ripple>
-          <v-list-item-title class="body-1 text-uppercase">{{item.title}}</v-list-item-title>
+          <v-list-item-title class="text-uppercase">{{item.title}}</v-list-item-title>
         </v-list-item>
         <v-divider></v-divider>
       </div>

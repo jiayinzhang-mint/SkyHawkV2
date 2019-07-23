@@ -1,38 +1,50 @@
 <template>
   <div>
     <v-toolbar class="transparent" flat>
-      <v-toolbar-title class="headline font-weight-bold">今日</v-toolbar-title>
+      <v-toolbar-title class="headline font-weight-black">今日</v-toolbar-title>
       <v-spacer></v-spacer>
       <v-tooltip bottom>
-        <v-btn icon @click="refresh" slot="activator">
-          <v-icon>refresh</v-icon>
-        </v-btn>
+        <template v-slot:activator="{on}">
+          <v-btn v-on="on" icon @click="refresh">
+            <v-icon>refresh</v-icon>
+          </v-btn>
+        </template>
         <span>刷新</span>
       </v-tooltip>
       <v-tooltip bottom>
-        <v-btn icon slot="activator">
-          <v-icon>print</v-icon>
-        </v-btn>
+        <template v-slot:activator="{on}">
+          <v-btn v-on="on" icon>
+            <v-icon>print</v-icon>
+          </v-btn>
+        </template>
         <span>打印</span>
       </v-tooltip>
     </v-toolbar>
     <v-container fluid grid-list-md>
       <v-layout row wrap>
-        <v-flex xs12 sm4 d-flex>
+        <v-flex xs12 sm4>
           <v-hover>
-            <v-card slot-scope="{ hover }" :class="`elevation-${hover ? 12 : 2}`">
+            <v-card
+              style="width:100%"
+              slot-scope="{ hover }"
+              :class="`elevation-${hover ? 12 : 2}`"
+            >
               <weather></weather>
             </v-card>
           </v-hover>
         </v-flex>
         <v-flex xs12 sm4 d-flex>
           <v-hover>
-            <v-card slot-scope="{ hover }" :class="`elevation-${hover ? 12 : 2}`">
+            <v-card
+              style="width:100%"
+              slot-scope="{ hover }"
+              :class="`elevation-${hover ? 12 : 2}`"
+            >
               <post-list></post-list>
             </v-card>
           </v-hover>
         </v-flex>
-        <v-flex xs12 sm4>
+        <v-flex xs12 sm4 d-flex>
           <v-layout row wrap>
             <v-flex xs12 sm6>
               <v-hover>
@@ -67,7 +79,7 @@
       </v-layout>
     </v-container>
     <v-toolbar class="transparent" flat>
-      <v-toolbar-title class="headline font-weight-bold">昨日</v-toolbar-title>
+      <v-toolbar-title class="headline font-weight-black">昨日</v-toolbar-title>
       <v-spacer></v-spacer>
     </v-toolbar>
     <v-container fluid grid-list-md>
@@ -103,7 +115,7 @@
       </v-layout>
     </v-container>
     <v-toolbar class="transparent" flat>
-      <v-toolbar-title class="headline font-weight-bold">近期</v-toolbar-title>
+      <v-toolbar-title class="headline font-weight-black">近期</v-toolbar-title>
       <v-spacer></v-spacer>
     </v-toolbar>
     <v-container fluid grid-list-md>
