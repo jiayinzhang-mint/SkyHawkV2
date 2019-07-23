@@ -10,49 +10,49 @@
     </v-container>
     <v-list>
       <v-subheader>告警详情</v-subheader>
-      <v-list-tile>
-        <v-list-tile-action>
+      <v-list-item>
+        <v-list-item-action>
           <v-icon color="primary">info</v-icon>
-        </v-list-tile-action>
-        <v-list-tile-content>
-          <v-list-tile-title>{{alertDetail.detail}}</v-list-tile-title>
-        </v-list-tile-content>
-      </v-list-tile>
+        </v-list-item-action>
+        <v-list-item-content>
+          <v-list-item-title>{{alertDetail.detail}}</v-list-item-title>
+        </v-list-item-content>
+      </v-list-item>
       <v-divider inset></v-divider>
 
-      <v-list-tile>
-        <v-list-tile-action>
+      <v-list-item>
+        <v-list-item-action>
           <v-icon color="primary">redo</v-icon>
-        </v-list-tile-action>
-        <v-list-tile-content>
-          <v-list-tile-title v-if="alertDetail.state == 1">监管部门处理中</v-list-tile-title>
-          <v-list-tile-title v-else-if="alertDetail.state == 2">企业整改中</v-list-tile-title>
-          <v-list-tile-title v-else-if="alertDetail.state == 3">整改审核中</v-list-tile-title>
-          <v-list-tile-title v-else-if="alertDetail.state == 4">已完成</v-list-tile-title>
-          <v-list-tile-title v-else-if="alertDetail.state == 9">告警错误</v-list-tile-title>
-        </v-list-tile-content>
-      </v-list-tile>
+        </v-list-item-action>
+        <v-list-item-content>
+          <v-list-item-title v-if="alertDetail.state == 1">监管部门处理中</v-list-item-title>
+          <v-list-item-title v-else-if="alertDetail.state == 2">企业整改中</v-list-item-title>
+          <v-list-item-title v-else-if="alertDetail.state == 3">整改审核中</v-list-item-title>
+          <v-list-item-title v-else-if="alertDetail.state == 4">已完成</v-list-item-title>
+          <v-list-item-title v-else-if="alertDetail.state == 9">告警错误</v-list-item-title>
+        </v-list-item-content>
+      </v-list-item>
       <v-divider inset></v-divider>
 
       <div v-if="alertDetail.title=='温度超上限'">
-        <v-list-tile>
-          <v-list-tile-action>
+        <v-list-item>
+          <v-list-item-action>
             <v-icon color="primary">whatshot</v-icon>
-          </v-list-tile-action>
-          <v-list-tile-content>
-            <v-list-tile-title style="color:#ff5555">{{alertDetail.temperature}}</v-list-tile-title>
-          </v-list-tile-content>
-        </v-list-tile>
+          </v-list-item-action>
+          <v-list-item-content>
+            <v-list-item-title style="color:#ff5555">{{alertDetail.temperature}}</v-list-item-title>
+          </v-list-item-content>
+        </v-list-item>
         <v-divider inset></v-divider>
 
-        <v-list-tile>
-          <v-list-tile-action>
+        <v-list-item>
+          <v-list-item-action>
             <v-icon color="primary">bubble_chart</v-icon>
-          </v-list-tile-action>
-          <v-list-tile-content>
-            <v-list-tile-title style="color:#ff5555">{{alertDetail.humidity}}</v-list-tile-title>
-          </v-list-tile-content>
-        </v-list-tile>
+          </v-list-item-action>
+          <v-list-item-content>
+            <v-list-item-title style="color:#ff5555">{{alertDetail.humidity}}</v-list-item-title>
+          </v-list-item-content>
+        </v-list-item>
 
         <v-divider inset></v-divider>
       </div>

@@ -1,53 +1,28 @@
 <template>
-  <v-container
-    fluid
-    grid-list-lg
-  >
-    <v-layout>
+  <v-container fluid grid-list-lg>
+    <v-layout row wrap>
       <v-flex xs8>
         <v-card>
-          <v-toolbar
-            flat
-            color="transparent"
-          >
-            <v-tooltip bottom>
-              <v-btn
-                icon
-                slot="activator"
-                :to="'/alert'"
-              >
-                <v-icon>arrow_back</v-icon>
-              </v-btn>
-              <span>返回</span>
-            </v-tooltip>
+          <v-toolbar flat color="transparent">
+            <v-btn icon :to="'/alert'">
+              <v-icon>arrow_back</v-icon>
+            </v-btn>
 
-            <v-toolbar-title>{{alertDetail.title}}</v-toolbar-title>
+            <v-toolbar-title class="subtitle-1 font-weight-black">{{alertDetail.title}}</v-toolbar-title>
             <v-spacer></v-spacer>
             <div v-if="alertDetail.state==1">
               <div v-if="alertDetail.auto==1">
                 <div v-if="userInfo.role==1">
-                  <v-btn
-                    flat
-                    rounded
-                    @click.stop="uncertainAlert"
-                  >
-                    <v-icon class="mr-1">flag</v-icon>标记
+                  <v-btn text rounded @click.stop="uncertainAlert">
+                    <v-icon class="mr-1">flag</v-icon>&nbsp;标记
                   </v-btn>
 
-                  <v-btn
-                    flat
-                    rounded
-                    @click.stop="errorAlert"
-                  >
-                    <v-icon class="mr-1">delete</v-icon>误报
+                  <v-btn text rounded @click.stop="errorAlert">
+                    <v-icon class="mr-1">delete</v-icon>&nbsp;误报
                   </v-btn>
 
-                  <v-btn
-                    flat
-                    rounded
-                    @click.stop="repostAlert"
-                  >
-                    <v-icon class="mr-1">redo</v-icon>下发
+                  <v-btn text rounded @click.stop="repostAlert">
+                    <v-icon class="mr-1">redo</v-icon>&nbsp;下发
                   </v-btn>
                 </div>
               </div>
@@ -72,19 +47,12 @@
               >完成</v-btn>
             </div>
             <div v-if="userInfo.role==0">
-              <v-btn
-                rounded
-                flat
-                @click="deleteAlert()"
-              >
-                <v-icon class="mr-1">delete</v-icon>删除
+              <v-btn text rounded @click="deleteAlert()">
+                <v-icon>delete</v-icon>&nbsp;删除
               </v-btn>
             </div>
           </v-toolbar>
-          <v-tabs
-            v-model="tab"
-            centered
-          >
+          <v-tabs v-model="tab" centered>
             <v-tabs-slider></v-tabs-slider>
             <v-tab key="1">基本信息</v-tab>
             <v-tab key="2">流转历史</v-tab>
@@ -104,16 +72,10 @@
           </v-tabs-items>
         </v-card>
       </v-flex>
-      <v-flex
-        xs4
-        d-flex
-      >
-        <v-card>
-          <v-toolbar
-            flat
-            class="transparent"
-          >
-            <v-toolbar-title>{{company.brand}}</v-toolbar-title>
+      <v-flex xs4 d-flex>
+        <v-card style="width:100%">
+          <v-toolbar flat class="transparent">
+            <v-toolbar-title class="subtitle-1 font-weight-black">{{company.brand}}</v-toolbar-title>
           </v-toolbar>
           <v-container>
             <v-layout>
@@ -130,12 +92,7 @@
             <v-divider></v-divider>
             <v-layout>
               <v-flex xs12>
-                <v-btn
-                  flat
-                  block
-                  rounded
-                  :to="'/company/'+company.id+'/info'"
-                >
+                <v-btn text block rounded :to="'/company/'+company.id+'/info'">
                   前往企业信息
                   <v-icon>arrow_right</v-icon>
                 </v-btn>
