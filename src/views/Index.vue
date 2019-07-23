@@ -94,6 +94,8 @@
           </v-list-item>
         </v-list>
       </v-menu>
+
+      <v-progress-linear :active="loading" :indeterminate="loading" absolute bottom color="primary"></v-progress-linear>
     </v-app-bar>
 
     <v-navigation-drawer width="500" right v-model="searchDrawer" absolute clipped temporary>
@@ -245,7 +247,8 @@ export default {
   },
   computed: {
     ...mapGetters({
-      userInfo: "user/userInfo"
+      userInfo: "user/userInfo",
+      loading: "others/loading"
     })
   },
   async mounted() {}

@@ -1,19 +1,18 @@
 import axios from "axios";
-import Vue from "vue";
-const vue = new Vue();
+import store from "../store/store";
 
 class basicService {
   static async getData(rsp) {
-    vue.$loading.show(true);
+    store.commit("others/toggleLoading", true);
     var rspData = rsp;
     if (rsp.data) rspData = rsp.data;
-    vue.$loading.show(false);
+    store.commit("others/toggleLoading", false);
     // err => no data
     return rspData;
   }
 
   static async getRequest(url, params) {
-    vue.$loading.show(true);
+    store.commit("others/toggleLoading", true);
 
     try {
       var rsp = await axios.get(url, { params: params });
@@ -23,13 +22,13 @@ class basicService {
     let json = rsp.data;
     let msg = { url: url, params: params, rsp: json };
     console.log(msg);
-    vue.$loading.show(false);
+    store.commit("others/toggleLoading", false);
 
     return this.getData(rsp);
   }
 
   static async postRequest(url, params) {
-    vue.$loading.show(true);
+    store.commit("others/toggleLoading", true);
 
     try {
       var rsp = await axios.post(url, params);
@@ -39,13 +38,13 @@ class basicService {
     let json = rsp.data;
     let msg = { url: url, params: params, rsp: json };
     console.log(msg);
-    vue.$loading.show(false);
+    store.commit("others/toggleLoading", false);
 
     return await this.getData(rsp);
   }
 
   static async putRequest(url, params) {
-    vue.$loading.show(true);
+    store.commit("others/toggleLoading", true);
 
     try {
       var rsp = await axios.put(url, params);
@@ -55,13 +54,13 @@ class basicService {
     let json = rsp.data;
     let msg = { url: url, params: params, rsp: json };
     console.log(msg);
-    vue.$loading.show(false);
+    store.commit("others/toggleLoading", false);
 
     return this.getData(rsp);
   }
 
   static async deleteRequest(url, params) {
-    vue.$loading.show(true);
+    store.commit("others/toggleLoading", true);
 
     try {
       var rsp = await axios.delete(url, { params: params });
@@ -71,7 +70,7 @@ class basicService {
     let json = rsp.data;
     let msg = { url: url, params: params, rsp: json };
     console.log(msg);
-    vue.$loading.show(false);
+    store.commit("others/toggleLoading", false);
 
     return this.getData(rsp);
   }

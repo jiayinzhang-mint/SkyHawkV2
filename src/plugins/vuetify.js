@@ -5,8 +5,6 @@ import colors from "vuetify/es5/util/colors";
 
 import "./confirm-dialog/index";
 import "./snackbar/index";
-import "./loading/index";
-import "./upload/index";
 
 Vue.use(Vuetify);
 

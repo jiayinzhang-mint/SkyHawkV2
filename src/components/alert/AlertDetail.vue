@@ -8,7 +8,10 @@
               <v-icon>arrow_back</v-icon>
             </v-btn>
 
-            <v-toolbar-title class="subtitle-1 font-weight-black" style="margin-left:-20px">{{alertDetail.title}}</v-toolbar-title>
+            <v-toolbar-title
+              class="subtitle-1 font-weight-black"
+              style="margin-left:-20px"
+            >{{alertDetail.title}}</v-toolbar-title>
             <v-spacer></v-spacer>
             <div v-if="alertDetail.state==1">
               <div v-if="alertDetail.auto==1">
@@ -186,11 +189,9 @@ export default {
     }
   },
   async mounted() {
-    this.$loading.show(true);
     await alertService.getAlertDetail(this.$route.params.alertId);
     await this.$refs.alertBasicInfo.getBasicInfo();
     this.getCompanyInfo();
-    this.$loading.show(false);
   },
   computed: {
     ...mapGetters({
@@ -202,13 +203,11 @@ export default {
     })
   },
   async beforeRouteUpdate(to, from, next) {
-    this.$loading.show(true);
     next();
     await alertService.getAlertDetail(this.$route.params.alertId);
     await this.$refs.alertBasicInfo.getBasicInfo();
     this.getCompanyInfo();
     this.tab = 0;
-    this.$loading.show(false);
   }
 };
 </script>
