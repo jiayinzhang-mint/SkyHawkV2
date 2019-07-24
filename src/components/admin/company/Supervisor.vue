@@ -76,20 +76,18 @@ export default {
   },
   methods: {
     async getSupervisor() {
-
       const rsp = await companyService.getCompanySupervisor(
         this.$route.params.companyId
       );
       this.supervisorList = rsp.companySupervisor;
-
     },
     async getSupervisorOptions() {
       var company = this.companyList.find(e => {
         return e.id == this.$route.params.companyId;
       });
-      const rsp = await organizationService.getOrganizationDetail(
-        company.besupervised
-      );
+      const rsp = await organizationService.getOrganizationDetail({
+        id: company.besupervised
+      });
       // check duplication?
       this.supervisorOptions = rsp.userList;
     },

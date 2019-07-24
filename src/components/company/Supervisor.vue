@@ -29,12 +29,10 @@ export default {
   }),
   methods: {
     async getSupervisor() {
-
       const rsp = await companyService.getCompanySupervisor(
         this.$route.params.companyId
       );
       this.companySupervisor = rsp.companySupervisor;
-
     }
   },
   computed: {

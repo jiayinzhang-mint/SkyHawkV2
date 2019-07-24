@@ -44,10 +44,25 @@
         <v-list-item-action>
           <v-icon color="primary">stars</v-icon>
         </v-list-item-action>
-        <v-list-item-content>
-          <v-icon v-if="companyInfo.level==3" color="green lighten-2">sentiment_very_satisfied</v-icon>
-          <v-icon v-if="companyInfo.level==2" color="yellow lighten-2">sentiment_satisfied</v-icon>
-          <v-icon v-if="companyInfo.level==1" color="red lighten-2">sentiment_dissatisfied</v-icon>
+        <v-list-item-content class="text-left">
+          <v-icon
+            class="text-left"
+            v-if="companyInfo.level==3"
+            color="green lighten-2"
+            style="justify-content:start"
+          >sentiment_very_satisfied</v-icon>
+          <v-icon
+            class="text-left"
+            v-else-if="companyInfo.level==2"
+            color="yellow lighten-2"
+            style="justify-content:start"
+          >sentiment_satisfied</v-icon>
+          <v-icon
+            class="text-left"
+            v-else-if="companyInfo.level==1"
+            style="justify-content:start"
+            color="red lighten-2"
+          >sentiment_dissatisfied</v-icon>
         </v-list-item-content>
       </v-list-item>
       <v-subheader>营业执照</v-subheader>

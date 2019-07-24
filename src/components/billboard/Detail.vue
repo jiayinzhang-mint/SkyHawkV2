@@ -21,6 +21,7 @@
             required
           ></v-text-field>
           <v-select
+            dense
             :items="postType"
             :rules="[v => !!v || '请选择类型']"
             v-model="postDetail.type"

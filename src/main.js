@@ -6,10 +6,8 @@ import store from "./store/store";
 import axios from "axios";
 import "viewerjs/dist/viewer.css";
 import Viewer from "v-viewer";
-import dimUpload from "./plugins/upload";
 import vuetify from './plugins/vuetify';
 
-Vue.use(dimUpload);
 Vue.use(Viewer, {
   defaultOptions: {
     title: false,
