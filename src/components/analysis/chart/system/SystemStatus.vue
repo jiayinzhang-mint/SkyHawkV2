@@ -87,11 +87,11 @@ export default {
           {
             data: [
               {
-                value: Math.rounded(this.systemStatistic.cpuPercent),
+                value: Math.round(this.systemStatistic.cpuPercent),
                 name: "负载"
               },
               {
-                value: Math.rounded(100 - this.systemStatistic.cpuPercent),
+                value: Math.round(100 - this.systemStatistic.cpuPercent),
                 name: "空载"
               }
             ]
@@ -99,7 +99,7 @@ export default {
         ],
         graphic: {
           style: {
-            text: Math.rounded(this.systemStatistic.cpuPercent) + " %"
+            text: Math.round(this.systemStatistic.cpuPercent) + " %"
           }
         }
       });

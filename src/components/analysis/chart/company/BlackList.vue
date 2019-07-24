@@ -3,7 +3,7 @@
     <v-card-title>
       <!-- <v-icon class="mr-4" size="64">alarm</v-icon> -->
       <v-layout column align-start>
-        <div class="subtitle-1 font-weight-bold mb-1 ">
+        <div class="subtitle-1 font-weight-bold mb-1">
           企业黑名单
           <span class="grey--text">| 本周</span>
         </div>
@@ -27,9 +27,7 @@ export default {
 
       myChart.setOption({
         textStyle: {
-          color: "rgba(255,255,255,0.7)",
-          textShadowColor: "#bf00ff",
-          textShadowBlur: 7
+          color: "rgba(255,255,255,0.7)"
         },
         dataset: {
           source: [

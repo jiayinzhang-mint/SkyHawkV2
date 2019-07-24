@@ -89,6 +89,7 @@ export default {
           }
         },
         tooltip: {
+          showContent: false,
           trigger: "axis",
           axisPointer: {
             type: "cross",

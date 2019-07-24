@@ -1,14 +1,14 @@
 <template>
   <div>
     <v-layout column align-center>
-      <div class="body-2 font-weight-bold mb-1 ">近期告警</div>
+      <div class="body-2 font-weight-bold mb-1 neon">近期告警</div>
     </v-layout>
     <v-list dense style="max-height:420px;overflow:auto">
       <div v-for="(item,i) in alertList" :key="i">
-        <v-list-tile>
-          <v-list-tile-title class="body-2">{{item.title}}</v-list-tile-title>
-          <v-list-tile-sub-title>{{item.brand.brand}}</v-list-tile-sub-title>
-        </v-list-tile>
+        <v-list-item>
+          <v-list-item-title class="body-2">{{item.title}}</v-list-item-title>
+          <v-list-item-subtitle>{{item.brand.brand}}</v-list-item-subtitle>
+        </v-list-item>
         <v-divider></v-divider>
       </div>
     </v-list>
