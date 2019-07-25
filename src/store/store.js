@@ -14,8 +14,8 @@ import others from "./modules/others";
 Vue.use(Vuex);
 
 const vuexCookie = new VuexPersistence({
-  restoreState: (key, storage) => Cookies.getJSON(key),
-  saveState: (key, state, storage) =>
+  restoreState: key => Cookies.getJSON(key),
+  saveState: (key, state) =>
     Cookies.set(key, state, {
       expires: 3
     }),
