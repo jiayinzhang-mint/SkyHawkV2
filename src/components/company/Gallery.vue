@@ -17,9 +17,9 @@
               <img :data-large="item.src" />
             </div>
             <v-card-actions ref="picture2">
-              <span class="subtitle-1">{{item.time| timeFormat}}</span>
+              <span class="subtitle-2">{{item.time| timeFormat}}</span>
               <v-spacer></v-spacer>
-              <v-btn small text icon slot="activator" class="mr-2" @click="show">
+              <v-btn x-small text icon slot="activator" class="mr-2" @click="show">
                 <v-icon>search</v-icon>
               </v-btn>
             </v-card-actions>
