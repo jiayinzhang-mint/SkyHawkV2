@@ -73,6 +73,10 @@ export default {
         route: "device"
       },
       {
+        text: "实时监控",
+        route: "stream"
+      },
+      {
         text: "定时抓拍",
         route: "gallery"
       },

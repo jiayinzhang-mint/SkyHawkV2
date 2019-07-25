@@ -54,11 +54,11 @@
 </template>
 
 <script>
-import authService from "../service/AuthService";
-import companyService from "../service/CompanyService";
-import organizationService from "../service/OrganizationService";
-import alertService from "../service/AlertService";
-import dashboardShortcut from "../shortcut/Dashboard";
+import authService from "@/service/AuthService";
+import companyService from "@/service/CompanyService";
+import organizationService from "@/service/OrganizationService";
+import alertService from "@/service/AlertService";
+import dashboardShortcut from "@/shortcut/Dashboard";
 import { mapGetters } from "vuex";
 export default {
   data() {

@@ -138,10 +138,9 @@
 </template>
 
 <script>
-import getFirstLetter from "../utils/FirstLetter";
+import getFirstLetter from "@/utils/FirstLetter";
 import { mapGetters } from "vuex";
-import companyService from "../service/CompanyService";
-import searchView from "../components/drawer/Search";
+import searchView from "@/components/drawer/Search";
 export default {
   components: { searchView: searchView },
   data() {
